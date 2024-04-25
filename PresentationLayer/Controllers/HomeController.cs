@@ -25,6 +25,10 @@ namespace PresentationLayer.Controllers
         {
             return View();
         }
+        public IActionResult SelectMode()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> ShowDatums()
         {
