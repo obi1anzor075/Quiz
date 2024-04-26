@@ -1,4 +1,4 @@
-﻿
+﻿@using PresentationLayer.Controllers;
 @{
     ViewData["Title"] = "Brand Battle";
 }
@@ -45,9 +45,9 @@
         <div class="field_wrapper">
             <div class="play__field">
                 <input class="input__name" type="text" name="name" value="Введите ваше имя" />
-                <button asp-controller="Home" asp-action="SelectMode" class="button">Играть</button>
+                <a asp-controller="Home" asp-action="SelectMode" class="button button__play">Играть</a>
             </div>
-            <div class="deafault__modes">
+           <!-- <div class="deafault__modes">
                 <div class="easy__mode">
                     <button class="button button__landing fw700">Простой режим</button>
                 </div>
@@ -59,7 +59,7 @@
             <div class="duel__mode ">
                 <button class="button button__landing violet fw700">Дуэльный режим</button>
             </div>
-        </div>
+        </div>-->
     </div>
 </main>
 <footer class="footer__part"></footer>

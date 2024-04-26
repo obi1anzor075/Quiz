@@ -1,0 +1,5 @@
+<div class="container">
+    <div class="head__game_part">
+        <img class="header__img" src="~/img/header.svg" alt="header" />
+    </div>
+</div>

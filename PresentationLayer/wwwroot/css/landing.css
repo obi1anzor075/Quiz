@@ -64,6 +64,14 @@
     padding:12px 16px;
 }
 
+.button__play {
+    height: 55px;
+}
+
+.button__play:hover {
+color:white;
+
+}
 
 .container {
     display: flex;
