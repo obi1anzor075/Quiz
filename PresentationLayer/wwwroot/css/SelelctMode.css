@@ -65,7 +65,7 @@
 .easy__mode_container {
     border-radius: 18px;
     outline: 4px;
-    border: 13px solid #0C2532;
+    border: 10px solid #0C2532;
     background: #41CAC2;
     width: 260px;
     height: 100px;
@@ -78,7 +78,7 @@
 .hard__mode_container {
     border-radius: 18px;
     outline: 4px;
-    border: 13px solid #0C2532;
+    border: 10px solid #0C2532;
     background: #A52F2F;
     width: 260px;
     height: 100px;
@@ -90,7 +90,7 @@
 .duel__mode_container {
     border-radius: 18px;
     outline: 4px;
-    border: 13px solid #0C2532;
+    border: 10px solid #0C2532;
     background: #C021C3;
     width: 260px;
     height: 100px;
@@ -117,4 +117,32 @@
     font-weight: 700;
     line-height: normal;
     padding:5px;
+}
+
+/*Game-modal*/
+.game-modal {
+    width: 1100px;
+    background-color: #355873;
+    color: white;
+}
+
+.close {
+    filter: brightness(0) invert(1);
+}
+
+.center{
+    width:100%;
+    text-align:center;
+}
+
+.align-center {
+    justify-content: center;
+}
+
+.button-confirm {
+    background-color: #41CAC2;
+    padding:12px 20px;
+    border-radius:15px;
+    color:white;
+    font-weight:700;
 }
