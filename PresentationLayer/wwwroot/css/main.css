@@ -13,6 +13,8 @@ text-decoration:none !important;
     z-index:1;
 }
 
+
+
 /*Background*/
 .backwrap {
     background: #113243;
@@ -148,5 +150,25 @@ text-decoration:none !important;
     justify-content: center;
 }
 
+.head__back {
+    font-size: 22px;
+    font-weight: 700;
+    color: #CFCFCF;
+}
 
+.head__back:hover{
+    color:white;
+}
+
+
+.button__settings {
+    display: flex;
+    height: 42px;
+    width: 42px;
+    align-items: center;
+    border-radius: 100%;
+    border: none;
+    background-color: #3f99ff;
+    padding: 5px
+}
 

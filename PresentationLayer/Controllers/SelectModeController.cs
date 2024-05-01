@@ -10,6 +10,9 @@ namespace PresentationLayer.Controllers
 {
     public class SelectModeController : Controller
     {
-
+        public IActionResult Easy()
+        {
+            return View();
+        }
     }
 }
