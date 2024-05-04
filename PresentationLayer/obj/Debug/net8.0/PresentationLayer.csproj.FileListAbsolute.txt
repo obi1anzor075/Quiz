@@ -509,3 +509,4 @@ C:\Users\Daniil\Documents\GitHub\Quiz\PresentationLayer\obj\Debug\net8.0\Present
 C:\Users\Daniil\Documents\GitHub\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.genruntimeconfig.cache
 C:\Users\Daniil\Documents\GitHub\Quiz\PresentationLayer\obj\Debug\net8.0\ref\PresentationLayer.dll
 C:\Users\Daniil\Documents\GitHub\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.sourcelink.json
+C:\Users\Daniil\Documents\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll

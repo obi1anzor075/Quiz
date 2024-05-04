@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7MHSAh64bDfhCoAAZ1cIBnS7tTigoXlk6uOLQGHqFXWnK/bKF74htVM7lgEQ6ERtWWSvVY9Ipj1juUwr+4+kJQ==",
+  "dgSpecHash": "Dxh4eQWW1rRd6ZEsXwyjBX8kTVmixn4zPXvDG3qjWMr96V5TlbjLQ4ZY7j2jV5JUVBdoKcPgg816Doz0hUQwKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\PresentationLayer.csproj",
   "expectedPackageFiles": [
@@ -81,6 +81,7 @@
     "C:\\Users\\Daniil\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.4\\microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
     "C:\\Users\\Daniil\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.4\\microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",
     "C:\\Users\\Daniil\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.4\\microsoft.entityframeworkcore.analyzers.8.0.4.nupkg.sha512",
+    "C:\\Users\\Daniil\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.4\\microsoft.entityframeworkcore.design.8.0.4.nupkg.sha512",
     "C:\\Users\\Daniil\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.4\\microsoft.entityframeworkcore.relational.8.0.4.nupkg.sha512",
     "C:\\Users\\Daniil\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\8.0.4\\microsoft.entityframeworkcore.sqlserver.8.0.4.nupkg.sha512",
     "C:\\Users\\Daniil\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",

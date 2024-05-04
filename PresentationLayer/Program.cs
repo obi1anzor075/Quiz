@@ -1,4 +1,3 @@
-
 using DataAccessLayer.DataContext;
 using DataAccessLayer.Repositories;
 using DataAccessLayer.Repositories.Contracts;
@@ -8,16 +7,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<DataStoreDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Sql"));
 });
 
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IDatumService, DatumService>();
-
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 
 var app = builder.Build();
 

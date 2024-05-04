@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
-using DataAccessLayer.DataContext;
+using DataAccessLayer.Models;
 
 namespace DataAccessLayer.DataContext;
 
@@ -18,31 +18,46 @@ public partial class DataStoreDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Datum> Data { get; set; } = null!;
+    public virtual DbSet<Question> Questions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Datum>(entity =>
+        modelBuilder.Entity<Question>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__DATA__3214EC07DCB03DE1");
+            entity.HasKey(e => e.QuestionId).HasName("PK__Question__2EC21549E80C6BEB");
 
-            entity.ToTable("DATA");
-
-            entity.Property(e => e._1)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("1");
-            entity.Property(e => e._2)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("2");
-            entity.Property(e => e._3)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("3");
+            entity.Property(e => e.QuestionId).HasColumnName("question_id");
+            entity.Property(e => e.Answer1)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("answer1");
+            entity.Property(e => e.Answer2)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("answer2");
+            entity.Property(e => e.Answer3)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("answer3");
+            entity.Property(e => e.Answer4)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("answer4");
+            entity.Property(e => e.CorrectAnswer)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("correct_answer");
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("image_url");
+            entity.Property(e => e.QuestionText)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("question_text");
         });
 
         OnModelCreatingPartial(modelBuilder);

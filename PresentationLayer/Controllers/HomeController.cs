@@ -9,11 +9,11 @@ namespace PresentationLayer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDatumService _datumService;
+        private readonly IQuestionsService _questionsService;
 
-        public HomeController(IDatumService datumService)
+        public HomeController(IQuestionsService questionsService)
         {
-            _datumService = datumService;
+            _questionsService = questionsService;
         }
 
         public IActionResult Index()
@@ -30,11 +30,6 @@ namespace PresentationLayer.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ShowDatums()
-        {
-            List<Datum> listDatums = await _datumService.GetDatums();
-            return View(listDatums);
-        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

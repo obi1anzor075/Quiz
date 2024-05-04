@@ -1,5 +1,4 @@
-﻿using DataAccessLayer.Repositories.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +14,21 @@ namespace DataAccessLayer.Repositories
     public class GenericRepository<TModel> : IGenericRepository<TModel> where TModel : class
     {
 
-        private readonly DataStoreDbContext _dbcontext;
+        private readonly DataStoreDbContext _dbContext;
         public GenericRepository(DataStoreDbContext dbContext)
         {
-            _dbcontext = dbContext;
+            _dbContext = dbContext;
         }
 
-        public async Task<List<TModel>> GetDatums()
+        public async Task<IEnumerable<TModel>> GetQuestion()
         {
             try
             {
-                return await _dbcontext.Set<TModel>().ToListAsync();
+                return await _dbContext.Set<TModel>().ToListAsync();
             }
             catch
             {
+
                 throw;
             }
         }

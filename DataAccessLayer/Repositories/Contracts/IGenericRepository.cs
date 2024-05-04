@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-using DataAccessLayer.Repositories.Contracts;
-
+using DataAccessLayer.Models;
 
 namespace DataAccessLayer.Repositories.Contracts
 {
     public interface IGenericRepository<TModel> where TModel : class
     {
-       
-        Task<List<TModel>> GetDatums(); 
-        //CRUD operations
+
+        Task<List<Question>> GetQuestion();
     }
 }

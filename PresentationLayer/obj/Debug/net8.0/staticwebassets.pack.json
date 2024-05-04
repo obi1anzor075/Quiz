@@ -185,10 +185,6 @@
       "PackagePath": "staticwebassets\\css\\SelelctMode.css"
     },
     {
-      "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
-      "PackagePath": "staticwebassets\\css\\answer-effects.css"
-    },
-    {
       "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
       "PackagePath": "staticwebassets\\css\\easy-mode.css"
     },
@@ -241,10 +237,6 @@
       "PackagePath": "staticwebassets\\img\\logo_profile.png"
     },
     {
-      "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\questions\\question1.png",
-      "PackagePath": "staticwebassets\\img\\questions\\question1.png"
-    },
-    {
       "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\settings.svg",
       "PackagePath": "staticwebassets\\img\\settings.svg"
     },
@@ -257,8 +249,8 @@
       "PackagePath": "staticwebassets\\img\\triangle.png"
     },
     {
-      "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\eventListener.js",
-      "PackagePath": "staticwebassets\\js\\eventListener.js"
+      "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
       "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\lib\\bootstrap\\LICENSE",

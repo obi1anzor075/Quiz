@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8rj1sbKFiQpCsxj7FasipVgjlKU9oXAERKpfsm0Y+Zs=",
+  "Hash": "BWxwEOn3ttSmYc4UJ2J6HTLQlZrGnF4yIl3vb2RmSiM=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -891,25 +891,6 @@
       "OriginalItemSpec": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PresentationLayer.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
-      "SourceId": "PresentationLayer",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\",
-      "BasePath": "_content/PresentationLayer",
-      "RelativePath": "css/answer-effects.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\answer-effects.css"
-    },
-    {
       "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
       "SourceId": "PresentationLayer",
       "SourceType": "Discovered",
@@ -1176,25 +1157,6 @@
       "OriginalItemSpec": "wwwroot\\img\\logo_profile.png"
     },
     {
-      "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\questions\\question1.png",
-      "SourceId": "PresentationLayer",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\",
-      "BasePath": "_content/PresentationLayer",
-      "RelativePath": "img/questions/question1.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\questions\\question1.png"
-    },
-    {
       "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\settings.svg",
       "SourceId": "PresentationLayer",
       "SourceType": "Discovered",
@@ -1252,12 +1214,12 @@
       "OriginalItemSpec": "wwwroot\\img\\triangle.png"
     },
     {
-      "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\eventListener.js",
+      "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\site.js",
       "SourceId": "PresentationLayer",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\",
       "BasePath": "_content/PresentationLayer",
-      "RelativePath": "js/eventListener.js",
+      "RelativePath": "js/site.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1268,7 +1230,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\eventListener.js"
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
       "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
