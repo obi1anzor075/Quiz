@@ -15,9 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataContext\" />
     <Folder Include="Models\" />
-    <Folder Include="Repositories\Contracts\" />
   </ItemGroup>
 
 </Project>
