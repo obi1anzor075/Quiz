@@ -1,0 +1,8 @@
+﻿.header__img{
+    width:550px;
+}
+
+.head__game_part{
+    display:flex;
+    justify-content:center;
+}
