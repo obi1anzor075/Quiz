@@ -9,9 +9,9 @@ namespace PresentationLayer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDatumService _datumService;
+        private readonly IQuestionsEasyService _datumService;
 
-        public HomeController(IDatumService datumService)
+        public HomeController(IQuestionsEasyService datumService)
         {
             _datumService = datumService;
         }
@@ -32,7 +32,7 @@ namespace PresentationLayer.Controllers
 
         public async Task<IActionResult> ShowDatums()
         {
-            List<Datum> listDatums = await _datumService.GetDatums();
+            List<QuestionsEasy> listDatums = await _datumService.GetQuestions();
             return View(listDatums);
         }
 

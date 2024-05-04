@@ -14,7 +14,7 @@ builder.Services.AddDbContext<DataStoreDbContext>(options =>
 });
 
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IDatumService, DatumService>();
+builder.Services.AddScoped<IQuestionsEasyService, QuestionsEasyService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
