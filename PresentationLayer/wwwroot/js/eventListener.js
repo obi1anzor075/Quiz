@@ -10,6 +10,11 @@
 
             isAnswerSelected = true;
 
+            // Удаляем класс eventListener у всех элементов с классом .answer
+            answers.forEach(a => {
+                a.classList.remove('eventListener');
+            });
+
             answer.classList.add('selected');
 
             // Выводим содержимое каждого выбранного ответа для отладки
@@ -27,6 +32,7 @@
                     } else {
                         answer.classList.add('incorrect');
                     }
+
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -34,9 +40,4 @@
 
         });
     });
-
-
-   
 });
-
-
