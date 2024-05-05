@@ -59,12 +59,14 @@
     outline: 4px;
     border: 10px solid #0C2532;
     background: #081b25;
-    width: 480px;
-    height: 320px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px; /* Отступ между изображением и ответами */
+}
+
+.question-img > img{
+    border-radius:10px;
 }
 
 .question-answer {

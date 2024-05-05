@@ -20,11 +20,8 @@ namespace DataAccessLayer.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<TModel>> GetQuestion()
+        public async Task<List<TModel>> GetQuestion()
         {
-
-
-
             try
             {
                 return await _dbContext.Set<TModel>().ToListAsync();
@@ -36,9 +33,5 @@ namespace DataAccessLayer.Repositories
             }
         }
 
-        Task<List<Question>> IGenericRepository<TModel>.GetQuestion()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

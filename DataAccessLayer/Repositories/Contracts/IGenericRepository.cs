@@ -11,6 +11,6 @@ namespace DataAccessLayer.Repositories.Contracts
     public interface IGenericRepository<TModel> where TModel : class
     {
 
-        Task<List<Question>> GetQuestion();
+        Task<List<TModel>> GetQuestion();
     }
 }

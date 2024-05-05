@@ -1,5 +1,6 @@
 ﻿@using PresentationLayer.Controllers;
-@model DataAccessLayer.Models.Question
+@model List<DataAccessLayer.Models.Question>
+
 
 @{
     ViewData["Title"] = "Легкий режим";
@@ -17,6 +18,7 @@
 
 
 <body>
+
     <header class="head__part">
         <div class="back-button">
             <a asp-controller="Home" asp-action="Index" class="head__back">Назад</a>
@@ -25,16 +27,9 @@
         <div class="question">
             <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
             <div class="question-text">
-                <span>@Model.QuestionText</span>
+                <span>Вопрос @Model[0].QuestionId<br />@Model[0].QuestionText</span>
             </div>
         </div>
-
-
-            
-        
-
-
-
         <div class="settings">
             <button class="button__settings open button" data-toggle="modal" data-target="#settings">
                 <svg width="42" height="42" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,17 +41,17 @@
     </header>
     <main class="main__part">
         <div class="question-img">
-            <img src="#" alt="Question Photo" />
+            <img src="~/img/questions/@Model[0].ImageUrl" alt="Question Photo" />
         </div>
         <div class="question-answer">
 
                 <div class="wrapper-answer">
-                    <div class="answer eventListener"></div>
-                    <div class="answer eventListener"></div>
+                <div class="answer eventListener">@Model[0].Answer1</div>
+                <div class="answer eventListener">@Model[0].Answer2</div>
                 </div>
                 <div class="wrapper-answer">
-                    <div class="answer eventListener"></div>
-                    <div class="answer eventListener"></div>
+                <div class="answer eventListener">@Model[0].Answer3</div>
+                <div class="answer eventListener">@Model[0].Answer4</div>
                 </div>
 
         </div>
@@ -79,3 +74,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- Подключение обработчик ответа -->
 <script src="~/js/eventListener.js"></script>
+<script>
+    
+</script>
+
+
+
