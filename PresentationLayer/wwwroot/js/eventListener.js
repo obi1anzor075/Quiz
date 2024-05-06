@@ -12,18 +12,13 @@
 
             // Удаляем класс eventListener у всех элементов с классом .answer
             answers.forEach(a => {
-                a.classList.remove('eventListener');
+                a.removeEventListener('click', () => { }); // Удаляем обработчик события клика
             });
 
             answer.classList.add('selected');
 
-            // Выводим содержимое каждого выбранного ответа для отладки
-            console.log(answer.textContent);
+            const selectedAnswer = answer.textContent.trim(); // Получаем выбранный ответ, удаляем пробелы в начале и в конце
 
-            const selectedAnswer = answer.textContent; // Получаем выбранный ответ
-            console.log(selectedAnswer);
-
-            // Отправляем выбранный ответ на сервер для проверки
             fetch(`/Game/CheckAnswer/${selectedAnswer}`)
                 .then(response => response.json())
                 .then(data => {
@@ -37,7 +32,6 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
-
         });
     });
 });

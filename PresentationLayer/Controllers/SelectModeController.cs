@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 using BusinessLogicLayer.Services.Contracts;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
+using DataAccessLayer.DataContext;
 
 
 
@@ -15,14 +17,35 @@ namespace PresentationLayer.Controllers
     {
         private readonly IQuestionsService _questionsService;
 
-        public SelectModeController(IQuestionsService questionsService)
+        private readonly DataStoreDbContext _dbContext;
+        private int currentQuestionIndex = 0; // индекс текущего вопроса
+
+        public SelectModeController(IQuestionsService questionsService, DataStoreDbContext dbContext)
         {
             _questionsService = questionsService;
+            _dbContext = dbContext;
         }
+
+
         public async Task<IActionResult> Easy()
         {
-            List<Question> listQuestions = await _questionsService.GetQuestion();
-            return View(listQuestions);
+            Question nextQuestion = _dbContext.Questions.Skip(currentQuestionIndex).FirstOrDefault();
+
+
+
+                ViewBag.QuestionId = nextQuestion.QuestionId;
+                ViewBag.QuestionText = nextQuestion.QuestionText;
+                ViewBag.ImageUrl = nextQuestion.ImageUrl;
+                ViewBag.Answer1 = nextQuestion.Answer1;
+                ViewBag.Answer2 = nextQuestion.Answer2;
+                ViewBag.Answer3 = nextQuestion.Answer3;
+                ViewBag.Answer4 = nextQuestion.Answer4;
+
+
+
+
+            // Возвращаем следующий вопрос на клиент
+            return View();
         }
     }
 }

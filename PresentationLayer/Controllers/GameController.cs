@@ -19,16 +19,15 @@ namespace PresentationLayer.Controllers
         [HttpGet("/Game/CheckAnswer/{selectedAnswer}")]
         public IActionResult CheckAnswer(string selectedAnswer)
         {
-            // Получаем следующий вопрос из базы данных
+            // Получаем текущий вопрос из базы данных
             Question question = _dbContext.Questions.Skip(currentQuestionIndex).FirstOrDefault();
-
-            // Увеличиваем индекс для следующего запроса
-            currentQuestionIndex++;
 
             // Проверяем, совпадает ли выбранный ответ с правильным ответом
             bool isCorrect = (selectedAnswer == question.CorrectAnswer);
+            currentQuestionIndex++;
 
-            // Возвращаем результат проверки обратно на клиент
+           
+            // Возвращаем результат проверки и следующий вопрос обратно на клиент
             return Json(new { isCorrect = isCorrect });
         }
     }
