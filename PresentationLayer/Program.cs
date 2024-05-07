@@ -20,6 +20,12 @@ builder.Services.AddDbContext<DataStoreDbContext>(options =>
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,8 +36,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-
+    app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -44,3 +49,13 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+
+
+
+
+
+
+
+

@@ -10,22 +10,28 @@
 
             isAnswerSelected = true;
 
+            // Удаляем класс eventListener у всех элементов с классом .answer
+            answers.forEach(a => {
+                a.removeEventListener('click', () => { }); // Удаляем обработчик события клика
+            });
+
             answer.classList.add('selected');
 
             const selectedAnswer = answer.textContent.trim(); // Получаем выбранный ответ, удаляем пробелы в начале и в конце
 
-            // Получаем закодированный правильный ответ из скрытого поля
-            const encodedCorrectAnswer = document.getElementById('correctAnswer').value;
+            fetch(`/Game/CheckAnswer/${selectedAnswer}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isCorrect) {
+                        answer.classList.add('correct');
+                    } else {
+                        answer.classList.add('incorrect');
+                    }
 
-            // Раскодируем закодированный правильный ответ
-            const correctAnswer = document.getElementById('encodedCorrectAnswer').value;
-
-            // Сравниваем выбранный ответ с раскодированным правильным ответом
-            if (selectedAnswer === correctAnswer) {
-                answer.classList.add('correct');
-            } else {
-                answer.classList.add('incorrect');
-            }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     });
 });

@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.DataContext;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace PresentationLayer.Controllers
 {
@@ -17,9 +15,22 @@ namespace PresentationLayer.Controllers
         }
 
         public IActionResult Easy(int index = 0)
-        {
+        {            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
+
+            // Проверка, существует ли сессионная переменная CurrentQuestionIndex
+            if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
+            {
+                // Если нет, установите его в 0
+                HttpContext.Session.SetInt32("CurrentQuestionId", 0);
+            }
+
+            // Проверка, если пользователь пытается вернуться на предыдущий вопрос
+            if (  nextQuestion.QuestionId != HttpContext.Session.GetInt32("CurrentQuestionId"))
+            {
+                // Сбросить состояние, если пользователь пытается вернуться на предыдущий вопрос
+                HttpContext.Session.SetInt32("CurrentQuestionId", nextQuestion.QuestionId);
+            }
             // Получаем следующий вопрос из базы данных по переданному индексу
-            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
 
             if (nextQuestion != null)
             {
@@ -30,13 +41,6 @@ namespace PresentationLayer.Controllers
                 ViewBag.Answer2 = nextQuestion.Answer2;
                 ViewBag.Answer3 = nextQuestion.Answer3;
                 ViewBag.Answer4 = nextQuestion.Answer4;
-
-                // Хеширование правильного ответа
-                string correctAnswer = nextQuestion.CorrectAnswer;
-                string encodedCorrectAnswer = CalculateSHA256Hash(correctAnswer);
-
-                // Передаем закодированный ответ в представление
-                ViewBag.EncodedCorrectAnswer = encodedCorrectAnswer;
 
                 // Увеличиваем индекс для следующего запроса
                 int nextIndex = index + 1;
@@ -49,21 +53,6 @@ namespace PresentationLayer.Controllers
 
             // Возвращаем представление с сообщением об ошибке или что-то другое, если вопросы закончились
             return View("QuestionNotFound");
-        }
-
-        // Метод для хеширования текста с использованием SHA256
-        private string CalculateSHA256Hash(string input)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString();
-            }
         }
     }
 }
