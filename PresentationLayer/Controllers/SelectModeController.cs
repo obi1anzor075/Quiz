@@ -1,38 +1,39 @@
 ﻿using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
-using PresentationLayer.Models;
-using System.Diagnostics;
-using System.Collections.Generic;
-
-using BusinessLogicLayer.Services.Contracts;
-using DataAccessLayer.Models;
-using Microsoft.EntityFrameworkCore;
 using DataAccessLayer.DataContext;
-
-
+using System.Linq;
 
 namespace PresentationLayer.Controllers
 {
     public class SelectModeController : Controller
     {
-        private readonly IQuestionsService _questionsService;
-
         private readonly DataStoreDbContext _dbContext;
-        private int currentQuestionIndex = 0; // индекс текущего вопроса
 
-        public SelectModeController(IQuestionsService questionsService, DataStoreDbContext dbContext)
+        public SelectModeController(DataStoreDbContext dbContext)
         {
-            _questionsService = questionsService;
             _dbContext = dbContext;
         }
 
+        public IActionResult Easy(int index = 0)
+        {            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
 
-        public async Task<IActionResult> Easy()
-        {
-            Question nextQuestion = _dbContext.Questions.Skip(currentQuestionIndex).FirstOrDefault();
+            // Проверка, существует ли сессионная переменная CurrentQuestionIndex
+            if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
+            {
+                // Если нет, установите его в 0
+                HttpContext.Session.SetInt32("CurrentQuestionId", 0);
+            }
 
+            // Проверка, если пользователь пытается вернуться на предыдущий вопрос
+            if (  nextQuestion.QuestionId != HttpContext.Session.GetInt32("CurrentQuestionId"))
+            {
+                // Сбросить состояние, если пользователь пытается вернуться на предыдущий вопрос
+                HttpContext.Session.SetInt32("CurrentQuestionId", nextQuestion.QuestionId);
+            }
+            // Получаем следующий вопрос из базы данных по переданному индексу
 
-
+            if (nextQuestion != null)
+            {
                 ViewBag.QuestionId = nextQuestion.QuestionId;
                 ViewBag.QuestionText = nextQuestion.QuestionText;
                 ViewBag.ImageUrl = nextQuestion.ImageUrl;
@@ -41,11 +42,17 @@ namespace PresentationLayer.Controllers
                 ViewBag.Answer3 = nextQuestion.Answer3;
                 ViewBag.Answer4 = nextQuestion.Answer4;
 
+                // Увеличиваем индекс для следующего запроса
+                int nextIndex = index + 1;
 
+                // Передаем индекс следующего вопроса в представление
+                ViewBag.NextIndex = nextIndex;
 
+                return View();
+            }
 
-            // Возвращаем следующий вопрос на клиент
-            return View();
+            // Возвращаем представление с сообщением об ошибке или что-то другое, если вопросы закончились
+            return View("QuestionNotFound");
         }
     }
 }
