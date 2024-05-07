@@ -16,19 +16,6 @@ namespace PresentationLayer.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("/Game/CheckAnswer/{selectedAnswer}")]
-        public IActionResult CheckAnswer(string selectedAnswer)
-        {
-            // Получаем текущий вопрос из базы данных
-            Question question = _dbContext.Questions.Skip(currentQuestionIndex).FirstOrDefault();
-
-            // Проверяем, совпадает ли выбранный ответ с правильным ответом
-            bool isCorrect = (selectedAnswer == question.CorrectAnswer);
-            currentQuestionIndex++;
-
-           
-            // Возвращаем результат проверки и следующий вопрос обратно на клиент
-            return Json(new { isCorrect = isCorrect });
-        }
+        
     }
 }

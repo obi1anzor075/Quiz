@@ -21,7 +21,7 @@
             <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
             <div class="question-text">
 
-                    <span>Вопрос @ViewBag.QuestionId<br />@ViewBag.QuestionText</span>
+                <span>Вопрос @ViewBag.QuestionId<br />@ViewBag.QuestionText</span>
 
             </div>
         </div>
@@ -54,7 +54,12 @@
                     <div class="answer eventListener">@ViewBag.Answer4</div>
 
             </div>
+            <a class="next__question" href="@Url.Action("Easy", "SelectMode", new { index = ViewBag.NextIndex })">Следующий вопрос</a>
+
         </div>
+        <input type="hidden" id="encodedCorrectAnswer" value="@ViewBag.EncodedCorrectAnswer" />
+
+ 
     </main>
     <footer class="footer__part">
     </footer>
@@ -65,5 +70,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Подключение обработчик ответа -->
     <script src="~/js/eventListener.js"></script>
+    <script src="~/js/site.js"></script>
 </body>
 </html>
