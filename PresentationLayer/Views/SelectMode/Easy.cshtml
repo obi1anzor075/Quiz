@@ -42,19 +42,23 @@
 
         </div>
         <div class="question-answer">
-            <div class="wrapper-answer">
+            <div class="wrapper">
+                <div class="wrapper-answer">
 
                     <div class="answer eventListener">@ViewBag.Answer1</div>
                     <div class="answer eventListener">@ViewBag.Answer2</div>
 
-            </div>
-            <div class="wrapper-answer">
+                </div>
+                <div class="wrapper-answer">
 
                     <div class="answer eventListener">@ViewBag.Answer3</div>
                     <div class="answer eventListener">@ViewBag.Answer4</div>
 
+                </div>            
+
             </div>
-            <a class="next__question" href="@Url.Action("Easy", "SelectMode", new { index = ViewBag.NextIndex })">Следующий вопрос</a>
+            <div class="next__question" href="@Url.Action("Easy", "SelectMode", new { index = ViewBag.NextIndex })">Следующий вопрос</div>
+
         </div>
     </main>
     <footer class="footer__part">

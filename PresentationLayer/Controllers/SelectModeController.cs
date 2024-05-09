@@ -54,5 +54,10 @@ namespace PresentationLayer.Controllers
             // Возвращаем представление с сообщением об ошибке или что-то другое, если вопросы закончились
             return View("QuestionNotFound");
         }
+
+        public IActionResult Finish()
+        { 
+            return View();
+        }
     }
 }

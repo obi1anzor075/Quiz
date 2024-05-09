@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Pw7AV5D4PHQ9vziTo9Rq6TFjGaRXbNDoWYvIVajXZ60=",
+  "Hash": "pNvkBH66h8Oqrmq0YiR7H+/AfzQq1AvQRtiPifk5JAs=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -927,6 +927,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\easy-mode.css"
+    },
+    {
+      "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
+      "SourceId": "PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\",
+      "BasePath": "_content/PresentationLayer",
+      "RelativePath": "css/finish.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\finish.css"
     },
     {
       "Identity": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\game.css",

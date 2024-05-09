@@ -193,6 +193,10 @@
       "PackagePath": "staticwebassets\\css\\easy-mode.css"
     },
     {
+      "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
+      "PackagePath": "staticwebassets\\css\\finish.css"
+    },
+    {
       "Id": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\game.css",
       "PackagePath": "staticwebassets\\css\\game.css"
     },

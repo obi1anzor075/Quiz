@@ -1,0 +1,27 @@
+﻿/*Head part*/
+.head__part{
+    display:flex;
+    justify-content:flex-end;
+    padding:32px 32px 16px;
+}
+
+/*Main part*/
+.congratulaton {
+
+    height: calc(100vh - 90px);
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    }
+
+
+
