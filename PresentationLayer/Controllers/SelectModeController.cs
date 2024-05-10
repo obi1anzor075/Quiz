@@ -24,12 +24,6 @@ namespace PresentationLayer.Controllers
                 HttpContext.Session.SetInt32("CurrentQuestionId", 0);
             }
 
-            // Проверка, если пользователь пытается вернуться на предыдущий вопрос
-            if (  nextQuestion.QuestionId != HttpContext.Session.GetInt32("CurrentQuestionId"))
-            {
-                // Сбросить состояние, если пользователь пытается вернуться на предыдущий вопрос
-                HttpContext.Session.SetInt32("CurrentQuestionId", nextQuestion.QuestionId);
-            }
             // Получаем следующий вопрос из базы данных по переданному индексу
 
             if (nextQuestion != null)
@@ -50,6 +44,12 @@ namespace PresentationLayer.Controllers
 
                 return View();
             }
+            if (nextQuestion == null)
+            {
+                // Redirect to the "Finish" view
+                return RedirectToAction("Finish");
+            }
+
 
             // Возвращаем представление с сообщением об ошибке или что-то другое, если вопросы закончились
             return View("QuestionNotFound");
@@ -57,6 +57,7 @@ namespace PresentationLayer.Controllers
 
         public IActionResult Finish()
         { 
+
             return View();
         }
     }

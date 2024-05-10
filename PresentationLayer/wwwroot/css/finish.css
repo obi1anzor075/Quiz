@@ -16,12 +16,50 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+    width:90vw;
+}
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.finish__text {
+    font-size: 54px;
+    font-weight:700;
+    color: #41CAC2;
+}
 
-    }
+.finish__level{
+    font-size:36px;
+    font-weight:600;
+    color:white;
+}
+
+.correct__answ {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2feb1a;
+}
+
+.return__button {
+    border-radius: 18px;
+    outline: 4px;
+    border: 9px solid #0C2532;
+    background: #41CAC2;
+    width: 200px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+}
+
+.return__button:hover{
+    color: black;
+}
+
+
 
 
 

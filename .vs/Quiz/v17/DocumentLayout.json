@@ -7,28 +7,28 @@
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\finish.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\views\\selectmode\\finish.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\selectmode\\finish.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\views\\selectmode\\finish.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\selectmode\\finish.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\daniil\\documents\\github\\quiz\\presentationlayer\\wwwroot\\js\\eventlistener.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -86,7 +86,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "main.css",
               "DocumentMoniker": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\main.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\main.css",
@@ -95,8 +95,7 @@
               "ViewState": "AQIAAJUAAAAAAAAAAAAgwKMAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-04-25T15:53:42.612Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -110,53 +109,53 @@
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\finish.css",
               "ToolTip": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\finish.css",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABEAAAAEAAAA",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAwwDIAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-05-09T10:46:29.477Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Finish.cshtml",
               "DocumentMoniker": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\Views\\SelectMode\\Finish.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\SelectMode\\Finish.cshtml",
               "ToolTip": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\Views\\SelectMode\\Finish.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\SelectMode\\Finish.cshtml",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABUAAAAcAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-09T10:42:08.049Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Easy.cshtml",
               "DocumentMoniker": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
               "ToolTip": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAAEIAAAAAAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAcwDUAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-04T19:09:50.483Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "easy-mode.css",
               "DocumentMoniker": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\easy-mode.css",
               "ToolTip": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\easy-mode.css",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABoAAAAlAAAA",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAGEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-05-05T08:59:10.434Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "answer-effects.css",
               "DocumentMoniker": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\answer-effects.css",
@@ -164,8 +163,7 @@
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\answer-effects.css",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-05-09T10:33:14.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-09T10:33:14.668Z"
             },
             {
               "$type": "Document",
@@ -189,18 +187,17 @@
               "RelativeToolTip": "PresentationLayer\\wwwroot\\js\\eventListener.js",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-05-05T09:29:22.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-05T09:29:22.198Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "SelectModeController.cs",
               "DocumentMoniker": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\Controllers\\SelectModeController.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\SelectModeController.cs",
               "ToolTip": "C:\\Users\\Daniil\\Documents\\GitHub\\Quiz\\PresentationLayer\\Controllers\\SelectModeController.cs",
               "RelativeToolTip": "PresentationLayer\\Controllers\\SelectModeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAyAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAuwB4AAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-04T16:51:29.977Z",
               "EditorCaption": ""
@@ -215,8 +212,7 @@
               "RelativeToolTip": "PresentationLayer\\Controllers\\GameController.cs",
               "ViewState": "AQIAACMAAAAAAAAAAAAwwC4AAABbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-04T19:20:29.453Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-04T19:20:29.453Z"
             },
             {
               "$type": "Document",
