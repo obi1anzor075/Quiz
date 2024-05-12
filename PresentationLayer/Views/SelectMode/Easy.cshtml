@@ -14,7 +14,7 @@
 <body>
     <header class="head__part">
         <div class="back-button">
-            <a asp-controller="Home" asp-action="Index" class="head__back">Назад</a>
+            <a asp-controller="Home" asp-action="Index" id="backButton" class="head__back">Назад</a>
         </div>
 
         <div class="question">
@@ -70,5 +70,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Подключение обработчик ответа -->
     <script src="~/js/eventListener.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backButton = document.getElementById('backButton');
+
+            if (backButton) {
+                backButton.addEventListener('click', () => {
+                    // Отправляем запрос на сброс счетчика верных ответов и CurrentQuestionId
+                    fetch('/Game/ResetCounters')
+
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

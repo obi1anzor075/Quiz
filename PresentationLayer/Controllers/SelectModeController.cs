@@ -15,7 +15,8 @@ namespace PresentationLayer.Controllers
         }
 
         public IActionResult Easy(int index = 0)
-        {            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
+        {
+            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
 
             // Проверка, существует ли сессионная переменная CurrentQuestionIndex
             if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
@@ -23,6 +24,8 @@ namespace PresentationLayer.Controllers
                 // Если нет, установите его в 0
                 HttpContext.Session.SetInt32("CurrentQuestionId", 0);
             }
+
+            string difficultyLevel = "Легкий";
 
             // Получаем следующий вопрос из базы данных по переданному индексу
 
@@ -44,21 +47,25 @@ namespace PresentationLayer.Controllers
 
                 return View();
             }
-            if (nextQuestion == null)
-            {
-                // Redirect to the "Finish" view
-                return RedirectToAction("Finish");
-            }
 
-
-            // Возвращаем представление с сообщением об ошибке или что-то другое, если вопросы закончились
-            return View("QuestionNotFound");
+            // Если вопросы закончились, перенаправляем на страницу "Finish"
+            return RedirectToAction("Finish", new { difficultyLevel });
         }
 
-        public IActionResult Finish()
-        { 
+        public IActionResult Finish(string difficultyLevel)
+        {
+            ViewBag.DifficultyLevel = difficultyLevel;
+
+            // Получаем количество правильных ответов из сессии
+            int correctAnswersCount = HttpContext.Session.GetInt32("CorrectAnswersCount") ?? 0;
+            ViewBag.CorrectAnswersCount = correctAnswersCount;
+
+            // Получаем общее количество вопросов
+            int totalQuestionsCount = _dbContext.Questions.Count();
+            ViewBag.TotalQuestionsCount = totalQuestionsCount;
 
             return View();
         }
+
     }
 }

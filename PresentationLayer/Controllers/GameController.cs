@@ -28,7 +28,6 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpGet("/Game/CheckAnswer/{selectedAnswer}")]
-
         public IActionResult CheckAnswer(string selectedAnswer)
         {
             // Получаем текущий вопрос из базы данных
@@ -38,23 +37,39 @@ namespace PresentationLayer.Controllers
             bool isCorrect = (selectedAnswer == question.CorrectAnswer);
             CurrentQuestionIndex++;
 
+            // Проверяем правильность ответа и увеличиваем счетчик, если ответ правильный
+            if (isCorrect)
+            {
+                // Увеличиваем счетчик правильных ответов в сессии
+                int correctAnswersCount = HttpContext.Session.GetInt32("CorrectAnswersCount") ?? 0;
+                correctAnswersCount++;
+                HttpContext.Session.SetInt32("CorrectAnswersCount", correctAnswersCount);
+            }
+
+            // Если ответили на все вопросы, сбрасываем счетчик
             if (CurrentQuestionIndex >= _dbContext.Questions.Count())
             {
-                // Если ответили на все вопросы, сбрасываем счетчик
                 CurrentQuestionIndex = 0;
-
-                // Обновляем значение в сессии
                 HttpContext.Session.SetInt32("CurrentQuestionIndex", CurrentQuestionIndex);
             }
 
             HttpContext.Session.SetInt32("CurrentQuestionId", question.QuestionId);
 
-
-
             // Возвращаем результат проверки и следующий вопрос обратно на клиент
             return Json(new { isCorrect = isCorrect });
         }
 
-       
+
+        public IActionResult ResetCounters()
+        {
+            // Сброс счетчика верных ответов и CurrentQuestionId
+            HttpContext.Session.Remove("CorrectAnswersCount");
+            HttpContext.Session.Remove("CurrentQuestionId");
+            HttpContext.Session.Remove("CurrentQuestionIndex");
+
+            return Ok(); // Возвращаем ответ 200 OK
+        }
+
+
     }
 }

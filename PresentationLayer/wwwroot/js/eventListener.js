@@ -2,6 +2,7 @@
     const answers = document.querySelectorAll('.answer');
     let isAnswerSelected = false;
 
+
     answers.forEach(answer => {
         answer.addEventListener('click', () => {
             if (isAnswerSelected) {
@@ -32,6 +33,8 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
+
+
         });
     });
 });
