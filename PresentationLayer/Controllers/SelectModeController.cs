@@ -67,5 +67,16 @@ namespace PresentationLayer.Controllers
             return View();
         }
 
+        public IActionResult ResetCounters()
+        {
+            // Сбрасываем счетчик правильных ответов в сессии
+            HttpContext.Session.SetInt32("CorrectAnswersCount", 0);
+
+            // Сбрасываем индекс текущего вопроса в сессии
+            HttpContext.Session.SetInt32("CurrentQuestionId", 0);
+
+            return Ok();
+        }
+
     }
 }

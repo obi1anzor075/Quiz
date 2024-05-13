@@ -67,7 +67,7 @@ namespace PresentationLayer.Controllers
             HttpContext.Session.Remove("CurrentQuestionId");
             HttpContext.Session.Remove("CurrentQuestionIndex");
 
-            return Ok(); // Возвращаем ответ 200 OK
+            return Ok();
         }
 
 
