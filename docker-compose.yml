@@ -1,0 +1,35 @@
+version: '3.8'
+
+networks:
+  quiz-dev:
+    driver: bridge
+
+services:
+  app:
+    container_name: quiz
+    build: .
+    depends_on:
+      - database
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Sql=Server=database,1433;Database=DataStoreDB;User Id=sa;Password=Fast192837465;TrustServerCertificate=True
+    ports:
+      - "8080:8080"
+    networks:
+      - quiz-dev
+
+  database:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "Fast192837465"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - quiz-dev
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+
+volumes:
+  sqlserverdata:
