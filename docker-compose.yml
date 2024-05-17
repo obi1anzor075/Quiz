@@ -13,8 +13,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__Sql=Server=database,1433;Database=DataStoreDB;User Id=sa;Password=Fast192837465;TrustServerCertificate=True
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
     networks:
       - quiz-dev
 
@@ -30,6 +30,17 @@ services:
       - quiz-dev
     volumes:
       - sqlserverdata:/var/opt/mssql
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - quiz-dev
 
 volumes:
   sqlserverdata:
