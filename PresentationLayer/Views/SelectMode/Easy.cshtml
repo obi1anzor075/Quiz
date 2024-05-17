@@ -1,12 +1,12 @@
 ﻿@using PresentationLayer.Controllers;
+@{
+    ViewData["Title"] = "Легкий уровень";
+}
+
+<html translate="no" >
 
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Check Answer</title>
     <link href="~/css/easy-mode.css" rel="stylesheet" />
     <link href="~/css/answer-effects.css" rel="stylesheet" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
@@ -21,7 +21,7 @@
             <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
             <div class="question-text">
 
-                    <span>Вопрос @ViewBag.QuestionId<br />@ViewBag.QuestionText</span>
+                    <span>Вопрос @ViewBag.QuestionId<br />Какой бренд изображен на фото?</span>
 
             </div>
         </div>
