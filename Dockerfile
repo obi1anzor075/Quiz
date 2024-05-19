@@ -24,3 +24,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "PresentationLayer.dll"]
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
