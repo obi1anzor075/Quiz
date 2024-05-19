@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "t1HQBtUT7SzDdDpXHGRsFlHkxXFj0sSfhZJXSVGyhc0=",
+  "Hash": "HABlGoMLyWmRkvAXKnUFNK8SXsc8ISppZ1XFZ8+FdI0=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -1442,12 +1442,12 @@
       "OriginalItemSpec": "wwwroot\\img\\triangle.png"
     },
     {
-      "Identity": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\eventListener.js",
+      "Identity": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\easy-handler.js",
       "SourceId": "PresentationLayer",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\",
       "BasePath": "_content/PresentationLayer",
-      "RelativePath": "js/eventListener.js",
+      "RelativePath": "js/easy-handler.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1458,7 +1458,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\eventListener.js"
+      "OriginalItemSpec": "wwwroot\\js\\easy-handler.js"
     },
     {
       "Identity": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\site.js",

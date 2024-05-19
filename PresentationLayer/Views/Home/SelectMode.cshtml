@@ -48,6 +48,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Подключение Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Send requests to reset counters when the page loads
+            fetch('/Game/ResetCounters')
+                .then(response => response.ok)
+                .catch(error => console.error('Error:', error));
+
+            fetch('/SelectMode/ResetCounters')
+                .then(response => response.ok)
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
 
     <!-- Модальное окно для простого режима -->
     <div class="modal fade" id="simpleModeModal" tabindex="-1" role="dialog" aria-labelledby="simpleModeModalLabel" aria-hidden="true">
@@ -144,7 +156,4 @@
             </div>
         </div>
     </div>
-
-   
-
 </body>

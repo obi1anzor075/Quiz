@@ -1,7 +1,10 @@
 ﻿using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.DataContext;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace PresentationLayer.Controllers
 {
@@ -16,8 +19,6 @@ namespace PresentationLayer.Controllers
 
         public IActionResult Easy(int index = 0)
         {
-            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
-
             // Проверка, существует ли сессионная переменная CurrentQuestionIndex
             if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
             {
@@ -25,19 +26,30 @@ namespace PresentationLayer.Controllers
                 HttpContext.Session.SetInt32("CurrentQuestionId", 0);
             }
 
-            string difficultyLevel = "Легкий";
-
             // Получаем следующий вопрос из базы данных по переданному индексу
+            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
 
             if (nextQuestion != null)
             {
                 ViewBag.QuestionId = nextQuestion.QuestionId;
                 ViewBag.QuestionText = nextQuestion.QuestionText;
                 ViewBag.ImageUrl = nextQuestion.ImageUrl;
-                ViewBag.Answer1 = nextQuestion.Answer1;
-                ViewBag.Answer2 = nextQuestion.Answer2;
-                ViewBag.Answer3 = nextQuestion.Answer3;
-                ViewBag.Answer4 = nextQuestion.Answer4;
+
+                // Список ответов для перемешивания
+                var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
+
+                // Перемешиваем ответы
+                var random = new Random();
+                for (int i = answers.Count - 1; i > 0; i--)
+                {
+                    int j = random.Next(i + 1);
+                    var temp = answers[i];
+                    answers[i] = answers[j];
+                    answers[j] = temp;
+                }
+
+                // Передаем перемешанные ответы в представление
+                ViewBag.Answers = answers;
 
                 // Увеличиваем индекс для следующего запроса
                 int nextIndex = index + 1;
@@ -49,6 +61,7 @@ namespace PresentationLayer.Controllers
             }
 
             // Если вопросы закончились, перенаправляем на страницу "Finish"
+            string difficultyLevel = "Легкий";
             return RedirectToAction("Finish", new { difficultyLevel });
         }
 
@@ -77,6 +90,5 @@ namespace PresentationLayer.Controllers
 
             return Ok();
         }
-
     }
 }
