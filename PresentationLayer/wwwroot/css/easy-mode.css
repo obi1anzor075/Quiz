@@ -72,16 +72,9 @@
 .question-answer {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центрирование по вертикали */
-    align-items: center; /* Центрирование по горизонтали */
+    justify-content: center;
+    align-items: center;
     gap: 35px;
-    position: absolute; /* Позиционирование абсолютно */
-    top: 50%; /* Размещение блока в вертикальном направлении на 50% от верхней границы */
-    left: 50%; /* Размещение блока в горизонтальном направлении на 50% от левой границы */
-    transform: translate(
-        -50%,
-        -50%
-    ); /* Сдвиг блока на 50% от его размеров по горизонтали и вертикали, чтобы он был центрирован */
 }
 
 .wrapper {
