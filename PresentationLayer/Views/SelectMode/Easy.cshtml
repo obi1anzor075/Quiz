@@ -12,7 +12,7 @@
     <link href="~/css/answer-effects.css" rel="stylesheet" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body translate="no">
     <header class="head__part">
         <div class="back-button">
             <a asp-controller="Home" asp-action="Index" id="backButton" class="head__back">Назад</a>
@@ -22,7 +22,7 @@
             <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
             <div class="question-text">
 
-                    <div>Вопрос @ViewBag.QuestionId<br/>@ViewBag.QuestionText</div>
+                    <div translate="no">Вопрос @ViewBag.QuestionId<br/>@ViewBag.QuestionText</div>
 
             </div>
         </div>
@@ -55,7 +55,7 @@
                     <div class="answer eventListener">@ViewBag.Answer3</div>
                     <div class="answer eventListener">@ViewBag.Answer4</div>
 
-                </div>            
+                </div>
 
             </div>
             <a class="next__question" href="@Url.Action("Easy", "SelectMode", new { index = ViewBag.NextIndex })">Продолжить</a>
