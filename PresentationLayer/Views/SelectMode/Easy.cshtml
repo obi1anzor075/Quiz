@@ -42,7 +42,7 @@
                 <img src="~/img/questions/@ViewBag.ImageUrl" alt="Question Photo" />
 
         </div>
-        <div class="question-answer">
+        <div class="question-answer" translate="no">
             <div class="wrapper">
                 <div class="wrapper-answer">
 
@@ -58,7 +58,7 @@
                 </div>
 
             </div>
-            <a class="next__question" href="@Url.Action("Easy", "SelectMode", new { index = ViewBag.NextIndex })">Продолжить</a>
+            <a class="next__question" id="next-question-btn" href="@Url.Action("Easy", "SelectMode", new { index = ViewBag.NextIndex })">Продолжить</a>
 
         </div>
     </main>

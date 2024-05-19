@@ -6,23 +6,23 @@
     width: 100vw;
 }
 
-.back-button{
-    padding-top:32px;
+.back-button {
+    padding-top: 32px;
 }
 
-.question{
-    display:flex;
-    justify-content:center;
+.question {
+    display: flex;
+    justify-content: center;
 }
 
-.question-style{
-    width:450px;
-    position:relative;
+.question-style {
+    width: 450px;
+    position: relative;
 }
 
 .question-text {
     position: absolute;
-    top:3rem;
+    top: 3rem;
     left: 50%;
     transform: translate(-50%, -50%);
     /*background-color: rgba(255, 255, 255, 0.5);*/
@@ -31,14 +31,14 @@
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    color: white; 
-    max-width:350px;
+    color: white;
+    max-width: 350px;
 }
 
-.settings{
-    display:flex;
-    justify-content:flex-end;
-    padding-top:32px
+.settings {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 32px;
 }
 
 /*Main*/
@@ -50,14 +50,14 @@
     justify-content: flex-start; /* Выравнивание по верхнему краю */
     margin: auto; /* Центрирование по горизонтали */
     max-width: 960px; /* Ограничение максимальной ширины для контента */
-    margin-top:32px;
-    margin-bottom:32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 /*Question img*/
 .question-img {
     border-radius: 18px;
     outline: 4px;
-    border: 10px solid #0C2532;
+    border: 10px solid #0c2532;
     background: #081b25;
     display: flex;
     justify-content: center;
@@ -65,40 +65,42 @@
     margin-bottom: 20px; /* Отступ между изображением и ответами */
 }
 
-.question-img > img{
-    border-radius:10px;
+.question-img > img {
+    border-radius: 10px;
 }
 
 .question-answer {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center; /* Центрирование по вертикали */
     align-items: center; /* Центрирование по горизонтали */
     gap: 35px;
     position: absolute; /* Позиционирование абсолютно */
     top: 50%; /* Размещение блока в вертикальном направлении на 50% от верхней границы */
     left: 50%; /* Размещение блока в горизонтальном направлении на 50% от левой границы */
-    transform: translate(-50%, -50%); /* Сдвиг блока на 50% от его размеров по горизонтали и вертикали, чтобы он был центрирован */
+    transform: translate(
+        -50%,
+        -50%
+    ); /* Сдвиг блока на 50% от его размеров по горизонтали и вертикали, чтобы он был центрирован */
 }
 
-.wrapper{
-    display:flex;
-    flex-direction:row;
+.wrapper {
+    display: flex;
+    flex-direction: row;
     gap: 35px;
 }
 
-.wrapper-answer{
-    display:flex;
-    gap:35px;
-    flex-direction:column;
-
+.wrapper-answer {
+    display: flex;
+    gap: 35px;
+    flex-direction: column;
 }
 
 .answer {
     border-radius: 18px;
     outline: 4px;
-    border: 9px solid #0C2532;
-    background: #41CAC2;
+    border: 9px solid #0c2532;
+    background: #41cac2;
     width: 200px;
     height: 90px;
     display: flex;
@@ -109,7 +111,7 @@
 .next__question {
     border-radius: 18px;
     outline: 4px;
-    border: 7px solid #0C2532;
+    border: 7px solid #0c2532;
     background: #d82bdb;
     width: 200px;
     height: 70px;
@@ -119,7 +121,12 @@
     color: black;
 }
 
-    .next__question:hover {
-        color: black;
-        transform: scale(1.03) translate(0px, 0px);
-    }
+.next__question:hover {
+    color: black;
+    transform: scale(1.03) translate(0px, 0px);
+}
+
+.next__question[disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+}
