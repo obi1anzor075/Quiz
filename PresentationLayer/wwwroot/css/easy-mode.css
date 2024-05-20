@@ -159,4 +159,14 @@
     .head__back{
         font-size:18px;
     }
+
+    .answer {
+        width: 190px;
+        height: 80px;
+        border: 8px solid #0c2532;
+    }
+
+    .selected {
+        transform: scale(1.1) translate(0px, 0px);
+    }
 }

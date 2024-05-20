@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\Quiz\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\selelctmode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\selelctmode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -42,7 +54,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "main.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\main.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\main.css",
@@ -61,6 +73,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "answer-effects.css",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
+              "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\answer-effects.css",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
+              "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\answer-effects.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-20T08:25:35.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Easy.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
+              "RelativeDocumentMoniker": "PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
+              "RelativeToolTip": "PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-20T07:55:40.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "easy-mode.css",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
+              "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\easy-mode.css",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
+              "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\easy-mode.css",
+              "ViewState": "AQIAAJYAAAAAAAAAAAAuwKgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-20T07:51:12.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\appsettings.json",
               "RelativeDocumentMoniker": "PresentationLayer\\appsettings.json",
@@ -73,33 +124,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "SelectMode.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\SelectMode.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\SelectMode.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\SelectMode.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\Home\\SelectMode.cshtml",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-20T07:45:53.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "SelelctMode.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\SelelctMode.css",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAAAJoAAAAFAAAA",
+              "ViewState": "AQIAAJAAAAAAAAAAAAAAAKcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-05-20T07:45:41.457Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "landing.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\landing.css",
@@ -112,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\Index.cshtml",
@@ -125,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "finish.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\finish.css",

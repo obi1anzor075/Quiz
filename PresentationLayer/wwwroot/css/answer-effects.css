@@ -14,7 +14,7 @@
 /* Стили для выделения при нажатии */
 .answer.selected {
 
-    transform: scale(1.2) translate(0px, 0px);
+    transform: scale(1.1) translate(0px, 0px);
     transition:0.4s;
 }
 
