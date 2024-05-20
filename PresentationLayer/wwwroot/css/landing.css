@@ -64,13 +64,13 @@ color:white;
 
 }
 
-.container {
+.ctr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 800px;
     justify-content: center;
     font-size: 18px;
+    min-height:500px;
 }
 
 .field_wrapper{
@@ -135,5 +135,28 @@ color:white;
 
 .red {
     background-color: #a52f2f;
+}
+
+.media{
+    display:none;
+}
+
+/*Media requests*/
+@media(max-width:1150px){
+    .non-media{
+        display:none;
+    }
+
+    .media{
+        display:block;
+    }
+
+    .main__logo_landing{
+        width:300px;
+        padding-top:80px
+    }
+    .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+        width: 90vw !important;
+    }
 }
 

@@ -142,3 +142,27 @@
     color:white;
     font-weight:700;
 }
+
+/*Media requests*/
+
+@media(max-width:1150px){
+    .wrapper{
+        flex-direction: column;
+    }
+
+    .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+        width: 90vw !important;
+    }
+
+    .head__mode_part {
+        padding: 16px 16px 16px;
+    }
+
+    .head__back {
+        font-size: 18px;
+    }
+
+    .container{
+        padding:0 !important;
+    }
+}

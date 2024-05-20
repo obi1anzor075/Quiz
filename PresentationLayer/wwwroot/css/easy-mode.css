@@ -123,3 +123,40 @@
     pointer-events: none;
     opacity: 0.5;
 }
+
+/*Media requests*/
+@media(max-width:1150px){
+    .question-style{
+        width:250px;
+        position:absolute;
+    }
+
+    .question-img > img{
+        width:380px;
+    }
+
+    .wrapper{
+        gap:15px;
+    }
+
+    .wrapper-answer{
+        gap:15px;
+    }
+
+    .question-answer{
+        gap:15px;
+    }
+
+    .question-text{
+        font-size:14px;
+        top:1.6rem;
+    }
+
+    .head__part{
+        padding: 0 16px 5px;
+    }
+
+    .head__back{
+        font-size:18px;
+    }
+}
