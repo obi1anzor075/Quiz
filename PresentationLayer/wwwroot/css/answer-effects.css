@@ -29,3 +29,12 @@
 .answer.incorrect {
     background-color: #FF6347;
 }
+
+
+.input-answer.correct {
+    color: #32CD32;
+}
+
+.input-answer.incorrect {
+    color: #FF6347;
+}

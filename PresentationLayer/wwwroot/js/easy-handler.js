@@ -12,7 +12,6 @@
             isAnswerSelected = true;
             answer.classList.add('selected');
 
-            // Add a 3-second delay before enabling the button and checking the answer
                 nextQuestionBtn.removeAttribute('disabled'); // Enable the "Continue" button
                 const selectedAnswer = answer.textContent.trim(); // Get the selected answer and trim whitespace
 

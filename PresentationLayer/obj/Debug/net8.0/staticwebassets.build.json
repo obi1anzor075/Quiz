@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HABlGoMLyWmRkvAXKnUFNK8SXsc8ISppZ1XFZ8+FdI0=",
+  "Hash": "clprAyP2Qb8z3ty5m8ZRt3GniPn6iQhn5E9Z97UNdjc=",
   "Source": "PresentationLayer",
   "BasePath": "_content/PresentationLayer",
   "Mode": "Default",
@@ -967,6 +967,25 @@
       "OriginalItemSpec": "wwwroot\\css\\game.css"
     },
     {
+      "Identity": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\hard-mode.css",
+      "SourceId": "PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\",
+      "BasePath": "_content/PresentationLayer",
+      "RelativePath": "css/hard-mode.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\hard-mode.css"
+    },
+    {
       "Identity": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
       "SourceId": "PresentationLayer",
       "SourceType": "Discovered",
@@ -1459,6 +1478,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\easy-handler.js"
+    },
+    {
+      "Identity": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\hard-handler.js",
+      "SourceId": "PresentationLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\",
+      "BasePath": "_content/PresentationLayer",
+      "RelativePath": "js/hard-handler.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\hard-handler.js"
     },
     {
       "Identity": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\site.js",

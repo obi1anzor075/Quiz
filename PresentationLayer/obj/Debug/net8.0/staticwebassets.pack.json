@@ -201,6 +201,10 @@
       "PackagePath": "staticwebassets\\css\\game.css"
     },
     {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\hard-mode.css",
+      "PackagePath": "staticwebassets\\css\\hard-mode.css"
+    },
+    {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
       "PackagePath": "staticwebassets\\css\\landing.css"
     },
@@ -299,6 +303,10 @@
     {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\easy-handler.js",
       "PackagePath": "staticwebassets\\js\\easy-handler.js"
+    },
+    {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\hard-handler.js",
+      "PackagePath": "staticwebassets\\js\\hard-handler.js"
     },
     {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\site.js",

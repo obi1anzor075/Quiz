@@ -1,0 +1,67 @@
+﻿@using PresentationLayer.Controllers;
+@{
+    ViewData["Title"] = "Сложный уровень";
+}
+
+<html translate="no">
+<head>
+    <meta charset="UTF-8">
+    <link href="~/css/hard-mode.css" rel="stylesheet" />
+    <link href="~/css/answer-effects.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body translate="no">
+    <header class="head__part">
+        <div class="back-button">
+            <a asp-controller="Home" asp-action="Index" id="backButton" class="head__back">Назад</a>
+        </div>
+
+        <div class="question">
+            <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
+            <div class="question-text">
+                <div translate="no">Вопрос @ViewBag.QuestionId<br />Что за бренд на фото?</div>
+            </div>
+        </div>
+
+
+    </header>
+    <main class="main__part">
+        <div class="question-img">
+            <img src="~/img/questions/@ViewBag.ImageUrl" alt="Question Photo" />
+        </div>
+        <div class="question-answer" translate="no">
+            <div class="wrapper">
+                <div class="answer-text">Введите вариант ответа</div>
+                <div class="play__field">
+                    <input class="input-answer" id="input-answer" type="text" name="name" placeholder="Введите ответ на вопрос" />
+                </div>
+            </div>
+            <a class="next__question" id="next-question-btn" href="@Url.Action("Hard", "SelectMode", new { index = ViewBag.NextIndex })">Продолжить</a>
+        </div>
+    </main>
+    <footer class="footer__part"></footer>
+
+    <!-- Подключение jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Подключение обработчик ответа -->
+    <script src="~/js/hard-handler.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const backButton = document.getElementById('backButton');
+
+            if (backButton) {
+                backButton.addEventListener('click', () => {
+                    // Отправляем запрос на сброс счетчика верных ответов и CurrentQuestionId
+                    fetch('/Game/ResetCounters')
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

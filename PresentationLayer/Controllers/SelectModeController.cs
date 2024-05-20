@@ -65,6 +65,33 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Finish", new { difficultyLevel });
         }
 
+        public IActionResult Hard(int index = 0)
+        {
+            if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
+            {
+                // Если нет, установите его в 0
+                HttpContext.Session.SetInt32("CurrentQuestionId", 0);
+            }
+
+            HardQuestion nextQuestion = _dbContext.HardQuestions.Skip(index).FirstOrDefault();
+
+            if (nextQuestion != null)
+            {
+                ViewBag.QuestionId = nextQuestion.QuestionId;
+                ViewBag.QuestionText = nextQuestion.QuestionText;
+                ViewBag.ImageUrl = nextQuestion.ImageUrl;
+
+                int nextIndex = index + 1;
+
+                ViewBag.NextIndex = nextIndex;
+
+                return View();
+            }
+
+            string difficultyLevel = "Сложный";
+            return RedirectToAction("Finish", new { difficultyLevel });
+        }
+
         public IActionResult Finish(string difficultyLevel)
         {
             ViewBag.DifficultyLevel = difficultyLevel;
