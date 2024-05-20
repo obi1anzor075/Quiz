@@ -1,46 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\Quiz\\",
+  "WorkspaceRootPath": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\selelctmode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\wwwroot\\css\\selelctmode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\selelctmode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\finish.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\selectmode\\easy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\landing.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\wwwroot\\css\\finish.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\finish.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\easy-mode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\answer-effects.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,33 +54,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "main.css",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\main.css",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\main.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\main.css",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\main.css",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\main.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\main.css",
-              "ViewState": "AQIAAJUAAAAAAAAAAAAgwKMAAAARAAAA",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAAALwAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-04-25T15:53:42.612Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAALMAAAAAAAAAAAAAAM0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-20T16:54:11.172Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "answer-effects.css",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\answer-effects.css",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\answer-effects.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\answer-effects.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
@@ -85,63 +106,62 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Easy.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\SelectMode\\Easy.cshtml",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAABQAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-20T07:55:40.368Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "easy-mode.css",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\easy-mode.css",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\easy-mode.css",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAuwKgAAAAAAAAA",
+              "ViewState": "AQIAAIkAAAAAAAAAAAAuwLkAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-05-20T07:51:12.704Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\appsettings.json",
               "RelativeDocumentMoniker": "PresentationLayer\\appsettings.json",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\appsettings.json",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\appsettings.json",
               "RelativeToolTip": "PresentationLayer\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-20T07:49:36.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T07:49:36.66Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "SelectMode.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\SelectMode.cshtml",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Home\\SelectMode.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\SelectMode.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\SelectMode.cshtml",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Home\\SelectMode.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\Home\\SelectMode.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAcAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-20T07:45:53.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "SelelctMode.css",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\SelelctMode.css",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "ViewState": "AQIAAJAAAAAAAAAAAAAAAKcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
@@ -150,39 +170,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "landing.css",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\landing.css",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\landing.css",
-              "ViewState": "AQIAAIIAAAAAAAAAAAAAAJ0AAAAAAAAA",
+              "ViewState": "AQIAAHwAAAAAAAAAAAAAAKgAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-05-20T07:31:00.979Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABwAAAAZAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-17T19:11:50.636Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "finish.css",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\finish.css",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\finish.css",
               "RelativeToolTip": "PresentationLayer\\wwwroot\\css\\finish.css",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAwwDIAAAANAAAA",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAwwD8AAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-05-09T10:46:29.477Z",
               "EditorCaption": ""

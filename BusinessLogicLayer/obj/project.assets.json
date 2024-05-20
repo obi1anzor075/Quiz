@@ -2766,19 +2766,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\shind\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+      "projectUniqueName": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
       "projectName": "BusinessLogicLayer",
-      "projectPath": "C:\\Users\\Admin\\Documents\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\Quiz\\BusinessLogicLayer\\obj\\",
+      "projectPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+      "packagesPath": "C:\\Users\\shind\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\shind\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2792,8 +2792,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Admin\\Documents\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj"
+            "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj"
             }
           }
         }
@@ -2828,7 +2828,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

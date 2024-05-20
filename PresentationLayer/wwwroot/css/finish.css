@@ -59,6 +59,32 @@
     color: black;
 }
 
+@media(max-width:1100px){
+    .finish__level {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .correct__answ {
+        text-align: center;
+    }
+}
+
+@media(max-width:400px){
+    .finish__level{
+font-size:28px;
+text-align:center;
+    }
+
+    .correct__answ{
+        text-align:center;
+    }
+
+    .return__button {
+        border: 8px solid #0C2532;
+    }
+}
+
 
 
 

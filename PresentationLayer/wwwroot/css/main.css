@@ -172,3 +172,96 @@ text-decoration:none !important;
     padding: 5px
 }
 
+@media(max-width:1100px) {
+    .floating.circle {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        background-image: url("/img/circle.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+
+    .floating.square {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image: url("/img/square.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+
+    .floating.triangle {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image: url("/img/triangle.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+
+    .floating.cross {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image: url("/img/cross.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+}
+
+@media(max-width:400px){
+    .floating.circle {
+        display: inline-block;
+        width: 29px;
+        height: 29px;
+        background-image: url("/img/circle.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+
+    .floating.square {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-image: url("/img/square.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+
+    .floating.triangle {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-image: url("/img/triangle.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+
+    .floating.cross {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-image: url("/img/cross.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+    }
+
+}
+
