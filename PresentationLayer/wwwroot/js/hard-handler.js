@@ -9,26 +9,41 @@ document.addEventListener('DOMContentLoaded', () => {
         nextQuestionBtn.removeAttribute('disabled'); // Enable the "Continue" button
     }
 
-    function handleAnswerClick(event) {
-        const answer = event.currentTarget;
-        answers.forEach(ans => ans.classList.remove('selected')); // Deselect other answers
-        answer.classList.add('selected');
-        enableNextButton();
-    }
+    // Handle the "Continue" button click event
+    nextQuestionBtn.addEventListener('click', () => {
+        let selectedAnswer = null;
 
-    answers.forEach(answer => {
-        answer.addEventListener('click', handleAnswerClick);
-    });
-
-    if (inputAnswer) {
-        inputAnswer.addEventListener('input', () => {
-            if (inputAnswer.value.length > 1) {
-                enableNextButton();
-            } else {
-                nextQuestionBtn.setAttribute('disabled', 'true'); // Disable the "Continue" button
+        // Check if any answer is selected
+        answers.forEach(answer => {
+            if (answer.classList.contains('selected')) {
+                selectedAnswer = answer.textContent.trim();
             }
         });
-    }
+
+        // If there's an input answer, use it instead
+        if (inputAnswer && inputAnswer.value.trim().length > 0) {
+            selectedAnswer = inputAnswer.value.trim();
+        }
+
+        // Ensure an answer is selected
+        if (selectedAnswer) {
+            fetch(`/Game/CheckAnswer/${selectedAnswer}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isCorrect) {
+                        inputAnswer.classList.add('correct');
+                        enableNextButton();
+                    } else {
+                        inputAnswer.classList.add('incorrect');
+                        enableNextButton();
+                    }
+                })
+
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
 
     // Reset counters when the back button is clicked
     const backButton = document.getElementById('backButton');

@@ -27,7 +27,7 @@ namespace PresentationLayer.Controllers
             }
         }
 
-        [HttpGet("/Game/CheckAnswer/{selectedAnswer}")]
+        [HttpGet("/Game/CheckAnswer/{ }")]
         public IActionResult CheckAnswer(string selectedAnswer)
         {
             // Получаем текущий вопрос из базы данных
@@ -58,6 +58,45 @@ namespace PresentationLayer.Controllers
             // Возвращаем результат проверки и следующий вопрос обратно на клиент
             return Json(new { isCorrect = isCorrect });
         }
+
+        [HttpGet("/Game/CheckHardAnswer/{selectedAnswer}")]
+        public IActionResult CheckHardAnswer(string selectedAnswer)
+        {
+            // Получаем текущий индекс вопроса из сессии
+            int currentQuestionIndex = HttpContext.Session.GetInt32("CurrentQuestionIndex") ?? 0;
+
+            // Получаем текущий вопрос из базы данных
+            HardQuestion question = _dbContext.HardQuestions.Skip(currentQuestionIndex).FirstOrDefault();
+
+            // Проверяем, совпадает ли выбранный ответ с правильным ответом
+            bool isCorrect = (selectedAnswer == question.CorrectAnswer);
+
+            // Увеличиваем индекс текущего вопроса и обновляем в сессии
+            currentQuestionIndex++;
+            HttpContext.Session.SetInt32("CurrentQuestionIndex", currentQuestionIndex);
+
+            // Проверяем правильность ответа и увеличиваем счетчик, если ответ правильный
+            if (isCorrect)
+            {
+                // Увеличиваем счетчик правильных ответов в сессии
+                int correctAnswersCount = HttpContext.Session.GetInt32("CorrectAnswersCount") ?? 0;
+                correctAnswersCount++;
+                HttpContext.Session.SetInt32("CorrectAnswersCount", correctAnswersCount);
+            }
+
+            // Если ответили на все вопросы, сбрасываем счетчики
+            if (currentQuestionIndex >= _dbContext.HardQuestions.Count())
+            {
+                currentQuestionIndex = 0;
+                HttpContext.Session.SetInt32("CurrentQuestionIndex", currentQuestionIndex);
+            }
+
+            HttpContext.Session.SetInt32("CurrentQuestionId", question.QuestionId);
+
+            // Возвращаем результат проверки обратно на клиент
+            return Json(new { isCorrect = isCorrect });
+        }
+
 
 
         public IActionResult ResetCounters()

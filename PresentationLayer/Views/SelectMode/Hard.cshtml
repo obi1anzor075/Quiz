@@ -33,7 +33,8 @@
             <div class="wrapper">
                 <div class="answer-text">Введите вариант ответа</div>
                 <div class="play__field">
-                    <input class="input-answer" id="input-answer" type="text" name="name" placeholder="Введите ответ на вопрос" />
+                    <input class="input-answer" id="input-answer" autocomplete="off" type="text" name="name" placeholder="Введите ответ" />
+                    <a href="#"><img class="confirm-btn" src="~/img/confirm.svg" alt="Confirm" /></a>               
                 </div>
             </div>
             <a class="next__question" id="next-question-btn" href="@Url.Action("Hard", "SelectMode", new { index = ViewBag.NextIndex })">Продолжить</a>

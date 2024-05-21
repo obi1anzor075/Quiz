@@ -114,7 +114,10 @@
 
 .play__field {
     display: flex;
-    justify-content: center;
+    justify-content:space-between;
+    flex-direction:row;
+    gap:15px;
+
     width: 100%;
     border: 0;
     padding: 16px;
@@ -122,15 +125,19 @@
     border-radius: 15px;
 }
 
+.confirm-btn{
+    width:32px;
+    height:32px;
+}
+
 .input-answer {
-    width: 100%;
+    width: 90%;
     text-transform: uppercase;
     background: none;
     border: none;
     color: white;
     outline: none;
     font-weight: 900;
-    text-align:center;
     letter-spacing:1px;
 }
 
