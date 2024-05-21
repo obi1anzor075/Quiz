@@ -26,6 +26,10 @@
 
 }
 
+.log__in_text:before {
+    content: "ВОЙТИ ИЛИ ЗАРЕГИСТРИРОВАТЬСЯ"
+}
+
 .button{
     display:flex;
     align-items:center;
@@ -137,26 +141,18 @@ color:white;
     background-color: #a52f2f;
 }
 
-.media{
-    display:none !important;
-}
 
 /*Media requests*/
 @media(max-width:1150px){
-    .non-media{
-        display:none;
-    }
-
-    .media{
-        display:block;
-    }
-
     .main__logo_landing{
         width:300px;
         padding-top:80px
     }
     .modal-dialog-centered.modal-dialog-scrollable .modal-content {
         width: 90vw !important;
+    }
+    .log__in_text:before {
+        content: "ВОЙТИ"
     }
 
 
