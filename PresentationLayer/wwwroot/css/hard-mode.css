@@ -125,7 +125,7 @@
     border-radius: 15px;
 }
 
-.confirm-btn{
+.confirm-btn > img{
     width:32px;
     height:32px;
 }
@@ -139,6 +139,11 @@
     outline: none;
     font-weight: 900;
     letter-spacing:1px;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 /*Media requests*/

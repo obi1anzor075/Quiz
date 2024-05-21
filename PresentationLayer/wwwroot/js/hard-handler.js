@@ -1,47 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const answers = document.querySelectorAll('.answer');
     const nextQuestionBtn = document.getElementById('next-question-btn');
     const inputAnswer = document.querySelector('.input-answer');
+    const confirmBtn = document.querySelector('.confirm-btn');
 
-    nextQuestionBtn.setAttribute('disabled', 'true'); // Ensure the button is initially disabled
+    // Ensure the "Continue" button is initially disabled
+    nextQuestionBtn.setAttribute('disabled', 'true');
 
     function enableNextButton() {
         nextQuestionBtn.removeAttribute('disabled'); // Enable the "Continue" button
     }
 
-    // Handle the "Continue" button click event
-    nextQuestionBtn.addEventListener('click', () => {
-        let selectedAnswer = null;
+    // Handle the "Confirm" button click event
+    confirmBtn.addEventListener('click', async (event) => {
+        event.preventDefault(); // Prevent default link behavior
 
-        // Check if any answer is selected
-        answers.forEach(answer => {
-            if (answer.classList.contains('selected')) {
-                selectedAnswer = answer.textContent.trim();
-            }
-        });
+        let selectedAnswer = inputAnswer.value.trim();
 
-        // If there's an input answer, use it instead
-        if (inputAnswer && inputAnswer.value.trim().length > 0) {
-            selectedAnswer = inputAnswer.value.trim();
-        }
-
-        // Ensure an answer is selected
+        // Ensure an answer is entered
         if (selectedAnswer) {
-            fetch(`/Game/CheckAnswer/${selectedAnswer}`)
-                .then(response => response.json())
-                .then(data => {
+            confirmBtn.classList.add('disabled'); // Disable the confirm button to prevent multiple clicks
+
+            try {
+                const response = await fetch(`/Game/CheckHardAnswer/${selectedAnswer}`);
+                const data = await response.json();
+
                     if (data.isCorrect) {
                         inputAnswer.classList.add('correct');
-                        enableNextButton();
                     } else {
                         inputAnswer.classList.add('incorrect');
-                        enableNextButton();
                     }
-                })
 
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+                    enableNextButton();
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
     });
 

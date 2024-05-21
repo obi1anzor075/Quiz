@@ -22,8 +22,6 @@
                 <div translate="no">Вопрос @ViewBag.QuestionId<br />Что за бренд на фото?</div>
             </div>
         </div>
-
-
     </header>
     <main class="main__part">
         <div class="question-img">
@@ -34,7 +32,7 @@
                 <div class="answer-text">Введите вариант ответа</div>
                 <div class="play__field">
                     <input class="input-answer" id="input-answer" autocomplete="off" type="text" name="name" placeholder="Введите ответ" />
-                    <a href="#"><img class="confirm-btn" src="~/img/confirm.svg" alt="Confirm" /></a>               
+                    <a href="#" class="confirm-btn"><img src="~/img/confirm.svg" alt="Confirm" /></a>
                 </div>
             </div>
             <a class="next__question" id="next-question-btn" href="@Url.Action("Hard", "SelectMode", new { index = ViewBag.NextIndex })">Продолжить</a>

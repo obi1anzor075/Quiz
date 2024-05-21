@@ -18,6 +18,11 @@
     transition:0.4s;
 }
 
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 
 
 /* Стили для правильного ответа */
