@@ -25,7 +25,7 @@
     </header>
     <main class="main__part">
         <div class="question-img">
-            <img src="~/img/hard-questions/@ViewBag.ImageUrl" alt="Question Photo" />
+            <img src="~/img/questions/@ViewBag.ImageUrl" alt="Question Photo" />
         </div>
         <div class="question-answer" translate="no">
             <div class="wrapper">
@@ -50,6 +50,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const backButton = document.getElementById('backButton');
+            const inputAnswer = document.getElementById('input-answer');
+            const confirmBtn = document.querySelector('.confirm-btn');
 
             if (backButton) {
                 backButton.addEventListener('click', () => {
@@ -58,6 +60,15 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
+                });
+            }
+
+            if (inputAnswer && confirmBtn) {
+                inputAnswer.addEventListener('keypress', (event) => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault(); // Предотвращаем отправку формы
+                        confirmBtn.click();
+                    }
                 });
             }
         });

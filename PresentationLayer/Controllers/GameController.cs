@@ -27,7 +27,7 @@ namespace PresentationLayer.Controllers
             }
         }
 
-        [HttpGet("/Game/CheckAnswer/{ }")]
+        [HttpGet("/Game/CheckAnswer/{selectedAnswer}")]
         public IActionResult CheckAnswer(string selectedAnswer)
         {
             // Получаем текущий вопрос из базы данных
