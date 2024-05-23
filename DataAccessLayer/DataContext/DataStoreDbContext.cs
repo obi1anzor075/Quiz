@@ -78,6 +78,10 @@ namespace DataAccessLayer.DataContext
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("correct_answer");
+                entity.Property(e => e.CorrectAnswer2)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("correct_answer2");
             });
 
             OnModelCreatingPartial(modelBuilder);

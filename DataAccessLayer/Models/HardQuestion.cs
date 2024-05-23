@@ -9,5 +9,6 @@ namespace DataAccessLayer.Models
         public string QuestionText { get; set; }
         public string ImageUrl { get; set; }
         public string CorrectAnswer { get; set; }
+        public string CorrectAnswer2 { get; set; }
     }
 }

@@ -69,7 +69,7 @@ namespace PresentationLayer.Controllers
             HardQuestion question = _dbContext.HardQuestions.Skip(currentQuestionIndex).FirstOrDefault();
 
             // Проверяем, совпадает ли выбранный ответ с правильным ответом
-            bool isCorrect = (selectedAnswer.ToUpper().Trim().Normalize() == question.CorrectAnswer.ToUpper().Trim().Normalize());
+            bool isCorrect = (selectedAnswer.ToUpper().Trim().Normalize() == question.CorrectAnswer.ToUpper().Trim().Normalize() || selectedAnswer.ToUpper().Trim().Normalize() == question.CorrectAnswer2.ToUpper().Trim().Normalize());
 
             // Увеличиваем индекс текущего вопроса и обновляем в сессии
             currentQuestionIndex++;
