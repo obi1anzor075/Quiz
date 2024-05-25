@@ -1,0 +1,49 @@
+﻿@page
+@{
+    ViewData["Title"] = "Joim Game";
+}
+
+<div>
+    <h1>Join Quiz</h1>
+    <input type="text" id="gameCode" placeholder="Enter game code" />
+    <button onclick="joinGame()">Join Game</button>
+</div>
+
+<div>
+    <h1>Start Game</h1>
+    <input type="text" id="startGameCode" placeholder="Enter game code to start" />
+    <button onclick="startGame()">Start Game</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+<script type="text/javascript">
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/quizHub")
+        .build();
+
+    connection.on("PlayerJoined", function (connectionId) {
+        console.log("Player joined: " + connectionId);
+    });
+
+    connection.on("GameStarted", function () {
+        console.log("Game started");
+    });
+
+    connection.start().catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    function joinGame() {
+        const gameCode = document.getElementById("gameCode").value;
+        connection.invoke("JoinGame", gameCode).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+
+    function startGame() {
+        const gameCode = document.getElementById("startGameCode").value;
+        connection.invoke("StartGame", gameCode).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+</script>

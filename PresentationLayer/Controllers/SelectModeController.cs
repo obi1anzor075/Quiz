@@ -10,59 +10,75 @@ namespace PresentationLayer.Controllers
 {
     public class SelectModeController : Controller
     {
+
+        private readonly ILogger<SelectModeController> _logger;
         private readonly DataStoreDbContext _dbContext;
 
-        public SelectModeController(DataStoreDbContext dbContext)
+
+
+        public SelectModeController(DataStoreDbContext dbContext, ILogger<SelectModeController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public IActionResult Easy(int index = 0)
         {
-            // Проверка, существует ли сессионная переменная CurrentQuestionIndex
-            if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
+            try
             {
-                // Если нет, установите его в 0
-                HttpContext.Session.SetInt32("CurrentQuestionId", 0);
-            }
-
-            // Получаем следующий вопрос из базы данных по переданному индексу
-            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
-
-            if (nextQuestion != null)
-            {
-                ViewBag.QuestionId = nextQuestion.QuestionId;
-                ViewBag.QuestionText = nextQuestion.QuestionText;
-                ViewBag.ImageUrl = nextQuestion.ImageUrl;
-
-                // Список ответов для перемешивания
-                var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
-
-                // Перемешиваем ответы
-                var random = new Random();
-                for (int i = answers.Count - 1; i > 0; i--)
+                _logger.LogInformation("Easy");
+                // Проверка, существует ли сессионная переменная CurrentQuestionIndex
+                if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
                 {
-                    int j = random.Next(i + 1);
-                    var temp = answers[i];
-                    answers[i] = answers[j];
-                    answers[j] = temp;
+                    // Если нет, установите его в 0
+                    HttpContext.Session.SetInt32("CurrentQuestionId", 0);
                 }
 
-                // Передаем перемешанные ответы в представление
-                ViewBag.Answers = answers;
+                // Получаем следующий вопрос из базы данных по переданному индексу
+                Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
 
-                // Увеличиваем индекс для следующего запроса
-                int nextIndex = index + 1;
+                if (nextQuestion != null)
+                {
+                    ViewBag.QuestionId = nextQuestion.QuestionId;
+                    ViewBag.QuestionText = nextQuestion.QuestionText;
+                    ViewBag.ImageUrl = nextQuestion.ImageUrl;
 
-                // Передаем индекс следующего вопроса в представление
-                ViewBag.NextIndex = nextIndex;
+                    // Список ответов для перемешивания
+                    var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
 
-                return View();
+                    // Перемешиваем ответы
+                    var random = new Random();
+                    for (int i = answers.Count - 1; i > 0; i--)
+                    {
+                        int j = random.Next(i + 1);
+                        var temp = answers[i];
+                        answers[i] = answers[j];
+                        answers[j] = temp;
+                    }
+
+
+
+                    // Передаем перемешанные ответы в представление
+                    ViewBag.Answers = answers;
+
+                    // Увеличиваем индекс для следующего запроса
+                    int nextIndex = index + 1;
+
+                    // Передаем индекс следующего вопроса в представление
+                    ViewBag.NextIndex = nextIndex;
+
+                    return View();
+                }
+
+                // Если вопросы закончились, перенаправляем на страницу "Finish"
+                string difficultyLevel = "Легкий";
+                return RedirectToAction("Finish", new { difficultyLevel });
             }
-
-            // Если вопросы закончились, перенаправляем на страницу "Finish"
-            string difficultyLevel = "Легкий";
-            return RedirectToAction("Finish", new { difficultyLevel });
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while getting questions from database.");
+                throw;
+            }
         }
 
         public IActionResult Hard(int index = 0)
@@ -90,6 +106,11 @@ namespace PresentationLayer.Controllers
 
             string difficultyLevel = "Сложный";
             return RedirectToAction("Finish", new { difficultyLevel });
+        }
+
+        public IActionResult JoinGame()
+        {
+            return View();
         }
 
         public IActionResult Finish(string difficultyLevel)
