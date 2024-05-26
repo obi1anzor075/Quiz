@@ -341,6 +341,10 @@
       "PackagePath": "staticwebassets\\img\\square.png"
     },
     {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\svg-icons\\chat-logo.svg",
+      "PackagePath": "staticwebassets\\img\\svg-icons\\chat-logo.svg"
+    },
+    {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\triangle.png",
       "PackagePath": "staticwebassets\\img\\triangle.png"
     },

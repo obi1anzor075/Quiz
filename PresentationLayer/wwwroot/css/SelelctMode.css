@@ -25,11 +25,29 @@
     justify-content:flex-end;
 }
 
+.wrapper-chat{
+    position:absolute;
+    top:60%;
+    display:flex;
+    justify-content:flex-end;
+    width:99vw;
+
+    padding-right:32px;
+}
+
+.chat {
+    width: 480px;
+    height: 500px;
+    background-color: white;
+    border: 10px solid #0C2532;
+    border-radius:25px;
+}
 
 
-.logo__profile{
-    width:32px;
-    height:32px
+
+.logo__profile {
+    width: 32px;
+    height: 32px
 }
 
 .settings {
@@ -164,5 +182,22 @@
 
     .container{
         padding:0 !important;
+    }
+
+    .chat {
+        width: 480px;
+        height: 450px;
+        background-color: white;
+        border: 10px solid #0C2532;
+        border-radius: 25px;
+    }
+    .wrapper-chat {
+        position: absolute;
+        top: 62%;
+        display: flex;
+        justify-content: flex-end;
+        width: 99vw;
+        padding-right: 32px;
+        
     }
 }

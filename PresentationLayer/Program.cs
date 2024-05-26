@@ -4,6 +4,7 @@ using DataAccessLayer.Repositories.Contracts;
 using BusinessLogicLayer.Services;
 using BusinessLogicLayer.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
+using PresentationLayer.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<DataStoreDbContext>(options =>
 
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();
+
+builder.Services.AddSignalR();
 
 builder.Services.AddSession(options =>
 {
@@ -36,7 +39,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-    app.UseSession();
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -47,6 +50,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<GameHub>("/gamehub");
 
 app.Run();
 

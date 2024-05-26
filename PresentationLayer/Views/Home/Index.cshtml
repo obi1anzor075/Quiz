@@ -3,52 +3,96 @@
     ViewData["Title"] = "Brand Battle";
 }
 
+<!DOCTYPE html>
+<html lang="ru">
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="~/css/landing.css" rel="stylesheet" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <title>@ViewData["Title"]</title>
 </head>
+<body>
+    <header class="head__part">
+        <div class="settings">
+            <!-- Настройки (может быть добавлено позже) -->
+        </div>
+        <div class="logo__img">
+            <img src="~/img/logo.svg" class="main__logo_landing" alt="Logo" />
+        </div>
+        <div class="log__in">
+            <button type="button" class="button">
+                <img src="~/img/add-user.png" alt="Add user" />
+                <span class="log__in_text"></span>
+            </button>
+        </div>
+    </header>
 
-
-
-<header class="head__part">
-    <div class="settings">
-
-    </div>
-    <div class="logo__img">
-        <img src="~/img/logo.svg" class="main__logo_landing" alt="Logo" />
-    </div>
-    <div class="log__in">
-        <button type="button" class="button">
-<img src="~/img/add-user.png" alt="Add user" />
-<span class="log__in_text"></span>
-        </button>
-    </div>
-</header>
-<main class="main__part">
-    <div class="ctr">
-        <div class="field_wrapper">
-            <div class="play__field">
-                <input class="input__name" type="text" name="name" placeholder="Введите ваше имя" />
-                <a asp-controller="Home" asp-action="SelectMode" class="button button__play">Играть</a>
+    <main class="main__part">
+        <div class="ctr">
+            <div class="field_wrapper">
+                <div class="play__field">
+                    <form id="playForm" action="/Home/SelectMode" method="post">
+                        <input class="input__name" required type="text" id="userName" name="userName" placeholder="Введите ваше имя" />
+                        <button type="submit" id="send" class="button button__play">Играть</button>
+                    </form>
+                </div>
             </div>
-    </div>
-</main>
-<footer class="footer__part"></footer>
+        </div>
+    </main>
 
-<!-- Подключение jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Подключение Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Send requests to reset counters when the page loads
-        fetch('/Game/ResetCounters')
-            .then(response => response.ok)
-            .catch(error => console.error('Error:', error));
+    <footer class="footer__part"></footer>
 
-        fetch('/SelectMode/ResetCounters')
-            .then(response => response.ok)
-            .catch(error => console.error('Error:', error));
-    });
-</script>
-<script src="~/js/site.js"></script>
+    <!-- Подключение jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Promise.all([
+                fetch('/Game/ResetCounters'),
+                fetch('/SelectMode/ResetCounters')
+            ])
+                .then(responses => {
+                    responses.forEach(response => {
+                        if (!response.ok) {
+                            throw new Error('Request failed');
+                        }
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/gamehub")
+            .withAutomaticReconnect()
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+
+        hubConnection.onclose((error) => {
+            console.error('Connection closed:', error);
+        });
+
+        document.getElementById("send").addEventListener("click", function (event) {
+            event.preventDefault();
+            const userName = document.getElementById("userName").value;
+            const userConnection = { UserName: userName, ChatRoom: "Global" };
+
+            hubConnection.start()
+                .then(() => {
+                    console.log('Connection started');
+                    return hubConnection.invoke("JoinChat", userConnection);
+                })
+                .then(() => {
+                    console.log('JoinChat invoked');
+                    document.getElementById("playForm").submit();
+                })
+                .catch(err => console.error('Connection error or invocation error:', err.toString()));
+        });
+    </script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

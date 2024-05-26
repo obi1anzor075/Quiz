@@ -96,7 +96,12 @@ color:white;
     border-radius: 15px;
 }
 
-    .play__field > *{
+.play__field > form{
+    display:flex;
+    align-items:center;
+}
+
+    .play__field > * > *, .play__field > *{
         font-weight:900;
     }
     .play__field > button{
