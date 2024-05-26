@@ -4,72 +4,58 @@ using DataAccessLayer.Repositories.Contracts;
 using BusinessLogicLayer.Services;
 using BusinessLogicLayer.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
-using NLog.Web;
-using Microsoft.Extensions.Logging;
-using NLog;
-using NLog.Extensions.Logging;
-using PresentationLayer.Hubs;
 
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+var builder = WebApplication.CreateBuilder(args);
 
-try
+
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<DataStoreDbContext>(options =>
 {
-    var builder = WebApplication.CreateBuilder(args);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Sql"));
+});
 
-    builder.Services.AddControllersWithViews();
-    builder.Services.AddRazorPages();
+builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 
-    builder.Services.AddDbContext<DataStoreDbContext>(options =>
-    {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("Sql"));
-    });
-    builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-    builder.Services.AddScoped<IQuestionsService, QuestionsService>();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
-    // Добавляем сервис SignalR в контейнер служб
-    builder.Services.AddSignalR();
+var app = builder.Build();
 
-    builder.Services.AddSession(options =>
-    {
-        options.Cookie.HttpOnly = true;
-        options.Cookie.IsEssential = true;
-    });
-
-    var app = builder.Build();
-
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
-    else
-    {
-        app.UseExceptionHandler("/Home/Error");
-        app.UseHsts();
-    }
-
-    app.UseHttpsRedirection();
-    app.UseStaticFiles();
-
-    app.UseRouting();
-    app.UseAuthorization();
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
 
     app.UseSession();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 
-    app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseRouting();
 
-    app.MapHub<GameHub>("/gamehub");
+app.UseAuthorization();
 
-    app.Run();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-}
-catch (Exception exception)
-{
-    logger.Error(exception, "Stopped program because of exception");
-    throw;
-}
-finally
-{
-    NLog.LogManager.Shutdown();
-}
+app.Run();
+
+
+
+
+
+
+
+
+
+

@@ -1024,11 +1024,3 @@ C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\refint\Presenta
 C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.pdb
 C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.genruntimeconfig.cache
 C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\ref\PresentationLayer.dll
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\NLog.dll
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\NLog.Extensions.Logging.dll
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\NLog.Web.AspNetCore.dll
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\nlog.config
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Connections.Abstractions.dll
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Common.dll
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
-C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
