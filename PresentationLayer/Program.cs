@@ -21,6 +21,8 @@ builder.Services.AddDbContext<DataStoreDbContext>(options =>
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 
+
+
 builder.Services.AddSignalR();
 
 builder.Services.AddSession(options =>
@@ -30,6 +32,8 @@ builder.Services.AddSession(options =>
 });
 
 var app = builder.Build();
+
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
