@@ -72,6 +72,11 @@
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
+        hubConnection.on("ReceiveMessage", (username, message) => {
+            console.log(userName);
+            console.log(message)
+        })
+
         hubConnection.onclose((error) => {
             console.error('Connection closed:', error);
         });
@@ -81,18 +86,30 @@
             const userName = document.getElementById("userName").value;
             const userConnection = { UserName: userName, ChatRoom: "Global" };
 
-            hubConnection.start()
-                .then(() => {
-                    console.log('Connection started');
-                    return hubConnection.invoke("JoinChat", userConnection);
-                })
-                .then(() => {
-                    console.log('JoinChat invoked');
-                    document.getElementById("playForm").submit();
-                })
-                .catch(err => console.error('Connection error or invocation error:', err.toString()));
+            // Проверка состояния соединения
+            if (hubConnection.state === signalR.HubConnectionState.Disconnected) {
+                hubConnection.start()
+                    .then(() => {
+                        console.log('Connection started');
+                        return hubConnection.invoke("JoinChat", userConnection);
+                    })
+                    .then(() => {
+                        console.log('JoinChat invoked');
+                        document.getElementById("playForm").submit();
+                    })
+                    .catch(err => console.error('Connection error or invocation error:', err.toString()));
+            } else {
+                // Соединение уже активно или подключается, пропустить start
+                hubConnection.invoke("JoinChat", userConnection)
+                    .then(() => {
+                        console.log('JoinChat invoked');
+                        document.getElementById("playForm").submit();
+                    })
+                    .catch(err => console.error('Invocation error:', err.toString()));
+            }
         });
     </script>
+
     <script src="~/js/site.js"></script>
 </body>
 </html>

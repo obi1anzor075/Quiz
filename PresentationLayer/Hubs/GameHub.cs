@@ -23,7 +23,9 @@ namespace PresentationLayer.Hubs
             Console.WriteLine($"User {connection.UserName} is joining the chat room {connection.ChatRoom}");
 
             await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
-            await Clients.Group(connection.ChatRoom).ReceiveMessage("Brand-Battle", $"Добро пожаловать {connection.UserName}");
+            await Clients
+                .Group(connection.ChatRoom)
+                .ReceiveMessage("Brand-Battle", $"Добро пожаловать {connection.UserName}");
         }
     }
 }

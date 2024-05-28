@@ -1024,3 +1024,7 @@ C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\refint\Presenta
 C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.pdb
 C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.genruntimeconfig.cache
 C:\Users\Admin\Documents\Quiz\PresentationLayer\obj\Debug\net8.0\ref\PresentationLayer.dll
+C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Common.dll
+C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
+C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
