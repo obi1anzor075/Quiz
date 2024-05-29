@@ -17,142 +17,43 @@
                     <a asp-controller="Home" asp-action="Index" id="backButton" class="head__back">Назад</a>
                 </div>
                 <div class="head__mode_right">
-                    <section style="background-color: #eee;">
-  <div class="container py-5">
+                    <div id="body">
 
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-4">
+                        <div id="chat-circle" class="btn btn-raised">
+                            <div id="chat-overlay"></div>
+                            <i class="material-icons">
+                                <svg width="42px" height="42px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 5C22 6.65685 20.6569 8 19 8C17.3431 8 16 6.65685 16 5C16 3.34315 17.3431 2 19 2C20.6569 2 22 3.34315 22 5Z" fill="#1C274C" />
+                                    <path opacity="0.5" d="M15.2347 2.53476C14.2201 2.1881 13.132 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39938 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88836 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.868 21.8119 9.77987 21.4652 8.76526C20.7572 9.22981 19.9101 9.5 19 9.5C16.5147 9.5 14.5 7.48528 14.5 5C14.5 4.08987 14.7702 3.24284 15.2347 2.53476Z" fill="#1C274C" />
+                                </svg>
+                            </i>
+                        </div>
 
-        <!-- Buttons trigger collapse -->
-        <a data-mdb-ripple-init class="btn btn-info btn-lg btn-block" data-mdb-collapse-init href="#collapseExample"
-          role="button" aria-expanded="false" aria-controls="collapseExample">
-          <div class="d-flex justify-content-between align-items-center">
-            <span>Collapsible Chat App</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </a>
-
-        <!-- Collapsed content -->
-        <div class="collapse mt-3" id="collapseExample">
-          <div class="card" id="chat4">
-            <div class="card-body" data-mdb-perfect-scrollbar-init
-              style="position: relative; height: 400px">
-
-              <div class="d-flex flex-row justify-content-start">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-                <div>
-                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Hi</p>
-                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">How are you
-                    ...???</p>
-                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">What are you
-                    doing
-                    tomorrow? Can we come up a bar?</p>
-                  <p class="small ms-3 mb-3 rounded-3 text-muted">23:58</p>
-                </div>
-              </div>
-
-              <div class="divider d-flex align-items-center mb-4">
-                <p class="text-center mx-3 mb-0" style="color: #a2aab7;">Today</p>
-              </div>
-
-              <div class="d-flex flex-row justify-content-end mb-4 pt-1">
-                <div>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Hiii, I'm good.</p>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">How are you doing?</p>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Long time no see! Tomorrow
-                    office. will
-                    be free on sunday.</p>
-                  <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:06</p>
-                </div>
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-              </div>
-
-              <div class="d-flex flex-row justify-content-start mb-4">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-                <div>
-                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Okay</p>
-                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">We will go on
-                    Sunday?</p>
-                  <p class="small ms-3 mb-3 rounded-3 text-muted">00:07</p>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row justify-content-end mb-4">
-                <div>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">That's awesome!</p>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">I will meet you Sandon Square
-                    sharp at
-                    10 AM</p>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Is that okay?</p>
-                  <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:09</p>
-                </div>
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-              </div>
-
-              <div class="d-flex flex-row justify-content-start mb-4">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-                <div>
-                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Okay i will meet
-                    you on
-                    Sandon Square</p>
-                  <p class="small ms-3 mb-3 rounded-3 text-muted">00:11</p>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row justify-content-end mb-4">
-                <div>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Do you have pictures of Matley
-                    Marriage?</p>
-                  <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:11</p>
-                </div>
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-              </div>
-
-              <div class="d-flex flex-row justify-content-start mb-4">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-                <div>
-                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Sorry I don't
-                    have. i
-                    changed my phone.</p>
-                  <p class="small ms-3 mb-3 rounded-3 text-muted">00:13</p>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row justify-content-end">
-                <div>
-                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-info">Okay then see you on sunday!!
-                  </p>
-                  <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">00:15</p>
-                </div>
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                  alt="avatar 1" style="width: 45px; height: 100%;">
-              </div>
-
-            </div>
-            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                alt="avatar 3" style="width: 40px; height: 100%;">
-              <input type="text" class="form-control form-control-lg" id="exampleFormControlInput3"
-                placeholder="Type message">
-              <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
-              <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
-              <a class="ms-3 link-info" href="#!"><i class="fas fa-paper-plane"></i></a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
+                        <div class="chat-box">
+                            <div class="chat-box-header">
+                                Чат
+                                <span class="chat-box-toggle">
+                                    <i class="material-icons">
+                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#1C274C" />
+                                        </svg>
+                                    </i>
+                                </span>
+                            </div>
+                            <div class="chat-box-body">
+                                <div class="chat-box-overlay">
+                                </div>
+                                <div class="chat-logs">
+                                </div><!--chat-log -->
+                            </div>
+                            <div class="chat-input">
+                                <form>
+                                    <input type="text" id="chat-input" placeholder="Send a message..." />
+                                    <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#5A5EB9"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11.5003 12H5.41872M5.24634 12.7972L4.24158 15.7986C3.69128 17.4424 3.41613 18.2643 3.61359 18.7704C3.78506 19.21 4.15335 19.5432 4.6078 19.6701C5.13111 19.8161 5.92151 19.4604 7.50231 18.7491L17.6367 14.1886C19.1797 13.4942 19.9512 13.1471 20.1896 12.6648C20.3968 12.2458 20.3968 11.7541 20.1896 11.3351C19.9512 10.8529 19.1797 10.5057 17.6367 9.81135L7.48483 5.24303C5.90879 4.53382 5.12078 4.17921 4.59799 4.32468C4.14397 4.45101 3.77572 4.78336 3.60365 5.22209C3.40551 5.72728 3.67772 6.54741 4.22215 8.18767L5.24829 11.2793C5.34179 11.561 5.38855 11.7019 5.407 11.8459C5.42338 11.9738 5.42321 12.1032 5.40651 12.231C5.38768 12.375 5.34057 12.5157 5.24634 12.7972Z" stroke="#5A5EB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -202,6 +103,37 @@
                         console.log(username);
                         console.log(message);
                     });
+
+
+            $(function () {
+                var INDEX = 0;
+                $("#chat-submit").click(function (e) {
+                    e.preventDefault();
+                    var msg = $("#chat-input").val();
+                    if (msg.trim() == '') {
+                        return false;
+                    }
+                })
+
+
+                $(document).delegate(".chat-btn", "click", function () {
+                    var value = $(this).attr("chat-value");
+                    var name = $(this).html();
+                    $("#chat-input").attr("disabled", false);
+                    generate_message(name, 'self');
+                })
+
+                $("#chat-circle").click(function () {
+                    $("#chat-circle").toggle('scale');
+                    $(".chat-box").toggle('scale');
+                })
+
+                $(".chat-box-toggle").click(function () {
+                    $("#chat-circle").toggle('scale');
+                    $(".chat-box").toggle('scale');
+                })
+
+            })
         </script>
     <script src="~/js/site.js"></script>
 
