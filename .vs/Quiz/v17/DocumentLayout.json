@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\Quiz\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\chat.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\chat.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\home\\selectmode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\js\\signalr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\js\\signalr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\chat.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\chat.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\selelctmode.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -27,16 +39,8 @@
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\notes.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\admin\\documents\\quiz\\presentationlayer\\models\\userconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,11 +62,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "chat.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\chat.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\chat.css",
@@ -76,7 +84,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
+              "Title": "signalR.js",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\js\\signalR.js",
+              "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\js\\signalR.js",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\js\\signalR.js",
+              "RelativeToolTip": "PresentationLayer\\wwwroot\\js\\signalR.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-29T10:34:12.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "notes.txt",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\notes.txt",
               "RelativeDocumentMoniker": "PresentationLayer\\notes.txt",
@@ -89,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "main.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\main.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\main.css",
@@ -101,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\appsettings.json",
               "RelativeDocumentMoniker": "PresentationLayer\\appsettings.json",
@@ -113,7 +134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "easy-handler.js",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\js\\easy-handler.js",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\js\\easy-handler.js",
@@ -125,15 +146,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAADkAAAAAAAAAAAAAADMAAAAAAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAUwEQAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-26T19:35:03.731Z"
+              "WhenOpened": "2024-05-26T19:35:03.731Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -143,14 +165,14 @@
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\SelectMode.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Views\\Home\\SelectMode.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\Home\\SelectMode.cshtml",
-              "ViewState": "AQIAABcAAAAAAAAAAAAkwDMAAAB5BAAA",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAkwHgAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-26T16:32:56.381Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "SelelctMode.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\SelelctMode.css",
@@ -163,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Program.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Program.cs",
@@ -176,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "landing.css",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\css\\landing.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\landing.css",
@@ -189,19 +211,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "GameHub.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Hubs\\GameHub.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Hubs\\GameHub.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Hubs\\GameHub.cs",
               "RelativeToolTip": "PresentationLayer\\Hubs\\GameHub.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAArAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T16:02:03.674Z"
+              "WhenOpened": "2024-05-26T16:02:03.674Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UserConnection.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\Models\\UserConnection.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Models\\UserConnection.cs",

@@ -19,13 +19,22 @@ namespace PresentationLayer.Hubs
                 throw new ArgumentException("Invalid connection parameters");
             }
 
-            // Вывод в консоль для отладки
+            // Output to console for debugging
             Console.WriteLine($"User {connection.UserName} is joining the chat room {connection.ChatRoom}");
 
             await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
             await Clients
                 .Group(connection.ChatRoom)
                 .ReceiveMessage("Brand-Battle", $"Добро пожаловать {connection.UserName}");
+        }
+
+        public async Task SendMessage(string userName, string message)
+        {
+            // Output to console for debugging
+            Console.WriteLine($"User {userName} is sending a message: {message}");
+
+            // Broadcast message to all clients in the default chat room (or adjust the group as needed)
+            await Clients.All.ReceiveMessage(userName, message);
         }
     }
 }

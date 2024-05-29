@@ -82,60 +82,60 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
         <!-- Подключение SignalR -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
-
         <script>
+        <script type="module">
+            import hubConnection from './signalr.js';
+
             document.addEventListener('DOMContentLoaded', () => {
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const userName = urlParams.get('userName');
-                        if (userName) {
-                            console.log('User Name:', userName);
+                const urlParams = new URLSearchParams(window.location.search);
+                const userName = urlParams.get('userName');
 
-                        }
-                    });
+                hubConnection.on("ReceiveMessage", (username, message) => {
+                    console.log(`Received from ${username}: ${message}`);
+                });
 
-                    const hubConnection = new signalR.HubConnectionBuilder()
-                        .withUrl("/gamehub")
-                        .withAutomaticReconnect()
-                        .configureLogging(signalR.LogLevel.Information)
-                        .build();
-
-                    hubConnection.on("ReceiveMessage", (username, message) => {
-                        console.log(username);
-                        console.log(message);
-                    });
-
-
-            $(function () {
-                var INDEX = 0;
-                $("#chat-submit").click(function (e) {
-                    e.preventDefault();
-                    var msg = $("#chat-input").val();
-                    if (msg.trim() == '') {
-                        return false;
-                    }
-                })
-
-
-                $(document).delegate(".chat-btn", "click", function () {
-                    var value = $(this).attr("chat-value");
-                    var name = $(this).html();
-                    $("#chat-input").attr("disabled", false);
-                    generate_message(name, 'self');
-                })
-
-                $("#chat-circle").click(function () {
-                    $("#chat-circle").toggle('scale');
-                    $(".chat-box").toggle('scale');
-                })
-
-                $(".chat-box-toggle").click(function () {
-                    $("#chat-circle").toggle('scale');
-                    $(".chat-box").toggle('scale');
-                })
-
-            })
+                if (hubConnection.state === signalR.HubConnectionState.Disconnected) {
+                    hubConnection.start().catch(err => console.error('Connection error:', err.toString()));
+                }
+            });
         </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+       
+
+        $(function () {
+            var INDEX = 0;
+            $("#chat-submit").click(function (e) {
+                e.preventDefault();
+                var msg = $("#chat-input").val();
+                if (msg.trim() == '') {
+                    return false;
+                }
+            });
+
+            $(document).delegate(".chat-btn", "click", function () {
+                var value = $(this).attr("chat-value");
+                var name = $(this).html();
+                $("#chat-input").attr("disabled", false);
+                generate_message(name, 'self');
+            });
+
+            $("#chat-circle").click(function () {
+                $("#chat-circle").toggle('scale');
+                $(".chat-box").toggle('scale');
+            });
+
+            $(".chat-box-toggle").click(function () {
+                $("#chat-circle").toggle('scale');
+                $(".chat-box").toggle('scale');
+            });
+        });
+    });
+</script>
     <script src="~/js/site.js"></script>
+
+    <script src="~/js/signalR.js"></script>
+
 
     <!-- Модальное окно для простого режима -->
     <div class="modal fade" id="simpleModeModal" tabindex="-1" role="dialog" aria-labelledby="simpleModeModalLabel" aria-hidden="true">

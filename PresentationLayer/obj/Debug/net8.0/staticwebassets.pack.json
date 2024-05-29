@@ -361,6 +361,10 @@
       "PackagePath": "staticwebassets\\js\\hard-handler.js"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\js\\signalR.js",
+      "PackagePath": "staticwebassets\\js\\signalR.js"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Quiz\\PresentationLayer\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
