@@ -1028,3 +1028,7 @@ C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNe
 C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Common.dll
 C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
 C:\Users\Admin\Documents\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Common.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

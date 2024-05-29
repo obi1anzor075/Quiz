@@ -32,7 +32,7 @@
         <div class="ctr">
             <div class="field_wrapper">
                 <div class="play__field">
-                    <form id="playForm" action="/Home/SelectMode" method="post">
+                    <form id="playForm" action="/Home/SelectMode" method="get">
                         <input class="input__name" required type="text" id="userName" name="userName" placeholder="Введите ваше имя" />
                         <button type="submit" id="send" class="button button__play">Играть</button>
                     </form>
@@ -72,10 +72,6 @@
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
-        hubConnection.on("ReceiveMessage", (username, message) => {
-            console.log(userName);
-            console.log(message)
-        })
 
         hubConnection.onclose((error) => {
             console.error('Connection closed:', error);
@@ -86,28 +82,24 @@
             const userName = document.getElementById("userName").value;
             const userConnection = { UserName: userName, ChatRoom: "Global" };
 
-            // Проверка состояния соединения
             if (hubConnection.state === signalR.HubConnectionState.Disconnected) {
                 hubConnection.start()
                     .then(() => {
-                        console.log('Connection started');
                         return hubConnection.invoke("JoinChat", userConnection);
                     })
                     .then(() => {
-                        console.log('JoinChat invoked');
-                        document.getElementById("playForm").submit();
+                        window.location.href = `/Home/SelectMode?userName=${encodeURIComponent(userName)}`;
                     })
                     .catch(err => console.error('Connection error or invocation error:', err.toString()));
             } else {
-                // Соединение уже активно или подключается, пропустить start
                 hubConnection.invoke("JoinChat", userConnection)
                     .then(() => {
-                        console.log('JoinChat invoked');
-                        document.getElementById("playForm").submit();
+                        window.location.href = `/Home/SelectMode?userName=${encodeURIComponent(userName)}`;
                     })
                     .catch(err => console.error('Invocation error:', err.toString()));
             }
         });
+
     </script>
 
     <script src="~/js/site.js"></script>
