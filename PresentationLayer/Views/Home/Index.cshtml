@@ -47,78 +47,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Подключение Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- SignalR -->
+    <!-- Подключение SignalR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
-    <script src="~/js/signalR.js"></script>
-        <script type="module" >
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById("send").addEventListener("click", function (event) {
-                event.preventDefault();
-                const userName = document.getElementById("userName").value;
-                const userConnection = { UserName: userName, ChatRoom: "Global" };
-
-                const joinChat = () => {
-                    hubConnection.invoke("JoinChat", userConnection)
-                        .then(() => {
-                            window.location.href = `/Home/SelectMode?userName=${encodeURIComponent(userName)}`;
-                        })
-                        .catch(err => console.error('Invocation error:', err.toString()));
-                };
-
-                if (hubConnection.state === signalR.HubConnectionState.Disconnected) {
-                    hubConnection.start()
-                        .then(joinChat)
-                        .catch(err => console.error('Connection error:', err.toString()));
-                } else {
-                    joinChat();
-                }
-            });
-
-            Promise.all([
-                fetch('/Game/ResetCounters'),
-                fetch('/SelectMode/ResetCounters')
-            ])
-                .then(responses => {
-                    responses.forEach(response => {
-                        if (!response.ok) {
-                            throw new Error('Request failed');
-                        }
-                    });
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    </script>
-    <script>
-            $(function () {
-                var INDEX = 0;
-                $("#chat-submit").click(function (e) {
-                    e.preventDefault();
-                    var msg = $("#chat-input").val();
-                    if (msg.trim() === '') {
-                        return false;
-                    }
-                });
-
-                $(document).delegate(".chat-btn", "click", function () {
-                    var value = $(this).attr("chat-value");
-                    var name = $(this).html();
-                    $("#chat-input").attr("disabled", false);
-                    generate_message(name, 'self');
-                });
-
-                $("#chat-circle").click(function () {
-                    $("#chat-circle").toggle('scale');
-                    $(".chat-box").toggle('scale');
-                });
-
-                $(".chat-box-toggle").click(function () {
-                    $("#chat-circle").toggle('scale');
-                    $(".chat-box").toggle('scale');
-                });
-            });
-        });
-    </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
     <script src="~/js/site.js"></script>
 </body>
 </html>
