@@ -1,4 +1,8 @@
-﻿a:hover{
+﻿.none{
+    display:none;
+}
+
+a:hover{
     color:white;
 }
 
