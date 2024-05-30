@@ -107,6 +107,35 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                     console.error(err.toString());
                 });
 
+                // Список случайных аватаров
+                const randomAvatars = [
+                    '~/images/avatar1.png',
+                    '~/images/avatar2.png',
+                    '~/images/avatar3.png'
+                ];
+
+                // Функция для генерации аватара
+                function generateAvatar(userName) {
+                    if (userName === 'Brand-Battle') {
+                        return '/img/chat-logo/Admin-logo.jpg'; // Специальный аватар для BrandBattle
+                    } else {
+                        const randomIndex = Math.floor(Math.random() * randomAvatars.length);
+                        return randomAvatars[randomIndex];
+                    }
+                }
+
+                // Функция для генерации HTML кода сообщения
+                function generateMessageHTML(userName, message) {
+                    const avatarSrc = generateAvatar(userName);
+
+                    return '<div class="chat-msg">' +
+                        '<span class="msg-avatar">' +
+                        '<img class="avatar-img" src="' + avatarSrc + '" alt="avatar">' +
+                        '</span>' +
+                        '<div class="cm-msg-text"><strong>' + userName + ':</strong> ' + message + '</div>' +
+                        '</div>';
+                }
+
                 // Переменные для отслеживания состояния chat box и chat log
                 var chatCircle = $("#chat-circle");
                 var chatLog = $(".chat-log");
@@ -171,12 +200,7 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 
                 // Обработка получения сообщения от сервера
                 connection.on("ReceiveMessage", function (userName, message) {
-                    $(".chat-logs").append(
-                        '<div class="chat-msg">' +
-                        '<span class="msg-avatar"><img src="~/images/user.png" alt="avatar"></span>' +
-                        '<div class="cm-msg-text"><strong>' + userName + ':</strong> ' + message + '</div>' +
-                        '</div>'
-                    );
+                    $(".chat-logs").append(generateMessageHTML(userName, message));
                 });
 
                 // Обработчик событий для chat circle и chat box toggle
@@ -202,9 +226,9 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                     generate_message(name, 'self');
                 });
             });
+        </script>
 
 
-</script>
 
     <script src="~/js/site.js"></script>
 

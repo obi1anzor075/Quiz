@@ -229,6 +229,10 @@
       "PackagePath": "staticwebassets\\img\\background.png"
     },
     {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\chat-logo\\Admin-logo.jpg",
+      "PackagePath": "staticwebassets\\img\\chat-logo\\Admin-logo.jpg"
+    },
+    {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\circle.png",
       "PackagePath": "staticwebassets\\img\\circle.png"
     },
