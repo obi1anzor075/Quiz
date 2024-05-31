@@ -30,7 +30,7 @@
                         </div>
                         
                         <div class="chat-box">
-                            <div class="chat-box-header not-log-header">
+                            <div class="chat-box-header ">
                                 Чат
                                 <span class="chat-box-toggle">
                                     <i class="material-icons">
@@ -40,28 +40,25 @@
                                     </i>
                                 </span>
                             </div>
-                            <div class="chat-box-body not-log-body">
+                            <div class="chat-box-body ">
                                 
                                 <div class="chat-box-overlay ">
                                 </div>
                                 <div class="chat-logs">
-                                    <div class="not-log-name">
-                                        <form id="log-in-form" class="log-in-form">
-                                            <input id="userName" required type="text" name="userName" placeholder="Введите имя (обязательно)" />
-                                            <button type="submit" class="log-in-button">Продолжить</button>
-                                        </form>
+                                    
 
 
                                        
                                     </div>
                                 </div><!--chat-log -->
-                            </div>
-                            <div id="chat" class="chat-input none">
+                            <div id="chat" class="chat-input">
                                 <form>
                                     <input type="text" id="chat-input" placeholder="Send a message..." />
                                     <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#5A5EB9"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11.5003 12H5.41872M5.24634 12.7972L4.24158 15.7986C3.69128 17.4424 3.41613 18.2643 3.61359 18.7704C3.78506 19.21 4.15335 19.5432 4.6078 19.6701C5.13111 19.8161 5.92151 19.4604 7.50231 18.7491L17.6367 14.1886C19.1797 13.4942 19.9512 13.1471 20.1896 12.6648C20.3968 12.2458 20.3968 11.7541 20.1896 11.3351C19.9512 10.8529 19.1797 10.5057 17.6367 9.81135L7.48483 5.24303C5.90879 4.53382 5.12078 4.17921 4.59799 4.32468C4.14397 4.45101 3.77572 4.78336 3.60365 5.22209C3.40551 5.72728 3.67772 6.54741 4.22215 8.18767L5.24829 11.2793C5.34179 11.561 5.38855 11.7019 5.407 11.8459C5.42338 11.9738 5.42321 12.1032 5.40651 12.231C5.38768 12.375 5.34057 12.5157 5.24634 12.7972Z" stroke="#5A5EB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></i></button>
                                 </form>
                             </div>
+                        </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -94,149 +91,165 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.12/signalr.min.js" ></script>
-        <script>
-            $(document).ready(function () {
-                // Установка соединения с хабом SignalR
-                const connection = new signalR.HubConnectionBuilder()
-                    .withUrl("/gameHub") // Укажите URL вашего хаба SignalR
-                    .build();
+    <script>
+        $(document).ready(function () {
+            // Установка соединения с хабом SignalR
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("http://localhost/gameHub") // Укажите URL вашего хаба SignalR
+                .build();
 
-                connection.start().then(function () {
-                    console.log("SignalR connection established.");
+            connection.start().then(function () {
+                console.log("SignalR connection established.");
+
+                // Получение имени пользователя из URL
+                var userName = getParameterByName('userName');
+                if (userName) {
+                    joinChat(userName);
+                }
+            }).catch(function (err) {
+                console.error(err.toString());
+            });
+
+            // Функция для получения параметра из URL
+            function getParameterByName(name) {
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var url = window.location.href;
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                var results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            // Функция для присоединения к чату
+            function joinChat(userName) {
+                var connectionInfo = {
+                    userName: userName,
+                    chatRoom: "Global" // Укажите нужную чат-комнату
+                };
+
+                connection.invoke("JoinChat", connectionInfo).then(function () {
+                    $(".chat-box").show('scale');
+                    $(".chat-log").hide('scale');
+                    $("#chat-circle").hide(); // Скрыть chat circle при показе chat box
+
+                    // Отправка сообщения "добро пожаловать"
+                    connection.invoke("SendMessage", "Brand-Battle", `Добро пожаловать, ${userName}!`).then(function () {
+                        console.log("Welcome message sent.");
+                    }).catch(function (err) {
+                        console.error(err.toString());
+                    });
                 }).catch(function (err) {
                     console.error(err.toString());
                 });
+            }
 
-                // Список случайных аватаров
-                const randomAvatars = [
-                    '~/images/avatar1.png',
-                    '~/images/avatar2.png',
-                    '~/images/avatar3.png'
-                ];
+            // Список случайных аватаров
+            const randomAvatars = [
+                '~/images/avatar1.png',
+                '~/images/avatar2.png',
+                '~/images/avatar3.png'
+            ];
 
-                // Функция для генерации аватара
-                function generateAvatar(userName) {
-                    if (userName === 'Brand-Battle') {
-                        return '/img/chat-logo/Admin-logo.jpg'; // Специальный аватар для BrandBattle
-                    } else {
-                        const randomIndex = Math.floor(Math.random() * randomAvatars.length);
-                        return randomAvatars[randomIndex];
-                    }
+            // Функция для генерации аватара
+            function generateAvatar(userName) {
+                if (userName === 'Brand-Battle') {
+                    return '/img/chat-logo/Admin-logo.jpg'; // Специальный аватар для BrandBattle
+                } else {
+                    const randomIndex = Math.floor(Math.random() * randomAvatars.length);
+                    return randomAvatars[randomIndex];
                 }
+            }
 
-                // Функция для генерации HTML кода сообщения
-                function generateMessageHTML(userName, message) {
-                    const avatarSrc = generateAvatar(userName);
+            // Функция для генерации HTML кода сообщения
+            function generateMessageHTML(userName, message) {
+                const avatarSrc = generateAvatar(userName);
 
-                    return '<div class="chat-msg">' +
-                        '<span class="msg-avatar">' +
-                        '<img class="avatar-img" src="' + avatarSrc + '" alt="avatar">' +
-                        '</span>' +
-                        '<div class="cm-msg-text"><strong>' + userName + ':</strong> ' + message + '</div>' +
-                        '</div>';
-                }
+                return '<div class="chat-msg">' +
+                    '<span class="msg-avatar">' +
+                    '<img class="avatar-img" src="' + avatarSrc + '" alt="avatar">' +
+                    '</span>' +
+                    '<div class="cm-msg-text"><strong>' + userName + ':</strong> ' + message + '</div>' +
+                    '</div>';
+            }
 
-                // Переменные для отслеживания состояния chat box и chat log
-                var chatCircle = $("#chat-circle");
-                var chatLog = $(".chat-log");
-                var chatBox = $(".chat-box");
-                var chatBoxToggle = $(".chat-box-toggle");
-                var chatLogToggle = $(".chat-log-toggle");
+            // Переменные для отслеживания состояния chat box и chat log
+            var chatCircle = $("#chat-circle");
+            var chatLog = $(".chat-log");
+            var chatBox = $(".chat-box");
+            var chatBoxToggle = $(".chat-box-toggle");
+            var chatLogToggle = $(".chat-log-toggle");
 
-                // Показать chat log при клике на chat circle
-                chatCircle.click(function () {
-                    chatLog.toggle('scale');
-                });
+            // Показать chat log при клике на chat circle
+            chatCircle.click(function () {
+                chatLog.toggle('scale');
+            });
 
-                // Закрытие chat log при клике на toggle
-                chatLogToggle.click(function () {
-                    chatLog.toggle('scale');
-                });
+            // Закрытие chat log при клике на toggle
+            chatLogToggle.click(function () {
+                chatLog.toggle('scale');
+            });
 
-                // Закрытие chat box при клике на toggle
-                chatBoxToggle.click(function () {
-                    chatBox.toggle('scale', function () {
-                        chatCircle.show('scale'); // Показать chat circle после скрытия chat box
-                    });
-                });
-
-                // Обработка формы ввода имени
-                $("#log-in-form").submit(function (e) {
-                    e.preventDefault();
-                    var userName = $("#userName").val();
-                    // Получение элементов для их скрытия
-                    const log_in_form = document.getElementById("log-in-form"),
-                        chat = document.getElementById("chat");
-                    if (userName) {
-                        // Создаем объект соединения
-                        var connectionInfo = {
-                            userName: userName,
-                            chatRoom: "Global" // Укажите нужную чат-комнату
-                        };
-
-                        // Отправляем данные на сервер через SignalR
-                        connection.invoke("JoinChat", connectionInfo).then(function () {
-                            log_in_form.classList.add('none');
-                            chat.classList.remove('none');
-                            chatBox.show('scale');
-                            chatLog.hide('scale');
-                            chatCircle.hide(); // Скрыть chat circle при показе chat box
-                        }).catch(function (err) {
-                            console.error(err.toString());
-                        });
-                    }
-                });
-
-                // Отправка сообщения из chat box
-                $("#chat-submit").click(function (e) {
-                    e.preventDefault();
-                    var message = $("#chat-input").val();
-                    var userName = $("#userName").val(); // Получаем имя пользователя
-                    if (message.trim() !== '') {
-                        connection.invoke("SendMessage", userName, message).then(function () {
-                            $("#chat-input").val('');
-                        }).catch(function (err) {
-                            console.error(err.toString());
-                        });
-                    }
-                });
-
-                // Обработка получения сообщения от сервера
-                connection.on("ReceiveMessage", function (userName, message) {
-                    $(".chat-logs").append(generateMessageHTML(userName, message));
-                });
-
-                // Обработчик событий для chat circle и chat box toggle
-                $("#chat-circle").click(function () {
-                    chatCircle.hide('scale');
-                    chatBox.show('scale');
-                });
-
-                $(".chat-box-toggle").click(function () {
-                    chatBox.hide('scale', function () {
-                        chatCircle.show('scale'); // Показать chat circle после скрытия chat box
-                    });
+            // Закрытие chat box при клике на toggle
+            chatBoxToggle.click(function () {
+                chatBox.toggle('scale', function () {
+                    chatCircle.show('scale'); // Показать chat circle после скрытия chat box
                 });
             });
 
-            $(function () {
-                $("#chat-submit").click(function (e) {
-                    e.preventDefault();
-                    var msg = $("#chat-input").val();
-                    if (msg.trim() == '') {
-                        return false;
-                    }
-                });
-
-                $(document).delegate(".chat-btn", "click", function () {
-                    var value = $(this).attr("chat-value");
-                    var name = $(this).html();
-                    $("#chat-input").attr("disabled", false);
-                    generate_message(name, 'self');
-                });
+            // Отправка сообщения из chat box
+            $("#chat-submit").click(function (e) {
+                e.preventDefault();
+                var message = $("#chat-input").val();
+                var userName = $("#userName").val(); // Получаем имя пользователя
+                if (message.trim() !== '') {
+                    connection.invoke("SendMessage", userName, message).then(function () {
+                        $("#chat-input").val('');
+                    }).catch(function (err) {
+                        console.error(err.toString());
+                    });
+                }
             });
 
-        </script>
+
+
+            // Обработка получения сообщения от сервера
+            connection.on("ReceiveMessage", function (userName, message) {
+                $(".chat-logs").append(generateMessageHTML(userName, message));
+            });
+
+            // Обработчик событий для chat circle и chat box toggle
+            $("#chat-circle").click(function () {
+                chatCircle.hide('scale');
+                chatBox.show('scale');
+            });
+
+            $(".chat-box-toggle").click(function () {
+                chatBox.hide('scale', function () {
+                    chatCircle.show('scale'); // Показать chat circle после скрытия chat box
+                });
+            });
+        });
+
+        $(function () {
+            $("#chat-submit").click(function (e) {
+                e.preventDefault();
+                var msg = $("#chat-input").val();
+                if (msg.trim() == '') {
+                    return false;
+                }
+            });
+
+            $(document).delegate(".chat-btn", "click", function () {
+                var value = $(this).attr("chat-value");
+                var name = $(this).html();
+                $("#chat-input").attr("disabled", false);
+                generate_message(name, 'self');
+            });
+        });
+    </script>
+
+
 
 
 
