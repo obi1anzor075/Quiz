@@ -134,11 +134,17 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                     $("#chat-circle").hide(); // Скрыть chat circle при показе chat box
 
                     // Отправка сообщения "добро пожаловать"
-                    connection.invoke("SendMessage", "Brand-Battle", `Добро пожаловать, ${userName}!`).then(function () {
-                        console.log("Welcome message sent.");
-                    }).catch(function (err) {
-                        console.error(err.toString());
-                    });
+                }).catch(function (err) {
+                    console.error(err.toString());
+                });
+            }
+            
+            
+
+            // Функция для отправки сообщения
+            function sendMessage(userName, message) {
+                connection.invoke("SendMessage", userName, message).then(function () {
+                    console.log("Message sent.");
                 }).catch(function (err) {
                     console.error(err.toString());
                 });
@@ -146,10 +152,21 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 
             // Список случайных аватаров
             const randomAvatars = [
-                '~/images/avatar1.png',
-                '~/images/avatar2.png',
-                '~/images/avatar3.png'
+                '/img/chat-logo/logo1.svg',
+                '/img/chat-logo/logo2.svg',
+                '/img/chat-logo/logo3.svg',
+                '/img/chat-logo/logo4.svg'
             ];
+
+            // Функция для генерации или получения сохраненного аватара
+            function getAvatar(userName) {
+                let avatar = localStorage.getItem(`avatar_${userName}`);
+                if (!avatar) {
+                    avatar = generateAvatar(userName);
+                    localStorage.setItem(`avatar_${userName}`, avatar);
+                }
+                return avatar;
+            }
 
             // Функция для генерации аватара
             function generateAvatar(userName) {
@@ -163,7 +180,7 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 
             // Функция для генерации HTML кода сообщения
             function generateMessageHTML(userName, message) {
-                const avatarSrc = generateAvatar(userName);
+                const avatarSrc = getAvatar(userName);
 
                 return '<div class="chat-msg">' +
                     '<span class="msg-avatar">' +
@@ -201,17 +218,12 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
             $("#chat-submit").click(function (e) {
                 e.preventDefault();
                 var message = $("#chat-input").val();
-                var userName = $("#userName").val(); // Получаем имя пользователя
+                var userName = getParameterByName('userName'); // Получаем имя пользователя из URL
                 if (message.trim() !== '') {
-                    connection.invoke("SendMessage", userName, message).then(function () {
-                        $("#chat-input").val('');
-                    }).catch(function (err) {
-                        console.error(err.toString());
-                    });
+                    sendMessage(userName, message);
+                    $("#chat-input").val('');
                 }
             });
-
-
 
             // Обработка получения сообщения от сервера
             connection.on("ReceiveMessage", function (userName, message) {
@@ -248,6 +260,7 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
             });
         });
     </script>
+
 
 
 

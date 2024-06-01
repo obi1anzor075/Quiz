@@ -25,7 +25,7 @@ namespace PresentationLayer.Hubs
             await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
             await Clients
                 .Group(connection.ChatRoom)
-                .ReceiveMessage("Brand-Battle", $"Добро пожаловать {connection.UserName}");
+                .ReceiveMessage("Brand-Battle", $"Добро пожаловать, {connection.UserName}!");
         }
 
         public async Task SendMessage(string userName, string message)
