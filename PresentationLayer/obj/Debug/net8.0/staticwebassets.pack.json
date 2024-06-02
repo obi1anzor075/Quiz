@@ -193,6 +193,10 @@
       "PackagePath": "staticwebassets\\css\\chat.css"
     },
     {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\duel-mode.css",
+      "PackagePath": "staticwebassets\\css\\duel-mode.css"
+    },
+    {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\easy-mode.css",
       "PackagePath": "staticwebassets\\css\\easy-mode.css"
     },
@@ -231,6 +235,22 @@
     {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\chat-logo\\Admin-logo.jpg",
       "PackagePath": "staticwebassets\\img\\chat-logo\\Admin-logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\chat-logo\\logo1.svg",
+      "PackagePath": "staticwebassets\\img\\chat-logo\\logo1.svg"
+    },
+    {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\chat-logo\\logo2.svg",
+      "PackagePath": "staticwebassets\\img\\chat-logo\\logo2.svg"
+    },
+    {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\chat-logo\\logo3.svg",
+      "PackagePath": "staticwebassets\\img\\chat-logo\\logo3.svg"
+    },
+    {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\chat-logo\\logo4.svg",
+      "PackagePath": "staticwebassets\\img\\chat-logo\\logo4.svg"
     },
     {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\circle.png",

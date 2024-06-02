@@ -1,0 +1,24 @@
+﻿@using PresentationLayer.Controllers;
+@*@{
+    ViewData["Title"] = "Легкий уровень";
+    var answers = ViewBag.Answers as List<string>;
+    var halfCount = answers.Count / 2;
+    var firstColumn = answers.Take(halfCount).ToList();
+    var secondColumn = answers.Skip(halfCount).ToList();
+}*@
+
+<html translate="no">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="~/css/duel-mode.css" rel="stylesheet"/>
+    <link href="~/css/answer-effects.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body translate="no">
+<header class="head__part">
+    <div class="back-button">
+        <a asp-controller="Home" asp-action="SelectMode" id="backButton" class="head__back">Назад</a>
+    </div>
+</header>
+</body>
+</html>

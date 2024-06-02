@@ -92,6 +92,11 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Finish", new { difficultyLevel });
         }
 
+        public IActionResult Duel()
+        {
+            return View();
+        }
+        
         public IActionResult Finish(string difficultyLevel)
         {
             ViewBag.DifficultyLevel = difficultyLevel;
