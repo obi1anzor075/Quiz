@@ -17,55 +17,55 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PresentationLayer
 build_property.RootNamespace = PresentationLayer
-build_property.ProjectDir = C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\
+build_property.ProjectDir = D:\Unity Hub\Dev\Quiz\PresentationLayer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer
+build_property.MSBuildProjectDirectory = D:\Unity Hub\Dev\Quiz\PresentationLayer
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/Home/Index.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/Home/SelectMode.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/Home/SelectMode.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWxlY3RNb2RlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/SelectMode/Duel.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/SelectMode/Duel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsZWN0TW9kZVxEdWVsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/SelectMode/Easy.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/SelectMode/Easy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsZWN0TW9kZVxFYXN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/SelectMode/Finish.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/SelectMode/Finish.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsZWN0TW9kZVxGaW5pc2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/SelectMode/Hard.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/SelectMode/Hard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VsZWN0TW9kZVxIYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/Shared/Error.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/_ViewImports.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/_ViewStart.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shind/OneDrive/Документы/GitHub/Quiz/PresentationLayer/Views/Shared/_Layout.cshtml]
+[D:/Unity Hub/Dev/Quiz/PresentationLayer/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xphr5dixgj

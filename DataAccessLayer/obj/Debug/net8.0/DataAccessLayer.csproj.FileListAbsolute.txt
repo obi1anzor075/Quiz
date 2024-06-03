@@ -57,3 +57,18 @@ C:\Users\Admin\Documents\Quiz\DataAccessLayer\obj\Debug\net8.0\refint\DataAccess
 C:\Users\Admin\Documents\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
 C:\Users\Admin\Documents\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.genruntimeconfig.cache
 C:\Users\Admin\Documents\Quiz\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.runtimeconfig.json
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.AssemblyReference.cache
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.genruntimeconfig.cache
+D:\Unity Hub\Dev\Quiz\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll

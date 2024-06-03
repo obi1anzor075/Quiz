@@ -35,3 +35,98 @@
     color: white;
     max-width: 350px;
 }
+/*Main*/
+body{
+    height: 100vh;
+}
+.join-room-bg{
+    border-radius: 18px;
+    outline: 4px;
+    border: 10px solid #0C2532;
+    background: #0C2532;
+    width: 500px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main{
+    height: 100%;
+}
+
+.main__part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    justify-content: center; /* Выравнивание по верхнему краю */
+    margin: auto; /* Центрирование по горизонтали */
+    max-width: 960px; /* Ограничение максимальной ширины для контента */
+    margin-top: 32px;
+    margin-bottom: 32px;
+    
+    height: 100%;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.input-room-code{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    border: 0;
+    padding: 16px;
+    background: #355873;
+    border-radius: 15px;
+}
+
+.input-code{
+    width: 90%;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.confirm-btn > img{
+    width: 38px;
+}
+
+.join-room-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    height: 100%;
+}
+
+
+.join-room-content > span{
+    border-radius: 10px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    max-width: 350px;
+}
+
+.confirm-btn{
+    border: none;
+    background-color: #355873;
+}

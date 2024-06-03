@@ -8,17 +8,36 @@
 }*@
 
 <html translate="no">
+
 <head>
     <meta charset="UTF-8"/>
     <link href="~/css/duel-mode.css" rel="stylesheet"/>
     <link href="~/css/answer-effects.css" rel="stylesheet"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body translate="no">
-<header class="head__part">
-    <div class="back-button">
-        <a asp-controller="Home" asp-action="SelectMode" id="backButton" class="head__back">Назад</a>
-    </div>
-</header>
+
+<div class="wrapper">
+    <header class="head__part">
+        <div class="back-button">
+            <a asp-controller="Home" asp-action="SelectMode" id="backButton" class="head__back">Назад</a>
+        </div>
+    </header>
+    <main class="main__part">
+        <div class="join-room-bg">
+            <div class="join-room-content">
+                <span>Введите код комнаты</span>
+                <form class="input-room-code">
+                        <input class="input-code" id="input-code" autocomplete="off" type="text" name="name" placeholder="Введите код комнаты" required>
+                        <button href="#" type="connect"  class="confirm-btn"><img src="~/img/confirm.svg" alt="Confirm"></button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        lgl
+    </footer>
+</div>
+
 </body>
 </html>
