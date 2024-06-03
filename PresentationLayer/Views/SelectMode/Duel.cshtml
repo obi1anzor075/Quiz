@@ -27,9 +27,9 @@
         <div class="join-room-bg">
             <div class="join-room-content">
                 <span>Введите код комнаты</span>
-                <form class="input-room-code">
-                        <input class="input-code" id="input-code" autocomplete="off" type="text" name="name" placeholder="Введите код комнаты" required>
-                        <button href="#" type="connect"  class="confirm-btn"><img src="~/img/confirm.svg" alt="Confirm"></button>
+                <form id="playForm" class="input-room-code">
+                    <input class="input__code" type="text" id="opponentCode" name="opponentCode" placeholder="Введите код соперника" />
+                        <button type="button" id="send" class="confirm-btn"><img src="~/img/confirm.svg" alt="Confirm"></button>
                 </form>
             </div>
         </div>
@@ -38,6 +38,52 @@
         lgl
     </footer>
 </div>
+<!-- Подключение jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Подключение Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- SignalR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
 
+<script>
+    const hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/gamehub")
+        .withAutomaticReconnect()
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    hubConnection.onclose((error) => {
+        console.error('Connection closed:', error);
+    });
+
+    document.getElementById("send").addEventListener("click", function (event) {
+        event.preventDefault();
+        const userName = document.getElementById("userName").value;
+        const userConnection = { UserName: userName, ChatRoom: "Global" };
+
+        hubConnection.start()
+            .then(() => {
+                console.log('Connection started');
+                return hubConnection.invoke("JoinChat", userConnection);
+            })
+            .then(() => {
+                console.log('JoinChat invoked');
+                // Save the user name in session storage
+                sessionStorage.setItem("userName", userName);
+                document.getElementById("playForm").submit();
+            })
+            .catch(err => console.error('Connection error or invocation error:', err.toString()));
+    });
+
+    document.getElementById("invite").addEventListener("click", function () {
+        const opponentCode = document.getElementById("opponentCode").value;
+        hubConnection.invoke("SendInvitation", opponentCode)
+            .catch(err => console.error('Error sending invitation:', err.toString()));
+    });
+
+    hubConnection.on("ReceiveInvitation", (fromUser) => {
+        alert(`You have received an invitation from ${fromUser}`);
+    });
+</script>
 </body>
 </html>

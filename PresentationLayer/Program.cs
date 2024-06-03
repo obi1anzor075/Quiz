@@ -33,9 +33,12 @@ builder.Services.AddDbContext<DataStoreDbContext>(options =>
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 
-
-
 builder.Services.AddSignalR();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration["Redis:ConnectionString"];
+});
 
 builder.Services.AddSession(options =>
 {
