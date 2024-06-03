@@ -13,12 +13,15 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://87.242.85.123/")
+        policy.WithOrigins("http://localhost/")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
 });
+
+
+
 
 
 

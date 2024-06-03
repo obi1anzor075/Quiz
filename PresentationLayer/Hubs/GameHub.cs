@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Caching.Distributed;
 using PresentationLayer.Models;
 using System;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace PresentationLayer.Hubs
 {
     public interface IChatClient
     {
         Task ReceiveMessage(string userName, string message);
-        Task ReceiveInvitation(string fromUser);
+
     }
 
     public class GameHub : Hub<IChatClient>
@@ -32,20 +31,11 @@ namespace PresentationLayer.Hubs
             Console.WriteLine($"User {connection.UserName} is joining the chat room {connection.ChatRoom}");
 
             await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
-            await Clients.Group(connection.ChatRoom).ReceiveMessage("Brand-Battle", $"Добро пожаловать {connection.UserName}");
+            await Clients.Group(connection.ChatRoom).ReceiveMessage("Brand-Battle", $"Добро пожаловать, {connection.UserName}!");
 
-            // Save the user's connection ID to Redis
-            await _cache.SetStringAsync(connection.UserName, Context.ConnectionId);
         }
-
-        public async Task SendInvitation(string toUserName)
-        {
-            var fromUserName = Context.User.Identity.Name;
-            var connectionId = await _cache.GetStringAsync(toUserName);
-            if (connectionId != null)
-            {
-                await Clients.Client(connectionId).ReceiveInvitation(fromUserName);
-            }
-        }
+        
     }
+
+
 }
