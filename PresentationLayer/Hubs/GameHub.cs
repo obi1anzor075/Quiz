@@ -71,7 +71,14 @@ namespace PresentationLayer.Hubs
                 await Clients.Group(connection.ChatRoom).StartGame();
             }
         }
+        public async Task SendMessage(string userName, string message)
+        {
+            // Output to console for debugging
+            // Console.WriteLine($"User {userName} is sending a message: {message}");
 
+            // Broadcast message to all clients in the default chat room (or adjust the group as needed)
+            await Clients.All.ReceiveMessage(userName, message);
+        }
         public async Task SendQuestion(string chatRoom, int index)
         {
             var question = _dbContext.Questions.Skip(index).FirstOrDefault();

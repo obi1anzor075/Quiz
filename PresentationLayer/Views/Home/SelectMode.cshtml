@@ -93,7 +93,7 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
         $(document).ready(function () {
             // Установка соединения с хабом SignalR
             const connection = new signalR.HubConnectionBuilder()
-                .withUrl("http://91.224.86.30/gameHub") // Укажите URL вашего хаба SignalR
+                .withUrl("/gameHub") // Укажите URL вашего хаба SignalR
                 .build();
 
             connection.start().then(function () {
