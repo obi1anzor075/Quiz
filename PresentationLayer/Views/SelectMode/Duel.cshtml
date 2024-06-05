@@ -1,60 +1,118 @@
 ﻿@using PresentationLayer.Controllers;
-@*@{
-    ViewData["Title"] = "Легкий уровень";
-    var answers = ViewBag.Answers as List<string>;
-    var halfCount = answers.Count / 2;
-    var firstColumn = answers.Take(halfCount).ToList();
-    var secondColumn = answers.Skip(halfCount).ToList();
-}*@
+@{
+ViewData["Title"] = "Дуэль";
+var answers = ViewBag.Answers as List<string>;
+}
 
-<html translate="no">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <link href="~/css/duel-mode.css" rel="stylesheet"/>
-    <link href="~/css/answer-effects.css" rel="stylesheet"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Duel</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Подключение пользовательских стилей -->
+    <link href="~/css/duel-style.css" rel="stylesheet" />
 </head>
-<body translate="no">
-<div class="wrapper">
-    <header class="head__part">
-        <div class="back-button">
-            <a asp-controller="Home" asp-action="SelectMode" id="backButton" class="head__back">Назад</a>
-        </div>
-    </header>
-    <main class="main__part">
-        <div class="join-room-bg">
-            <div class="join-room-content">
-                <span>Ваш код: <span id="userCode"></span></span>
-                <span>Введите код соперника</span>
-                <form id="playForm" class="input-room-code">
-                    <input class="input-code" id="opponentCode" autocomplete="off" type="text" name="name" placeholder="Введите код комнаты" required>
-                    <button type="button" id="invite" class="confirm-btn"><img src="~/img/confirm.svg" alt="Confirm"></button>
-                </form>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center">Quiz Duel</h1>
+            <div id="questionSection" style="display: none;">
+                <h2 id="questionText"></h2>
+                <img id="questionImage" src="" alt="Question Image" style="display: none;">
+                <ul id="answersList" class="list-group"></ul>
+                <button id="submitAnswerBtn" class="btn btn-primary">Submit Answer</button>
             </div>
+            <button id="joinDuelBtn" class="btn btn-primary">Join Duel</button>
         </div>
-    </main>
-    <footer>
-        lgl
-    </footer>
+    </div>
 </div>
+
 <!-- Подключение jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Подключение Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- SignalR -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
-
+<!-- Подключение SignalR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+<!-- JavaScript код для работы с игрой Duel -->
 <script>
-    const hubConnection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost/gamehub") // Ensure this URL matches your server setup
-        .withAutomaticReconnect()
-        .configureLogging(signalR.LogLevel.Information)
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/gameHub")
         .build();
 
-    hubConnection.onclose((error) => {
-        console.error('Connection closed:', error);
+    let chatRoom = '';
+
+    connection.on("ReceiveMessage", function (userName, message) {
+        console.log(`${userName}: ${message}`);
     });
 
+    connection.on("StartGame", function () {
+        console.log("Game started!");
+        document.getElementById('questionSection').style.display = 'block';
+        // Отправка запроса на получение первого вопроса
+        sendQuestionRequest(0);
+    });
+
+    connection.on("GameReady", function () {
+        console.log("Both players are ready!");
+    });
+
+    connection.on("GameEnded", function (results) {
+        console.log("Game ended!", results);
+    });
+
+    connection.on("ReceiveQuestion", function (questionId, questionText, imageUrl, answers) {
+        document.getElementById('questionText').innerText = questionText;
+        if (imageUrl) {
+            document.getElementById('questionImage').src = imageUrl;
+            document.getElementById('questionImage').style.display = 'block';
+        } else {
+            document.getElementById('questionImage').style.display = 'none';
+        }
+        const answersList = document.getElementById('answersList');
+        answersList.innerHTML = '';
+        answers.forEach(answer => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.innerText = answer;
+            li.onclick = () => {
+                const selected = document.querySelector('#answersList .selected');
+                if (selected) {
+                    selected.classList.remove('selected');
+                }
+                li.classList.add('selected');
+            };
+            answersList.appendChild(li);
+        });
+    });
+
+    async function joinDuel() {
+        await connection.start();
+        const userName = prompt("Enter your username");
+        chatRoom = prompt("Enter room name");
+        await connection.invoke("JoinDuel", { UserName: userName, ChatRoom: chatRoom });
+    }
+
+    async function sendQuestionRequest(index) {
+        await connection.invoke("SendQuestion", chatRoom, index);
+    }
+
+    async function submitAnswer() {
+        const selectedAnswerElement = document.querySelector('#answersList .selected');
+        if (!selectedAnswerElement) {
+            alert("Please select an answer before submitting.");
+            return;
+        }
+        const answer = selectedAnswerElement.innerText;
+        await connection.invoke("SendAnswer", chatRoom, answer);
+    }
+
+    // Обработчик кнопки "Join Duel"
+    document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
+
+    // Обработчик кнопки "Submit Answer"
+    document.getElementById('submitAnswerBtn').addEventListener('click', submitAnswer);
 </script>
 </body>
 </html>

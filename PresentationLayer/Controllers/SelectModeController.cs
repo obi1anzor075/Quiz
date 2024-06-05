@@ -5,28 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR;
+using PresentationLayer.Hubs;
 
 namespace PresentationLayer.Controllers
 {
     public class SelectModeController : Controller
     {
         private readonly DataStoreDbContext _dbContext;
+        private readonly IHubContext<GameHub, IChatClient> _gameHubContext;
 
-        public SelectModeController(DataStoreDbContext dbContext)
+        public SelectModeController(DataStoreDbContext dbContext, IHubContext<GameHub, IChatClient> gameHubContext)
         {
             _dbContext = dbContext;
+            _gameHubContext = gameHubContext;
         }
 
         public IActionResult Easy(int index = 0)
         {
-            // Проверка, существует ли сессионная переменная CurrentQuestionIndex
             if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
             {
-                // Если нет, установите его в 0
                 HttpContext.Session.SetInt32("CurrentQuestionId", 0);
             }
 
-            // Получаем следующий вопрос из базы данных по переданному индексу
             Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
 
             if (nextQuestion != null)
@@ -35,10 +36,8 @@ namespace PresentationLayer.Controllers
                 ViewBag.QuestionText = nextQuestion.QuestionText;
                 ViewBag.ImageUrl = nextQuestion.ImageUrl;
 
-                // Список ответов для перемешивания
                 var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
 
-                // Перемешиваем ответы
                 var random = new Random();
                 for (int i = answers.Count - 1; i > 0; i--)
                 {
@@ -48,19 +47,13 @@ namespace PresentationLayer.Controllers
                     answers[j] = temp;
                 }
 
-                // Передаем перемешанные ответы в представление
                 ViewBag.Answers = answers;
-
-                // Увеличиваем индекс для следующего запроса
                 int nextIndex = index + 1;
-
-                // Передаем индекс следующего вопроса в представление
                 ViewBag.NextIndex = nextIndex;
 
                 return View();
             }
 
-            // Если вопросы закончились, перенаправляем на страницу "Finish"
             string difficultyLevel = "Легкий";
             return RedirectToAction("Finish", new { difficultyLevel });
         }
@@ -69,7 +62,6 @@ namespace PresentationLayer.Controllers
         {
             if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
             {
-                // Если нет, установите его в 0
                 HttpContext.Session.SetInt32("CurrentQuestionId", 0);
             }
 
@@ -82,7 +74,6 @@ namespace PresentationLayer.Controllers
                 ViewBag.ImageUrl = nextQuestion.ImageUrl;
 
                 int nextIndex = index + 1;
-
                 ViewBag.NextIndex = nextIndex;
 
                 return View();
@@ -92,20 +83,52 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("Finish", new { difficultyLevel });
         }
 
-        public IActionResult Duel()
+        public async Task<IActionResult> Duel(int index = 0, string chatRoom = "DuelRoom")
         {
-            return View();
+            if (!HttpContext.Session.TryGetValue("CurrentQuestionId", out byte[] questionIdBytes))
+            {
+                HttpContext.Session.SetInt32("CurrentQuestionId", 0);
+            }
+
+            Question nextQuestion = _dbContext.Questions.Skip(index).FirstOrDefault();
+
+            if (nextQuestion != null)
+            {
+                ViewBag.QuestionId = nextQuestion.QuestionId;
+                ViewBag.QuestionText = nextQuestion.QuestionText;
+                ViewBag.ImageUrl = nextQuestion.ImageUrl;
+
+                var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
+
+                var random = new Random();
+                for (int i = answers.Count - 1; i > 0; i--)
+                {
+                    int j = random.Next(i + 1);
+                    var temp = answers[i];
+                    answers[i] = answers[j];
+                    answers[j] = temp;
+                }
+
+                ViewBag.Answers = answers;
+                int nextIndex = index + 1;
+                ViewBag.NextIndex = nextIndex;
+
+                await _gameHubContext.Clients.Group(chatRoom).ReceiveQuestion(nextQuestion.QuestionId, nextQuestion.QuestionText, nextQuestion.ImageUrl, answers);
+
+                return View();
+            }
+
+            string difficultyLevel = "Дуэль";
+            return RedirectToAction("Finish", new { difficultyLevel });
         }
-        
+
         public IActionResult Finish(string difficultyLevel)
         {
             ViewBag.DifficultyLevel = difficultyLevel;
 
-            // Получаем количество правильных ответов из сессии
             int correctAnswersCount = HttpContext.Session.GetInt32("CorrectAnswersCount") ?? 0;
             ViewBag.CorrectAnswersCount = correctAnswersCount;
 
-            // Получаем общее количество вопросов
             int totalQuestionsCount = _dbContext.Questions.Count();
             ViewBag.TotalQuestionsCount = totalQuestionsCount;
 
@@ -114,10 +137,7 @@ namespace PresentationLayer.Controllers
 
         public IActionResult ResetCounters()
         {
-            // Сбрасываем счетчик правильных ответов в сессии
             HttpContext.Session.SetInt32("CorrectAnswersCount", 0);
-
-            // Сбрасываем индекс текущего вопроса в сессии
             HttpContext.Session.SetInt32("CurrentQuestionId", 0);
 
             return Ok();
