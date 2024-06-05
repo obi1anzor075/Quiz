@@ -1293,3 +1293,8 @@ D:\Unity Hub\Dev\Quiz\PresentationLayer\obj\Debug\net8.0\refint\PresentationLaye
 D:\Unity Hub\Dev\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.pdb
 D:\Unity Hub\Dev\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.genruntimeconfig.cache
 D:\Unity Hub\Dev\Quiz\PresentationLayer\obj\Debug\net8.0\ref\PresentationLayer.dll
+D:\Unity Hub\Dev\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+D:\Unity Hub\Dev\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Unity Hub\Dev\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Unity Hub\Dev\Quiz\PresentationLayer\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+D:\Unity Hub\Dev\Quiz\PresentationLayer\bin\Debug\net8.0\StackExchange.Redis.dll
