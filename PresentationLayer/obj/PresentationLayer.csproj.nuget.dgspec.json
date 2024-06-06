@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Unity Hub\\Dev\\Quiz\\PresentationLayer\\PresentationLayer.csproj": {}
+    "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\PresentationLayer.csproj": {}
   },
   "projects": {
-    "D:\\Unity Hub\\Dev\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj": {
+    "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Unity Hub\\Dev\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+        "projectUniqueName": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
         "projectName": "BusinessLogicLayer",
-        "projectPath": "D:\\Unity Hub\\Dev\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Unity Hub\\Dev\\Quiz\\BusinessLogicLayer\\obj\\",
+        "projectPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+        "packagesPath": "C:\\Users\\shind\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shind\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Unity Hub\\Dev\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "D:\\Unity Hub\\Dev\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj"
+              "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj"
               }
             }
           }
@@ -65,21 +65,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Unity Hub\\Dev\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Unity Hub\\Dev\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "D:\\Unity Hub\\Dev\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Unity Hub\\Dev\\Quiz\\DataAccessLayer\\obj\\",
+        "projectPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\DataAccessLayer.csproj",
+        "packagesPath": "C:\\Users\\shind\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shind\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -136,21 +136,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Unity Hub\\Dev\\Quiz\\PresentationLayer\\PresentationLayer.csproj": {
+    "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\PresentationLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Unity Hub\\Dev\\Quiz\\PresentationLayer\\PresentationLayer.csproj",
+        "projectUniqueName": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\PresentationLayer.csproj",
         "projectName": "PresentationLayer",
-        "projectPath": "D:\\Unity Hub\\Dev\\Quiz\\PresentationLayer\\PresentationLayer.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Unity Hub\\Dev\\Quiz\\PresentationLayer\\obj\\",
+        "projectPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\PresentationLayer.csproj",
+        "packagesPath": "C:\\Users\\shind\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shind\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -164,8 +164,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Unity Hub\\Dev\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj": {
-                "projectPath": "D:\\Unity Hub\\Dev\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj"
+              "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj": {
+                "projectPath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\BusinessLogicLayer\\BusinessLogicLayer.csproj"
               }
             }
           }
@@ -226,7 +226,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

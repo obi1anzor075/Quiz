@@ -1,18 +1,10 @@
-﻿@using PresentationLayer.Controllers;
-@{
-ViewData["Title"] = "Дуэль";
-var answers = ViewBag.Answers as List<string>;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Duel</title>
-    <!-- Подключение Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Подключение пользовательских стилей -->
     <link href="~/css/duel-style.css" rel="stylesheet" />
 </head>
 <body>
@@ -24,46 +16,32 @@ var answers = ViewBag.Answers as List<string>;
                 <h2 id="questionText"></h2>
                 <img id="questionImage" src="~/img/questions/" alt="Question Image" style="display: none;">
                 <ul id="answersList" class="list-group"></ul>
-                <button id="submitAnswerBtn" class="btn btn-primary">Submit Answer</button>
+                <button id="submitAnswerBtn" class="btn btn-primary" disabled>Submit Answer</button>
             </div>
             <button id="joinDuelBtn" class="btn btn-primary">Join Duel</button>
         </div>
     </div>
 </div>
 
-<!-- Подключение jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Подключение SignalR -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
-<!-- JavaScript код для работы с игрой Duel -->
 <script>
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/gameHub")
         .build();
 
     let chatRoom = '';
+    let selectedAnswer = '';
 
     connection.on("ReceiveMessage", function (userName, message) {
         console.log(`${userName}: ${message}`);
-    });
-
-    connection.on("StartGame", function () {
-        console.log("Game started!");
-        document.getElementById('questionSection').style.display = 'block';
-        // Отправка запроса на получение первого вопроса
-        sendQuestionRequest(0);
-    });
-
-    connection.on("GameReady", function () {
-        console.log("Both players are ready!");
-    });
-
-    connection.on("GameEnded", function (results) {
-        console.log("Game ended!", results);
+        alert(`${userName}: ${message}`);
     });
 
     connection.on("ReceiveQuestion", function (questionId, questionText, imageUrl, answers) {
+        console.log("Received question:", questionText);
         document.getElementById('questionText').innerText = questionText;
+        document.getElementById('questionText').setAttribute('data-question-id', questionId); // Set the question ID
         if (imageUrl) {
             document.getElementById('questionImage').src = imageUrl;
             document.getElementById('questionImage').style.display = 'block';
@@ -71,48 +49,68 @@ var answers = ViewBag.Answers as List<string>;
             document.getElementById('questionImage').style.display = 'none';
         }
         const answersList = document.getElementById('answersList');
-        answersList.innerHTML = '';
+        answersList.innerHTML = ''; // Clear previous answers
         answers.forEach(answer => {
             const li = document.createElement('li');
-            li.className = 'list-group-item';
-            li.innerText = answer;
-            li.onclick = () => {
-                const selected = document.querySelector('#answersList .selected');
-                if (selected) {
-                    selected.classList.remove('selected');
-                }
-                li.classList.add('selected');
-            };
+            li.textContent = answer;
+            li.classList.add('list-group-item');
+            li.addEventListener('click', function () {
+                selectedAnswer = answer;
+                document.getElementById('submitAnswerBtn').disabled = false; // Enable submit button
+            });
             answersList.appendChild(li);
         });
     });
 
+    connection.on("GameReady", function () {
+        console.log("Both players are ready!");
+        document.getElementById('questionSection').style.display = 'block';
+    });
+
+    connection.on("StartGame", function () {
+        console.log("Game has started!");
+        document.getElementById('questionSection').style.display = 'block';
+        getNextQuestion();
+    });
+
     async function joinDuel() {
-        await connection.start();
-        const userName = prompt("Enter your username");
-        chatRoom = prompt("Enter room name");
-        await connection.invoke("JoinDuel", { UserName: userName, ChatRoom: chatRoom });
-    }
-
-    async function sendQuestionRequest(index) {
-        await connection.invoke("SendQuestion", chatRoom, index);
-    }
-
-    async function submitAnswer() {
-        const selectedAnswerElement = document.querySelector('#answersList .selected');
-        if (!selectedAnswerElement) {
-            alert("Please select an answer before submitting.");
-            return;
+        try {
+            await connection.start();
+            const userName = prompt("Enter your username");
+            chatRoom = prompt("Enter room name");
+            await connection.invoke("JoinDuel", { UserName: userName, ChatRoom: chatRoom });
+            console.log("Connected and joined duel");
+        } catch (err) {
+            console.error(err);
         }
-        const answer = selectedAnswerElement.innerText;
-        await connection.invoke("SendAnswer", chatRoom, answer);
     }
 
-    // Обработчик кнопки "Join Duel"
-    document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
+    async function getNextQuestion() {
+        try {
+            await connection.invoke("GetNextQuestion", chatRoom, 0); // Assuming starting with the first question
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
-    // Обработчик кнопки "Submit Answer"
-    document.getElementById('submitAnswerBtn').addEventListener('click', submitAnswer);
+    async function submitAnswer(questionId, answer) {
+        try {
+            await connection.invoke("AnswerQuestion", chatRoom, questionId, answer);
+            document.getElementById('submitAnswerBtn').disabled = true; // Disable submit button after submission
+            getNextQuestion(); // Fetch the next question after submitting the answer
+        } catch (err) {
+            console.error("Error invoking AnswerQuestion:", err);
+        }
+    }
+
+    document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
+    document.getElementById('submitAnswerBtn').addEventListener('click', function() {
+        if (selectedAnswer) {
+            const questionId = document.getElementById('questionText').getAttribute('data-question-id');
+            submitAnswer(questionId, selectedAnswer);
+        }
+    });
+
 </script>
 </body>
 </html>

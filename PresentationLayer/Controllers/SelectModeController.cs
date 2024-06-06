@@ -121,7 +121,6 @@ namespace PresentationLayer.Controllers
             string difficultyLevel = "Дуэль";
             return RedirectToAction("Finish", new { difficultyLevel });
         }
-
         public IActionResult Finish(string difficultyLevel)
         {
             ViewBag.DifficultyLevel = difficultyLevel;

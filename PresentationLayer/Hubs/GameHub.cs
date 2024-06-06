@@ -36,8 +36,6 @@ namespace PresentationLayer.Hubs
                 throw new ArgumentException("Invalid connection parameters");
             }
 
-            Console.WriteLine($"User {connection.UserName} is joining the chat room {connection.ChatRoom}");
-
             await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
             await Clients.Group(connection.ChatRoom).ReceiveMessage("Brand-Battle", $"Добро пожаловать, {connection.UserName}!");
         }
@@ -48,8 +46,6 @@ namespace PresentationLayer.Hubs
             {
                 throw new ArgumentException("Invalid connection parameters");
             }
-
-            Console.WriteLine($"User {connection.UserName} is joining the duel room {connection.ChatRoom}");
 
             await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
 
@@ -71,20 +67,18 @@ namespace PresentationLayer.Hubs
                 await Clients.Group(connection.ChatRoom).StartGame();
             }
         }
+
         public async Task SendMessage(string userName, string message)
         {
-            // Output to console for debugging
-            // Console.WriteLine($"User {userName} is sending a message: {message}");
-
-            // Broadcast message to all clients in the default chat room (or adjust the group as needed)
             await Clients.All.ReceiveMessage(userName, message);
         }
-        public async Task SendQuestion(string chatRoom, int index)
+
+        public async Task GetNextQuestion(string chatRoom, int questionIndex)
         {
-            var question = _dbContext.Questions.Skip(index).FirstOrDefault();
-            if (question != null)
+            var nextQuestion = _dbContext.Questions.Skip(questionIndex).FirstOrDefault();
+            if (nextQuestion != null)
             {
-                var answers = new List<string> { question.Answer1, question.Answer2, question.Answer3, question.Answer4 };
+                var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
                 var random = new Random();
                 for (int i = answers.Count - 1; i > 0; i--)
                 {
@@ -93,20 +87,30 @@ namespace PresentationLayer.Hubs
                     answers[i] = answers[j];
                     answers[j] = temp;
                 }
-                await Clients.Group(chatRoom).ReceiveQuestion(question.QuestionId, question.QuestionText, question.ImageUrl, answers);
+
+                await Clients.Group(chatRoom).ReceiveQuestion(nextQuestion.QuestionId, nextQuestion.QuestionText, nextQuestion.ImageUrl, answers);
             }
         }
 
-        public async Task SendAnswer(string chatRoom, string answer)
+        public async Task AnswerQuestion(string chatRoom, int questionId, string answer)
         {
-            var connectionId = Context.ConnectionId;
-            await RecordAnswer(chatRoom, connectionId, answer);
-        }
+      
+                // Log the received parameters for debugging
 
-        public async Task EndGame(string chatRoom)
-        {
-            var results = await GetGameResults(chatRoom);
-            await Clients.Group(chatRoom).GameEnded(results);
+                // Example: Retrieve the correct answer from the database
+                var question = await _dbContext.Questions.FindAsync(questionId);
+                if (question == null)
+                {
+                    throw new Exception($"Question with ID {questionId} not found.");
+                }
+
+                bool isCorrect = (answer == question.CorrectAnswer);
+
+                // Log the result of the answer check
+
+                // Additional logic for scoring, etc.
+
+            
         }
 
         private async Task<Duel> GetOrCreateDuel(string chatRoom)
@@ -126,57 +130,6 @@ namespace PresentationLayer.Hubs
             var cacheKey = $"{chatRoom}:duel";
             var duelJson = JsonConvert.SerializeObject(duel);
             await _cache.SetStringAsync(cacheKey, duelJson);
-        }
-
-        private async Task RecordAnswer(string chatRoom, string connectionId, string answer)
-        {
-            var cacheKey = $"{chatRoom}:answers:{connectionId}";
-            var answersJson = await _cache.GetStringAsync(cacheKey);
-            var answers = answersJson != null ? JsonConvert.DeserializeObject<List<string>>(answersJson) : new List<string>();
-
-            answers.Add(answer);
-            await _cache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(answers));
-        }
-
-        private async Task<Dictionary<string, int>> GetGameResults(string chatRoom)
-        {
-            var cacheKey = $"{chatRoom}:duel";
-            var duelJson = await _cache.GetStringAsync(cacheKey);
-            var duel = duelJson != null ? JsonConvert.DeserializeObject<Duel>(duelJson) : null;
-
-            var results = new Dictionary<string, int>();
-
-            if (duel != null)
-            {
-                foreach (var player in new[] { duel.Player1, duel.Player2 })
-                {
-                    var answersKey = $"{chatRoom}:answers:{player}";
-                    var answersJson = await _cache.GetStringAsync(answersKey);
-                    var answers = answersJson != null ? JsonConvert.DeserializeObject<List<string>>(answersJson) : new List<string>();
-
-                    // Здесь должна быть ваша логика для подсчета правильных ответов
-                    int correctAnswers = 0;
-                    foreach (var answer in answers)
-                    {
-                        // Предположим, что функция CheckAnswer() проверяет правильность ответа
-                        if (CheckAnswer(answer))
-                        {
-                            correctAnswers++;
-                        }
-                    }
-
-                    results[player] = correctAnswers;
-                }
-            }
-
-            return results;
-        }
-
-        private bool CheckAnswer(string answer)
-        {
-            //TODO
-            //  логика проверки ответа
-            return true; // Заменить это на фактическую логику проверки
         }
     }
 }
