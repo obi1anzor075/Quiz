@@ -5,15 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Duel</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/css/duel-style.css" rel="stylesheet" />
+    <link href="~/css/duel-mode.css" rel="stylesheet" />
 </head>
 <body>
+<header class="head__part">
+    <div class="back-button">
+        <a asp-controller="Home" asp-action="SelectMode" id="backButton" class="head__back">Назад</a>
+    </div>
+
+    <div class="question">
+        <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
+        <div class="question-text">
+            <div translate="no" id="questionText"><br />Что за бренд на фото?</div>
+        </div>
+    </div>
+</header>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 class="text-center">Quiz Duel</h1>
             <div id="questionSection" style="display: none;">
-                <h2 id="questionText"></h2>
                 <img id="questionImage" src="~/img/questions/" alt="Question Image" style="display: none;">
                 <ul id="answersList" class="list-group"></ul>
                 <button id="submitAnswerBtn" class="btn btn-primary" disabled>Submit Answer</button>
@@ -32,34 +43,40 @@
 
     let chatRoom = '';
     let selectedAnswer = '';
-
-    connection.on("ReceiveMessage", function (userName, message) {
-        console.log(`${userName}: ${message}`);
-        alert(`${userName}: ${message}`);
-    });
+    let userName = '';
 
     connection.on("ReceiveQuestion", function (questionId, questionText, imageUrl, answers) {
-        console.log("Received question:", questionText);
-        document.getElementById('questionText').innerText = questionText;
-        document.getElementById('questionText').setAttribute('data-question-id', questionId); // Set the question ID
+        console.log("Received question:", questionId, questionText, imageUrl, answers); // Logging received data
+        document.getElementById('questionText').innerText = questionText; // Setting question text
+        document.getElementById('questionText').setAttribute('data-question-id', questionId);
         if (imageUrl) {
-            document.getElementById('questionImage').src = imageUrl;
+            document.getElementById('questionImage').src = "/img/questions/" + imageUrl;
             document.getElementById('questionImage').style.display = 'block';
         } else {
             document.getElementById('questionImage').style.display = 'none';
         }
         const answersList = document.getElementById('answersList');
-        answersList.innerHTML = ''; // Clear previous answers
+        answersList.innerHTML = '';
         answers.forEach(answer => {
             const li = document.createElement('li');
             li.textContent = answer;
             li.classList.add('list-group-item');
             li.addEventListener('click', function () {
                 selectedAnswer = answer;
-                document.getElementById('submitAnswerBtn').disabled = false; // Enable submit button
+                document.getElementById('submitAnswerBtn').disabled = false;
+                document.querySelectorAll('#answersList .list-group-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                li.classList.add('active');
             });
             answersList.appendChild(li);
         });
+    });
+
+    connection.on("AnswerResult", function (isCorrect) {
+        alert(isCorrect ? "Correct answer!" : "Wrong answer!");
+        document.getElementById('submitAnswerBtn').disabled = true;
+        getNextQuestion();
     });
 
     connection.on("GameReady", function () {
@@ -76,18 +93,24 @@
     async function joinDuel() {
         try {
             await connection.start();
-            const userName = prompt("Enter your username");
+            userName = prompt("Enter your username");
             chatRoom = prompt("Enter room name");
+            if (!userName || !chatRoom) {
+                alert("Username and room name are required.");
+                return;
+            }
             await connection.invoke("JoinDuel", { UserName: userName, ChatRoom: chatRoom });
             console.log("Connected and joined duel");
         } catch (err) {
-            console.error(err);
+            console.error("Error in joinDuel:", err);
         }
     }
 
     async function getNextQuestion() {
         try {
-            await connection.invoke("GetNextQuestion", chatRoom, 0); // Assuming starting with the first question
+            const questionIndex = parseInt(document.getElementById('questionText').getAttribute('data-question-id')) || 0;
+            console.log(`Requesting next question: index=${questionIndex + 1}`); // Logging next question index
+            await connection.invoke("GetNextQuestion", userName, chatRoom, questionIndex + 1);
         } catch (err) {
             console.error(err);
         }
@@ -95,9 +118,8 @@
 
     async function submitAnswer(questionId, answer) {
         try {
-            await connection.invoke("AnswerQuestion", chatRoom, questionId, answer);
-            document.getElementById('submitAnswerBtn').disabled = true; // Disable submit button after submission
-            getNextQuestion(); // Fetch the next question after submitting the answer
+            console.log(`Submitting answer: UserName=${userName}, ChatRoom=${chatRoom}, QuestionId=${questionId}, Answer=${answer}`);
+            await connection.invoke("AnswerQuestion", userName, chatRoom, questionId, answer);
         } catch (err) {
             console.error("Error invoking AnswerQuestion:", err);
         }
@@ -106,11 +128,10 @@
     document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
     document.getElementById('submitAnswerBtn').addEventListener('click', function() {
         if (selectedAnswer) {
-            const questionId = document.getElementById('questionText').getAttribute('data-question-id');
+            const questionId = parseInt(document.getElementById('questionText').getAttribute('data-question-id'));
             submitAnswer(questionId, selectedAnswer);
         }
     });
-
 </script>
 </body>
 </html>

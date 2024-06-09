@@ -3,6 +3,7 @@ using DataAccessLayer.Repositories;
 using DataAccessLayer.Repositories.Contracts;
 using BusinessLogicLayer.Services;
 using BusinessLogicLayer.Services.Contracts;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using PresentationLayer.Hubs;
 
@@ -19,10 +20,6 @@ builder.Services.AddCors(options =>
             .AllowCredentials();
     });
 });
-
-
-
-
 
 
 // Add services to the container.
@@ -48,6 +45,11 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\temp\keys\"))
+    .SetApplicationName("Quiz");
+
 
 var app = builder.Build();
 
@@ -76,13 +78,3 @@ app.MapControllerRoute(
 app.MapHub<GameHub>("/gamehub");
 
 app.Run();
-
-
-
-
-
-
-
-
-
-

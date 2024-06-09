@@ -6,6 +6,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using DataAccessLayer.DataContext;
+using System.Linq;
 
 namespace PresentationLayer.Hubs
 {
@@ -16,6 +17,7 @@ namespace PresentationLayer.Hubs
         Task GameEnded(Dictionary<string, int> results);
         Task GameReady();
         Task ReceiveQuestion(int questionId, string questionText, string imageUrl, List<string> answers);
+        Task AnswerResult(bool isCorrect);
     }
 
     public class GameHub : Hub<IChatClient>
@@ -42,29 +44,50 @@ namespace PresentationLayer.Hubs
 
         public async Task JoinDuel(UserConnection connection)
         {
-            if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))
+            try
             {
-                throw new ArgumentException("Invalid connection parameters");
+                if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))
+                {
+                    throw new ArgumentException("Invalid connection parameters");
+                }
+
+                await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
+
+                var duel = await GetOrCreateDuel(connection.ChatRoom);
+                if (string.IsNullOrEmpty(duel.Player1))
+                {
+                    duel = duel with { Player1 = connection.UserName };
+                }
+                else if (string.IsNullOrEmpty(duel.Player2))
+                {
+                    duel = duel with { Player2 = connection.UserName };
+                }
+
+                await SaveDuel(connection.ChatRoom, duel);
+
+                if (!string.IsNullOrEmpty(duel.Player1) && !string.IsNullOrEmpty(duel.Player2))
+                {
+                    await Clients.Group(connection.ChatRoom).GameReady();
+                    await Clients.Group(connection.ChatRoom).StartGame();
+                }
+
+                // Убедитесь, что пользователь добавлен в кэш
+                var playerState = await GetPlayerState(connection.UserName);
+                if (playerState == null)
+                {
+                    await SavePlayerState(connection.UserName, new PlayerState());
+                    Console.WriteLine($"User {connection.UserName} added to player states.");
+                }
+                else
+                {
+                    Console.WriteLine($"User {connection.UserName} already exists in player states.");
+                }
             }
-
-            await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
-
-            var duel = await GetOrCreateDuel(connection.ChatRoom);
-            if (string.IsNullOrEmpty(duel.Player1))
+            catch (Exception ex)
             {
-                duel = duel with { Player1 = connection.UserName };
-            }
-            else if (string.IsNullOrEmpty(duel.Player2))
-            {
-                duel = duel with { Player2 = connection.UserName };
-            }
-
-            await SaveDuel(connection.ChatRoom, duel);
-
-            if (!string.IsNullOrEmpty(duel.Player1) && !string.IsNullOrEmpty(duel.Player2))
-            {
-                await Clients.Group(connection.ChatRoom).GameReady();
-                await Clients.Group(connection.ChatRoom).StartGame();
+                Console.WriteLine($"Error in JoinDuel: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
             }
         }
 
@@ -73,63 +96,170 @@ namespace PresentationLayer.Hubs
             await Clients.All.ReceiveMessage(userName, message);
         }
 
-        public async Task GetNextQuestion(string chatRoom, int questionIndex)
+        public async Task GetNextQuestion(string userName, string chatRoom, int questionIndex)
         {
-            var nextQuestion = _dbContext.Questions.Skip(questionIndex).FirstOrDefault();
-            if (nextQuestion != null)
+            try
             {
-                var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
-                var random = new Random();
-                for (int i = answers.Count - 1; i > 0; i--)
+                Console.WriteLine($"GetNextQuestion called with UserName={userName}, ChatRoom={chatRoom}, QuestionIndex={questionIndex}");
+
+                var playerState = await GetPlayerState(userName);
+                if (playerState == null)
                 {
-                    int j = random.Next(i + 1);
-                    var temp = answers[i];
-                    answers[i] = answers[j];
-                    answers[j] = temp;
+                    playerState = new PlayerState();
+                    await SavePlayerState(userName, playerState);
                 }
 
-                await Clients.Group(chatRoom).ReceiveQuestion(nextQuestion.QuestionId, nextQuestion.QuestionText, nextQuestion.ImageUrl, answers);
+                var questionsCount = _dbContext.Questions.Count();
+                if (questionIndex >= questionsCount)
+                {
+                    questionIndex = 0; // Возвращаемся к первому вопросу, если индекс превышает количество вопросов
+                }
+
+                var nextQuestion = _dbContext.Questions
+                    .OrderBy(q => q.QuestionId)
+                    .Skip(questionIndex)
+                    .FirstOrDefault();
+
+                if (nextQuestion != null)
+                {
+                    var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
+
+                    playerState.CurrentQuestionIndex = questionIndex + 1; // Обновляем индекс следующего вопроса
+                    await SavePlayerState(userName, playerState);
+
+                    await Clients.Client(Context.ConnectionId).ReceiveQuestion(nextQuestion.QuestionId, nextQuestion.QuestionText, nextQuestion.ImageUrl, answers);
+                    Console.WriteLine($"Question sent: {nextQuestion.QuestionId} - {nextQuestion.QuestionText}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetNextQuestion: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
             }
         }
 
-        public async Task AnswerQuestion(string chatRoom, int questionId, string answer)
-        {
-      
-                // Log the received parameters for debugging
 
-                // Example: Retrieve the correct answer from the database
-                var question = await _dbContext.Questions.FindAsync(questionId);
+
+        public async Task AnswerQuestion(string userName, string chatRoom, int questionId, string answer)
+        {
+            try
+            {
+                Console.WriteLine($"AnswerQuestion called with UserName={userName}, ChatRoom={chatRoom}, QuestionId={questionId}, Answer={answer}");
+
+                var playerState = await GetPlayerState(userName);
+                if (playerState == null)
+                {
+                    throw new KeyNotFoundException($"User '{userName}' not found in player states.");
+                }
+
+                var question = _dbContext.Questions.FirstOrDefault(q => q.QuestionId == questionId);
                 if (question == null)
                 {
                     throw new Exception($"Question with ID {questionId} not found.");
                 }
 
-                bool isCorrect = (answer == question.CorrectAnswer);
+                bool isCorrect = (answer.ToUpper().Trim().Normalize() == question.CorrectAnswer.ToUpper().Trim().Normalize());
 
-                // Log the result of the answer check
+                if (isCorrect)
+                {
+                    playerState.Score++;
+                }
 
-                // Additional logic for scoring, etc.
+                await SavePlayerState(userName, playerState);
 
-            
+                await Clients.Caller.AnswerResult(isCorrect);
+
+                await GetNextQuestion(userName, chatRoom, playerState.CurrentQuestionIndex); // Используем обновленный индекс
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in AnswerQuestion: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
+        }
+
+
+
+        private async Task<PlayerState> GetPlayerState(string userName)
+        {
+            try
+            {
+                var cacheKey = $"playerState:{userName}";
+                var playerStateJson = await _cache.GetStringAsync(cacheKey);
+                if (playerStateJson != null)
+                {
+                    return JsonConvert.DeserializeObject<PlayerState>(playerStateJson);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetPlayerState: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
+        }
+
+        private async Task SavePlayerState(string userName, PlayerState playerState)
+        {
+            try
+            {
+                var cacheKey = $"playerState:{userName}";
+                var playerStateJson = JsonConvert.SerializeObject(playerState);
+                await _cache.SetStringAsync(cacheKey, playerStateJson);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SavePlayerState: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
         }
 
         private async Task<Duel> GetOrCreateDuel(string chatRoom)
         {
-            var cacheKey = $"{chatRoom}:duel";
-            var duelJson = await _cache.GetStringAsync(cacheKey);
-            if (duelJson != null)
+            try
             {
-                return JsonConvert.DeserializeObject<Duel>(duelJson);
-            }
+                var cacheKey = $"{chatRoom}:duel";
+                var duelJson = await _cache.GetStringAsync(cacheKey);
+                if (duelJson != null)
+                {
+                    return JsonConvert.DeserializeObject<Duel>(duelJson);
+                }
 
-            return new Duel(string.Empty, string.Empty, chatRoom, new Dictionary<string, int>());
+                return new Duel(string.Empty, string.Empty, chatRoom, new Dictionary<string, int>());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetOrCreateDuel: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
         }
 
         private async Task SaveDuel(string chatRoom, Duel duel)
         {
-            var cacheKey = $"{chatRoom}:duel";
-            var duelJson = JsonConvert.SerializeObject(duel);
-            await _cache.SetStringAsync(cacheKey, duelJson);
+            try
+            {
+                var cacheKey = $"{chatRoom}:duel";
+                var duelJson = JsonConvert.SerializeObject(duel);
+                await _cache.SetStringAsync(cacheKey, duelJson);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SaveDuel: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
+        }
+
+        private class PlayerState
+        {
+            public int CurrentQuestionIndex { get; set; } = 0;
+            public int Score { get; set; } = 0;
         }
     }
 }
