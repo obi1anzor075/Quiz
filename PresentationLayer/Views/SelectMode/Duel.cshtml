@@ -6,8 +6,9 @@
     <title>Quiz Duel</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/duel-mode.css" rel="stylesheet" />
+    <link href="~/css/answer-effects.css" rel="stylesheet" />
 </head>
-<body>
+<body translate="no">
 <header class="head__part">
     <div class="back-button">
         <a asp-controller="Home" asp-action="SelectMode" id="backButton" class="head__back">Назад</a>
@@ -20,22 +21,25 @@
         </div>
     </div>
 </header>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h1 class="text-center">Quiz Duel</h1>
-            <div id="questionSection" style="display: none;">
-                <img id="questionImage" src="~/img/questions/" alt="Question Image" style="display: none;">
-                <ul id="answersList" class="list-group"></ul>
-                <button id="submitAnswerBtn" class="btn btn-primary" disabled>Submit Answer</button>
-            </div>
-            <button id="joinDuelBtn" class="btn btn-primary">Join Duel</button>
+<main class="main__part">
+    <div id="questionSection" style="display: none;">
+        <div class="question-img">
+            <img id="questionImage" src="~/img/questions/" alt="Question Image" style="display: none;">
+        </div>
+        <div class="question-answer" translate="no">
+            <div class="wrapper" id="answersList"></div>
         </div>
     </div>
-</div>
+    <button id="joinDuelBtn" class="btn btn-primary">Join Duel</button>
+</main>
+<footer class="footer__part"></footer>
 
+<!-- Подключение jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Подключение Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+
 <script>
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/gameHub")
@@ -55,27 +59,62 @@
         } else {
             document.getElementById('questionImage').style.display = 'none';
         }
+
         const answersList = document.getElementById('answersList');
         answersList.innerHTML = '';
-        answers.forEach(answer => {
+
+        // Shuffle answers randomly
+        answers = shuffle(answers);
+
+        const column1 = document.createElement('div');
+        const column2 = document.createElement('div');
+        column1.classList.add('wrapper-answer');
+        column2.classList.add('wrapper-answer');
+
+        answers.forEach((answer, index) => {
             const li = document.createElement('li');
             li.textContent = answer;
-            li.classList.add('list-group-item');
-            li.addEventListener('click', function () {
+            li.classList.add('answer');
+            li.classList.add('eventListener');
+            li.addEventListener('click', async function () {
                 selectedAnswer = answer;
-                document.getElementById('submitAnswerBtn').disabled = false;
-                document.querySelectorAll('#answersList .list-group-item').forEach(item => {
-                    item.classList.remove('active');
+                document.querySelectorAll('#answersList .answer').forEach(item => {
+                    item.classList.remove('selected');
                 });
-                li.classList.add('active');
+                li.classList.add('selected');
+                await submitAnswer(questionId, selectedAnswer);
             });
-            answersList.appendChild(li);
+            if (index % 2 === 0) {
+                column1.appendChild(li);
+            } else {
+                column2.appendChild(li);
+            }
         });
+
+        answersList.appendChild(column1);
+        answersList.appendChild(column2);
     });
 
-    connection.on("AnswerResult", function (isCorrect) {
-        alert(isCorrect ? "Correct answer!" : "Wrong answer!");
-        document.getElementById('submitAnswerBtn').disabled = true;
+    // Function to shuffle array randomly
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // Function to delay execution
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    connection.on("AnswerResult", async function (isCorrect) {
+        const selectedElement = document.querySelector('.answer.selected');
+        if (selectedElement) {
+            selectedElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+        }
+        await delay(300); // Adding delay before switching to the next question
         getNextQuestion();
     });
 
@@ -108,9 +147,9 @@
 
     async function getNextQuestion() {
         try {
-            const questionIndex = parseInt(document.getElementById('questionText').getAttribute('data-question-id')) || 0;
-            console.log(`Requesting next question: index=${questionIndex + 1}`); // Logging next question index
-            await connection.invoke("GetNextQuestion", userName, chatRoom, questionIndex + 1);
+            const questionId = parseInt(document.getElementById('questionText').getAttribute('data-question-id')) || 0;
+            console.log(`Requesting next question: index=${questionId}`);
+            await connection.invoke("GetNextQuestion", userName, chatRoom, questionId);
         } catch (err) {
             console.error(err);
         }
@@ -126,12 +165,6 @@
     }
 
     document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
-    document.getElementById('submitAnswerBtn').addEventListener('click', function() {
-        if (selectedAnswer) {
-            const questionId = parseInt(document.getElementById('questionText').getAttribute('data-question-id'));
-            submitAnswer(questionId, selectedAnswer);
-        }
-    });
 </script>
 </body>
 </html>
