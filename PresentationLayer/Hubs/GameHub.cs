@@ -71,7 +71,6 @@ namespace PresentationLayer.Hubs
                     await Clients.Group(connection.ChatRoom).StartGame();
                 }
 
-                // Убедитесь, что пользователь добавлен в кэш
                 var playerState = await GetPlayerState(connection.UserName);
                 if (playerState == null)
                 {
@@ -96,90 +95,132 @@ namespace PresentationLayer.Hubs
             await Clients.All.ReceiveMessage(userName, message);
         }
 
-        public async Task GetNextQuestion(string userName, string chatRoom, int questionIndex)
+public async Task AnswerQuestion(string userName, string chatRoom, int questionId, string answer)
+{
+    try
+    {
+        Console.WriteLine($"AnswerQuestion called with UserName={userName}, ChatRoom={chatRoom}, QuestionId={questionId}, Answer={answer}");
+
+        var playerState = await GetPlayerState(userName);
+        if (playerState == null)
         {
-            try
+            throw new KeyNotFoundException($"User '{userName}' not found in player states.");
+        }
+
+        var question = _dbContext.Questions.FirstOrDefault(q => q.QuestionId == questionId);
+        if (question == null)
+        {
+            throw new Exception($"Question with ID {questionId} not found.");
+        }
+
+        bool isCorrect = (answer.ToUpper().Trim().Normalize() == question.CorrectAnswer.ToUpper().Trim().Normalize());
+
+        if (isCorrect)
+        {
+            playerState.Score++;
+        }
+
+        await SavePlayerState(userName, playerState);
+
+        await Clients.Caller.AnswerResult(isCorrect);
+
+        // Проверяем, остались ли еще вопросы
+        var questionsCount = _dbContext.Questions.Count();
+        if (playerState.CurrentQuestionIndex >= questionsCount)
+        {
+            await EndGame(chatRoom);
+        }
+        else
+        {
+            await GetNextQuestion(userName, chatRoom, playerState.CurrentQuestionIndex);
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error in AnswerQuestion: {ex.Message}");
+        Console.WriteLine(ex.StackTrace);
+        throw;
+    }
+}
+
+public async Task GetNextQuestion(string userName, string chatRoom, int questionIndex)
+{
+    try
+    {
+        Console.WriteLine($"GetNextQuestion called with UserName={userName}, ChatRoom={chatRoom}, QuestionIndex={questionIndex}");
+
+        var playerState = await GetPlayerState(userName);
+        if (playerState == null)
+        {
+            playerState = new PlayerState();
+            await SavePlayerState(userName, playerState);
+        }
+
+        var questionsCount = _dbContext.Questions.Count();
+        if (questionIndex >= questionsCount)
+        {
+            await EndGame(chatRoom); // Завершаем игру, если вопросы закончились
+            return;
+        }
+
+        var nextQuestion = _dbContext.Questions
+            .OrderBy(q => q.QuestionId)
+            .Skip(questionIndex)
+            .FirstOrDefault();
+
+        if (nextQuestion != null)
+        {
+            var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
+
+            playerState.CurrentQuestionIndex = questionIndex + 1; // Обновляем индекс следующего вопроса
+            await SavePlayerState(userName, playerState);
+
+            await Clients.Client(Context.ConnectionId).ReceiveQuestion(nextQuestion.QuestionId, nextQuestion.QuestionText, nextQuestion.ImageUrl, answers);
+            Console.WriteLine($"Question sent: {nextQuestion.QuestionId} - {nextQuestion.QuestionText}");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error in GetNextQuestion: {ex.Message}");
+        Console.WriteLine(ex.StackTrace);
+        throw;
+    }
+}
+
+private async Task EndGame(string chatRoom)
+{
+    try
+    {
+        var duel = await GetOrCreateDuel(chatRoom);
+        var results = new Dictionary<string, int>();
+
+        if (!string.IsNullOrEmpty(duel.Player1))
+        {
+            var player1State = await GetPlayerState(duel.Player1);
+            if (player1State != null)
             {
-                Console.WriteLine($"GetNextQuestion called with UserName={userName}, ChatRoom={chatRoom}, QuestionIndex={questionIndex}");
-
-                var playerState = await GetPlayerState(userName);
-                if (playerState == null)
-                {
-                    playerState = new PlayerState();
-                    await SavePlayerState(userName, playerState);
-                }
-
-                var questionsCount = _dbContext.Questions.Count();
-                if (questionIndex >= questionsCount)
-                {
-                    questionIndex = 0; // Возвращаемся к первому вопросу, если индекс превышает количество вопросов
-                }
-
-                var nextQuestion = _dbContext.Questions
-                    .OrderBy(q => q.QuestionId)
-                    .Skip(questionIndex)
-                    .FirstOrDefault();
-
-                if (nextQuestion != null)
-                {
-                    var answers = new List<string> { nextQuestion.Answer1, nextQuestion.Answer2, nextQuestion.Answer3, nextQuestion.Answer4 };
-
-                    playerState.CurrentQuestionIndex = questionIndex + 1; // Обновляем индекс следующего вопроса
-                    await SavePlayerState(userName, playerState);
-
-                    await Clients.Client(Context.ConnectionId).ReceiveQuestion(nextQuestion.QuestionId, nextQuestion.QuestionText, nextQuestion.ImageUrl, answers);
-                    Console.WriteLine($"Question sent: {nextQuestion.QuestionId} - {nextQuestion.QuestionText}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in GetNextQuestion: {ex.Message}");
-                Console.WriteLine(ex.StackTrace);
-                throw;
+                results[duel.Player1] = player1State.Score;
             }
         }
 
-
-
-        public async Task AnswerQuestion(string userName, string chatRoom, int questionId, string answer)
+        if (!string.IsNullOrEmpty(duel.Player2))
         {
-            try
+            var player2State = await GetPlayerState(duel.Player2);
+            if (player2State != null)
             {
-                Console.WriteLine($"AnswerQuestion called with UserName={userName}, ChatRoom={chatRoom}, QuestionId={questionId}, Answer={answer}");
-
-                var playerState = await GetPlayerState(userName);
-                if (playerState == null)
-                {
-                    throw new KeyNotFoundException($"User '{userName}' not found in player states.");
-                }
-
-                var question = _dbContext.Questions.FirstOrDefault(q => q.QuestionId == questionId);
-                if (question == null)
-                {
-                    throw new Exception($"Question with ID {questionId} not found.");
-                }
-
-                bool isCorrect = (answer.ToUpper().Trim().Normalize() == question.CorrectAnswer.ToUpper().Trim().Normalize());
-
-                if (isCorrect)
-                {
-                    playerState.Score++;
-                }
-
-                await SavePlayerState(userName, playerState);
-
-                await Clients.Caller.AnswerResult(isCorrect);
-
-                await GetNextQuestion(userName, chatRoom, playerState.CurrentQuestionIndex); // Используем обновленный индекс
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in AnswerQuestion: {ex.Message}");
-                Console.WriteLine(ex.StackTrace);
-                throw;
+                results[duel.Player2] = player2State.Score;
             }
         }
 
+        await Clients.Group(chatRoom).GameEnded(results);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error in EndGame: {ex.Message}");
+        Console.WriteLine(ex.StackTrace);
+        throw;
+    }
+}
 
 
         private async Task<PlayerState> GetPlayerState(string userName)

@@ -31,6 +31,10 @@
         </div>
     </div>
     <button id="joinDuelBtn" class="btn btn-primary">Join Duel</button>
+    <div class="finish__level">
+        <!-- Здесь будет вставлен результат игры -->
+    </div>
+    <div id="timer" style="display: none;">45</div> <!-- Таймер на 45 секунд -->
 </main>
 <footer class="footer__part"></footer>
 
@@ -41,6 +45,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
 
 <script>
+    // JavaScript код для работы с SignalR и другими функциями
+
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/gameHub")
         .build();
@@ -48,6 +54,8 @@
     let chatRoom = '';
     let selectedAnswer = '';
     let userName = '';
+    let isJoining = false;
+    let timerInterval;
 
     connection.on("ReceiveQuestion", function (questionId, questionText, imageUrl, answers) {
         console.log("Received question:", questionId, questionText, imageUrl, answers); // Logging received data
@@ -59,6 +67,8 @@
         } else {
             document.getElementById('questionImage').style.display = 'none';
         }
+
+        document.getElementById('joinDuelBtn').style.display = 'none';
 
         const answersList = document.getElementById('answersList');
         answersList.innerHTML = '';
@@ -93,6 +103,11 @@
 
         answersList.appendChild(column1);
         answersList.appendChild(column2);
+
+        // Запуск таймера только при получении первого вопроса
+        if (!timerInterval) {
+            startTimer();
+        }
     });
 
     // Function to shuffle array randomly
@@ -104,18 +119,12 @@
         return array;
     }
 
-    // Function to delay execution
-    function delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    connection.on("AnswerResult", async function (isCorrect) {
+    connection.on("AnswerResult", function (isCorrect) {
         const selectedElement = document.querySelector('.answer.selected');
         if (selectedElement) {
             selectedElement.classList.add(isCorrect ? 'correct' : 'incorrect');
         }
-        await delay(300); // Adding delay before switching to the next question
-        getNextQuestion();
+        getNextQuestion(); // Запрашиваем следующий вопрос сразу после получения результата ответа
     });
 
     connection.on("GameReady", function () {
@@ -129,19 +138,53 @@
         getNextQuestion();
     });
 
+    connection.on("GameEnded", function (results) {
+        document.getElementById('questionSection').style.display = 'none';
+
+        // Очищаем содержимое finish__level перед добавлением новых результатов
+        const finishLevel = document.querySelector('.finish__level');
+        finishLevel.innerHTML = '';
+
+        let resultText = '<div class="finish__text">Победа!</div>';
+
+        for (let [player, score] of Object.entries(results)) {
+            resultText += `<div class="finish__level">Игрок: ${player}, Счет: ${score}</div>`;
+        }
+
+        // Вычисляем общее количество правильных ответов
+        let totalCorrectAnswers = Object.values(results).reduce((acc, cur) => acc + cur, 0);
+
+        resultText += `<div class="correct__answ">Вы ответили на ${totalCorrectAnswers} верно!</div>` +
+            '<a href="/Home/SelectMode" class="return__button">Главное меню</a>';
+
+        finishLevel.innerHTML = resultText;
+        console.log('Game Ended:', results);
+
+        clearInterval(timerInterval); // Очищаем интервал таймера
+        timerInterval = null; // Сбрасываем переменную интервала
+
+        console.log('END');
+    });
+
     async function joinDuel() {
+        if (isJoining) return; // Prevent multiple join attempts
+        isJoining = true;
+
         try {
             await connection.start();
             userName = prompt("Enter your username");
             chatRoom = prompt("Enter room name");
             if (!userName || !chatRoom) {
                 alert("Username and room name are required.");
+                isJoining = false;
                 return;
             }
             await connection.invoke("JoinDuel", { UserName: userName, ChatRoom: chatRoom });
             console.log("Connected and joined duel");
         } catch (err) {
             console.error("Error in joinDuel:", err);
+        } finally {
+            isJoining = false; // Reset flag after joining attempt
         }
     }
 
@@ -164,7 +207,27 @@
         }
     }
 
+    function startTimer() {
+        let timeInSeconds = 45; // Время в секундах
+        const timerElement = document.getElementById('timer');
+        timerElement.style.display = 'block';
+        timerElement.textContent = timeInSeconds;
+
+        timerInterval = setInterval(() => {
+            timeInSeconds--;
+            timerElement.textContent = timeInSeconds;
+
+            if (timeInSeconds <= 0) {
+                clearInterval(timerInterval);
+                timerElement.textContent = 'Time\'s up!';
+                // Вызываем GameEnded, так как время истекло
+                connection.invoke("GameEnded", { Timeout: true });
+            }
+        }, 1000);
+    }
+
     document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
 </script>
 </body>
 </html>
+
