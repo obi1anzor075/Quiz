@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Duel</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link href="~/css/duel-mode.css" rel="stylesheet" />
     <link href="~/css/answer-effects.css" rel="stylesheet" />
 </head>
@@ -14,12 +15,18 @@
         <a asp-controller="Home" asp-action="SelectMode" id="backButton" class="head__back">Назад</a>
     </div>
 
-    <div class="question">
-        <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
-        <div class="question-text">
-            <div translate="no" id="questionText"><br />Что за бренд на фото?</div>
+    <div id="question" class="question" style="display: none">
+        <div class="relative-container">
+            <img class="question-style" src="~/img/game/question-style.svg" alt="Alternate Text" />
+            <div class="question-text">
+                <div translate="no" id="questionText"><br />Что за бренд <br/> на фото?</div>
+            </div>
+            <div id="timeBarContainer">
+                <div id="timerBar"></div>
+            </div>
         </div>
     </div>
+
 </header>
 <main class="main__part">
     <div id="questionSection" style="display: none;">
@@ -43,7 +50,8 @@
 <!-- Подключение Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
-
+<script src="//bootstraptema.ru/snippets/effect/2018/confettikit/randomColor.js"></script>
+<script src="//bootstraptema.ru/snippets/effect/2018/confettikit/confettikit.min.js"></script>
 <script>
     // JavaScript код для работы с SignalR и другими функциями
 
@@ -106,7 +114,7 @@
 
         // Запуск таймера только при получении первого вопроса
         if (!timerInterval) {
-            startTimer();
+            startTimer(45); // Specify the duration in seconds
         }
     });
 
@@ -130,18 +138,21 @@
     connection.on("GameReady", function () {
         console.log("Both players are ready!");
         document.getElementById('questionSection').style.display = 'block';
+        document.getElementById('question').style.display = 'flex';
     });
 
     connection.on("StartGame", function () {
         console.log("Game has started!");
         document.getElementById('questionSection').style.display = 'block';
+        document.getElementById('question').style.display = 'flex';
         getNextQuestion();
     });
 
-    connection.on("GameEnded", function (results) {
+    // Ensure this script is loaded and confettiKit is defined before this code runs
+    connection.on("EndGame", function (results) {
         document.getElementById('questionSection').style.display = 'none';
+        document.getElementById('question').style.display = 'none';
 
-        // Очищаем содержимое finish__level перед добавлением новых результатов
         const finishLevel = document.querySelector('.finish__level');
         finishLevel.innerHTML = '';
 
@@ -151,7 +162,6 @@
             resultText += `<div class="finish__level">Игрок: ${player}, Счет: ${score}</div>`;
         }
 
-        // Вычисляем общее количество правильных ответов
         let totalCorrectAnswers = Object.values(results).reduce((acc, cur) => acc + cur, 0);
 
         resultText += `<div class="correct__answ">Вы ответили на ${totalCorrectAnswers} верно!</div>` +
@@ -160,11 +170,52 @@
         finishLevel.innerHTML = resultText;
         console.log('Game Ended:', results);
 
-        clearInterval(timerInterval); // Очищаем интервал таймера
-        timerInterval = null; // Сбрасываем переменную интервала
+        clearInterval(timerInterval);
+        timerInterval = null;
 
         console.log('END');
+
+        // Trigger confetti animation
+        new confettiKit({
+            confettiCount: 40,
+            angle: 60,
+            startVelocity: 80,
+            colors: randomColor({ hue: 'blue', count: 18 }),
+            elements: {
+                'confetti': {
+                    direction: 'down',
+                    rotation: true,
+                },
+                'star': {
+                    count: 10,
+                    direction: 'down',
+                    rotation: true,
+                },
+                'ribbon': {
+                    count: 5,
+                    direction: 'down',
+                    rotation: true,
+                },
+                'custom': [{
+                    count: getRandomInt(2, 4),
+                    width: 50,
+                    textSize: 15,
+                    content: '//bootstraptema.ru/snippets/effect/2018/confettikit/shar.png',
+                    contentType: 'image',
+                    direction: 'up',
+                    rotation: false,
+                }]
+            },
+            position: 'bottomLeftRight',
+        });
     });
+
+    // Helper function to get random integer between min and max (inclusive)
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
     async function joinDuel() {
         if (isJoining) return; // Prevent multiple join attempts
@@ -207,21 +258,35 @@
         }
     }
 
-    function startTimer() {
-        let timeInSeconds = 45; // Время в секундах
-        const timerElement = document.getElementById('timer');
-        timerElement.style.display = 'block';
-        timerElement.textContent = timeInSeconds;
+    async function endGame() {
+        try {
+            await connection.invoke("EndGame", chatRoom); // Ensure chatRoom is passed
+        } catch (err) {
+            console.error("Error invoking EndGame:", err);
+        }
+    }
+
+    // Timer function
+    function startTimer(durationInSeconds) {
+        console.log("Timer started for", durationInSeconds, "seconds");
+        const timerBar = document.getElementById('timerBar');
+        const totalWidth = document.getElementById('timeBarContainer').offsetWidth;
+
+        // Инициализируем начальное состояние
+        timerBar.style.width = totalWidth + 'px';
+
+        let currentTime = durationInSeconds;
 
         timerInterval = setInterval(() => {
-            timeInSeconds--;
-            timerElement.textContent = timeInSeconds;
+            currentTime -= 1;
+            const newWidth = (currentTime / durationInSeconds) * totalWidth;
+            console.log("Timer update: currentTime =", currentTime, "newWidth =", newWidth);
+            timerBar.style.width = newWidth + 'px';
 
-            if (timeInSeconds <= 0) {
+            if (currentTime <= 0) {
                 clearInterval(timerInterval);
-                timerElement.textContent = 'Time\'s up!';
-                // Вызываем GameEnded, так как время истекло
-                connection.invoke("GameEnded", { Timeout: true });
+                timerBar.style.width = '0px';
+                endGame(); // Call end game function
             }
         }, 1000);
     }

@@ -14,7 +14,7 @@ namespace PresentationLayer.Hubs
     {
         Task ReceiveMessage(string userName, string message);
         Task StartGame();
-        Task GameEnded(Dictionary<string, int> results);
+        Task EndGame(Dictionary<string, int> results);
         Task GameReady();
         Task ReceiveQuestion(int questionId, string questionText, string imageUrl, List<string> answers);
         Task AnswerResult(bool isCorrect);
@@ -187,40 +187,50 @@ public async Task GetNextQuestion(string userName, string chatRoom, int question
     }
 }
 
-private async Task EndGame(string chatRoom)
+public async Task EndGame(string chatRoom)
 {
     try
     {
         var duel = await GetOrCreateDuel(chatRoom);
         var results = new Dictionary<string, int>();
 
-        if (!string.IsNullOrEmpty(duel.Player1))
+        if (duel != null)
         {
-            var player1State = await GetPlayerState(duel.Player1);
-            if (player1State != null)
+            if (!string.IsNullOrEmpty(duel.Player1))
             {
-                results[duel.Player1] = player1State.Score;
+                var player1State = await GetPlayerState(duel.Player1);
+                if (player1State != null)
+                {
+                    results[duel.Player1] = player1State.Score;
+                }
             }
-        }
 
-        if (!string.IsNullOrEmpty(duel.Player2))
+            if (!string.IsNullOrEmpty(duel.Player2))
+            {
+                var player2State = await GetPlayerState(duel.Player2);
+                if (player2State != null)
+                {
+                    results[duel.Player2] = player2State.Score;
+                }
+            }
+
+            await Clients.Group(chatRoom).EndGame(results);
+        }
+        else
         {
-            var player2State = await GetPlayerState(duel.Player2);
-            if (player2State != null)
-            {
-                results[duel.Player2] = player2State.Score;
-            }
+            Console.WriteLine($"Error: Duel not found for chatRoom {chatRoom}");
         }
-
-        await Clients.Group(chatRoom).GameEnded(results);
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Error in EndGame: {ex.Message}");
         Console.WriteLine(ex.StackTrace);
-        throw;
+        throw; // Optionally rethrow the exception if it needs to be handled further up the chain
     }
 }
+
+
+
 
 
         private async Task<PlayerState> GetPlayerState(string userName)

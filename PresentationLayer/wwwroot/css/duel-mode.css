@@ -27,13 +27,39 @@
     left: 50%;
     transform: translate(-50%, -50%);
     /*background-color: rgba(255, 255, 255, 0.5);*/
-    padding: 20px;
     border-radius: 10px;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
     color: white;
     max-width: 350px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+/*TimeBar*/
+.relative-container {
+    position: relative;
+    display: inline-block; /* Позволяет контейнеру подстраиваться под размер изображения */
+}
+#timeBarContainer{
+    width: 357px;
+    height: 9px;
+    border-radius: 50px;
+    overflow: hidden;
+    
+    position: absolute;
+    left: 50%;
+    top: 91%;
+    transform: translateX(-50%);
+}
+
+#timerBar{
+    width: 100%;
+    height: 100%;
+    background-color: #1F85DE;
+    transition: width 1s linear;
 }
 /*Main*/
 
@@ -178,11 +204,17 @@ body{
     
     list-style-type: none;
 }
+
+#questionText{
+    width: 100%;
+}
+
+
 /*Media requests*/
 @media(max-width:1150px){
     .question-style{
-        width:250px;
-        position:absolute;
+        width:260px;
+        position:relative;
     }
 
     .question-img > img{
@@ -204,7 +236,7 @@ body{
     .question-text{
         font-size:14px;
         top:1.6rem;
-        padding:0;
+        padding:5px;
     }
 
     .head__part{
@@ -223,6 +255,17 @@ body{
 
     .selected {
         transform: scale(1.1) translate(0px, 0px);
+    }
+
+    #timeBarContainer {
+        width: 205px;
+        height: 5px;
+        border-radius: 50px;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 58%;
+        transform: translateX(-50%);
     }
 }
 
