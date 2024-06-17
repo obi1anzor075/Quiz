@@ -37,7 +37,20 @@
             <div class="wrapper" id="answersList"></div>
         </div>
     </div>
-    <button id="joinDuelBtn" class="btn btn-primary">Join Duel</button>
+    <div class="card-login-container">
+        <div class="card-login">
+            <div class="duel-log">
+                <h2 class="card-log-title">Подключение к комнате</h2>
+                <div class="input__name_wrapper">
+                    <input id="input__name" placeholder="Введите имя" type="text" class="input__name"/>
+                </div>
+                <div class="input__room_wrapper">
+                    <input id="input__room" placeholder="Введите название комнаты" type="text" class="input__room"/>
+                </div>
+                <button id="joinDuelBtn" class="button join-duel-btn">Присоединиться</button>
+            </div>
+        </div>
+    </div>
     <div class="finish__level">
         <!-- Здесь будет вставлен результат игры -->
     </div>
@@ -223,8 +236,8 @@
 
         try {
             await connection.start();
-            userName = prompt("Enter your username");
-            chatRoom = prompt("Enter room name");
+            userName = document.getElementById('input__name').value;
+            chatRoom = document.getElementById('input__room').value;
             if (!userName || !chatRoom) {
                 alert("Username and room name are required.");
                 isJoining = false;
@@ -280,7 +293,9 @@
         timerInterval = setInterval(() => {
             currentTime -= 1;
             const newWidth = (currentTime / durationInSeconds) * totalWidth;
+            @*
             console.log("Timer update: currentTime =", currentTime, "newWidth =", newWidth);
+            *@
             timerBar.style.width = newWidth + 'px';
 
             if (currentTime <= 0) {
@@ -292,6 +307,10 @@
     }
 
     document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
+    connection.on("RoomFull", function () {
+        alert("Комната заполнена!");
+        window.location.reload();
+    });
 </script>
 </body>
 </html>

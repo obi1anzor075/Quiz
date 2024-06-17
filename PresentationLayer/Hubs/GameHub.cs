@@ -18,12 +18,16 @@ namespace PresentationLayer.Hubs
         Task GameReady();
         Task ReceiveQuestion(int questionId, string questionText, string imageUrl, List<string> answers);
         Task AnswerResult(bool isCorrect);
+        Task RoomFull();
+
     }
 
     public class GameHub : Hub<IChatClient>
     {
         private readonly IDistributedCache _cache;
         private readonly DataStoreDbContext _dbContext;
+        private static Dictionary<string, GameRoom> Rooms = new Dictionary<string, GameRoom>();
+        private static Dictionary<string, Timer> RoomTimers = new Dictionary<string, Timer>();
 
         public GameHub(IDistributedCache cache, DataStoreDbContext dbContext)
         {
@@ -51,9 +55,16 @@ namespace PresentationLayer.Hubs
                     throw new ArgumentException("Invalid connection parameters");
                 }
 
+                var duel = await GetOrCreateDuel(connection.ChatRoom);
+
+                if (!string.IsNullOrEmpty(duel.Player1) && !string.IsNullOrEmpty(duel.Player2))
+                {
+                    await Clients.Caller.RoomFull();
+                    return;
+                }
+
                 await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
 
-                var duel = await GetOrCreateDuel(connection.ChatRoom);
                 if (string.IsNullOrEmpty(duel.Player1))
                 {
                     duel = duel with { Player1 = connection.UserName };
@@ -88,6 +99,24 @@ namespace PresentationLayer.Hubs
                 Console.WriteLine(ex.StackTrace);
                 throw;
             }
+        }
+
+        
+        private void StartRoomTimer(string chatRoom)
+        {
+            if (RoomTimers.ContainsKey(chatRoom))
+            {
+                RoomTimers[chatRoom].Dispose();
+            }
+
+            Timer timer = new Timer(async _ => await ClearRoom(chatRoom), null, TimeSpan.FromMinutes(10), Timeout.InfiniteTimeSpan);
+            RoomTimers[chatRoom] = timer;
+        }
+
+        private async Task ClearRoom(string chatRoom)
+        {
+            await ClearDuel(chatRoom);
+            RoomTimers.Remove(chatRoom);
         }
 
         public async Task SendMessage(string userName, string message)
@@ -188,49 +217,89 @@ public async Task GetNextQuestion(string userName, string chatRoom, int question
 }
 
 public async Task EndGame(string chatRoom)
-{
-    try
-    {
-        var duel = await GetOrCreateDuel(chatRoom);
-        var results = new Dictionary<string, int>();
-
-        if (duel != null)
         {
-            if (!string.IsNullOrEmpty(duel.Player1))
+            try
             {
-                var player1State = await GetPlayerState(duel.Player1);
-                if (player1State != null)
+                var duel = await GetOrCreateDuel(chatRoom);
+                var results = new Dictionary<string, int>();
+
+                if (duel != null)
                 {
-                    results[duel.Player1] = player1State.Score;
+                    if (!string.IsNullOrEmpty(duel.Player1))
+                    {
+                        var player1State = await GetPlayerState(duel.Player1);
+                        if (player1State != null)
+                        {
+                            results[duel.Player1] = player1State.Score;
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(duel.Player2))
+                    {
+                        var player2State = await GetPlayerState(duel.Player2);
+                        if (player2State != null)
+                        {
+                            results[duel.Player2] = player2State.Score;
+                        }
+                    }
+
+                    await Clients.Group(chatRoom).EndGame(results);
+
+                    // Clear the duel state
+                    await ClearDuel(chatRoom);
+                    
+                    // Clear the players' states
+                    if (!string.IsNullOrEmpty(duel.Player1))
+                    {
+                        await ClearPlayerState(duel.Player1);
+                    }
+                    if (!string.IsNullOrEmpty(duel.Player2))
+                    {
+                        await ClearPlayerState(duel.Player2);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Error: Duel not found for chatRoom {chatRoom}");
                 }
             }
-
-            if (!string.IsNullOrEmpty(duel.Player2))
+            catch (Exception ex)
             {
-                var player2State = await GetPlayerState(duel.Player2);
-                if (player2State != null)
-                {
-                    results[duel.Player2] = player2State.Score;
-                }
+                Console.WriteLine($"Error in EndGame: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
             }
-
-            await Clients.Group(chatRoom).EndGame(results);
         }
-        else
+
+        private async Task ClearDuel(string chatRoom)
         {
-            Console.WriteLine($"Error: Duel not found for chatRoom {chatRoom}");
+            try
+            {
+                var cacheKey = $"{chatRoom}:duel";
+                await _cache.RemoveAsync(cacheKey);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in ClearDuel: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
         }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error in EndGame: {ex.Message}");
-        Console.WriteLine(ex.StackTrace);
-        throw; // Optionally rethrow the exception if it needs to be handled further up the chain
-    }
-}
 
-
-
+        private async Task ClearPlayerState(string userName)
+        {
+            try
+            {
+                var cacheKey = $"playerState:{userName}";
+                await _cache.RemoveAsync(cacheKey);
+            }
+            catch (Exception ex)            
+            {
+                Console.WriteLine($"Error in ClearPlayerState: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
+        }
 
 
         private async Task<PlayerState> GetPlayerState(string userName)
@@ -311,6 +380,20 @@ public async Task EndGame(string chatRoom)
         {
             public int CurrentQuestionIndex { get; set; } = 0;
             public int Score { get; set; } = 0;
+        }
+        
+        public class GameRoom
+        {
+            public string RoomName { get; set; }
+            public List<string> Players { get; set; }
+            public bool IsGameActive { get; set; }
+
+            public GameRoom(string roomName)
+            {
+                RoomName = roomName;
+                Players = new List<string>();
+                IsGameActive = false;
+            }
         }
     }
 }

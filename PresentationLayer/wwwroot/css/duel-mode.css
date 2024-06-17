@@ -61,7 +61,76 @@
     background-color: #1F85DE;
     transition: width 1s linear;
 }
+
+h2{
+    margin: 0;
+}
 /*Main*/
+/*Card-login*/
+.card-login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.card-login{
+    border-radius: 18px;
+    outline: 4px;
+    border: 10px solid #00000000;
+    background: #00000061;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.join-duel-btn{
+    background-color: #41CAC2;
+    border: none;
+    padding: 12px;
+    font-weight: 800;
+    font-size: 20px;
+    color: white;
+    border-radius: 16px;
+}
+
+.duel-log{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card-log-title{
+    color: white;
+    font-weight: 700;
+}
+
+.input__name, .input__room{
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    font-weight: 800;
+
+    width: 200px;
+    height: 20px;
+    
+    margin: 4px;
+    font-size: 18px;
+}
+
+.input__name_wrapper, .input__room_wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 8px;
+    background: #355873;
+    border-radius: 15px;
+}
 
 /*Question img*/
 .question-img {
