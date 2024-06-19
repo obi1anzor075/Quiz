@@ -39,7 +39,7 @@
     </div>
     <div class="card-login-container">
         <div class="card-login">
-            <div class="duel-log">
+            <div class="duel-log" id="duel-log">
                 <h2 class="card-log-title">Подключение к комнате</h2>
                 <div class="input__name_wrapper">
                     <input id="input__name" placeholder="Имя" type="text" class="input__name"/>
@@ -48,6 +48,14 @@
                     <input id="input__room" placeholder="Название комнаты" type="text" class="input__room"/>
                 </div>
                 <button id="joinDuelBtn" class="button join-duel-btn">Присоединиться</button>
+            </div>
+            <div class="waiting-card" id="waiting-card" style="display:none;">
+                <div class="loader">
+                    <div class="circle-waiting-card" id="a"></div>
+                    <div class="circle-waiting-card" id="b"></div>
+                    <div class="circle-waiting-card" id="c"></div>
+                </div>
+                <div class="caption">Ожидание игрока...</div>
             </div>
         </div>
     </div>
@@ -249,7 +257,9 @@
             console.error("Error in joinDuel:", err);
         } finally {
             isJoining = false; // Reset flag after joining attempt
-        }
+        } 
+        document.getElementById('duel-log').style.display = 'none';
+        document.getElementById('waiting-card').style.display = 'flex';
     }
 
     async function getNextQuestion() {

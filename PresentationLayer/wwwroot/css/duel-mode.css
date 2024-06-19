@@ -1,4 +1,7 @@
-﻿/*Header*/
+﻿.none{
+    display: none !important;
+}
+/*Header*/
 .head__part {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -131,7 +134,61 @@ h2{
     background: #355873;
     border-radius: 15px;
 }
+/*Waiting card*/
+.waiting-card{
+    display: flex;
+    max-width: max-content;
+    flex-direction: column;
+    margin: auto;
+}
 
+.loader {
+    width: 250px;
+    height: 70px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.caption {
+    margin: auto;
+    font-size: 20px;
+    color: white;
+}
+
+.circle-waiting-card {
+    width: 50px;
+    height: 50px;
+    background-color: #41CAC2;
+    border-radius: 50%;
+    display: inline-block;
+    animation: jump 1s linear infinite;
+}
+
+@keyframes jump {
+    0% {
+        margin-top: 0;
+    }
+    35% {
+        margin-top: -75px;
+    }
+    70% {
+        margin-top: 0px;
+    }
+}
+
+#a {
+    animation-delay: 0s;
+}
+
+#b {
+    animation-delay: 0.2s;
+}
+
+#c {
+    animation-delay: 0.4s;
+}
 /*Question img*/
 .question-img {
     border-radius: 18px;
