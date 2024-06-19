@@ -409,4 +409,9 @@ body{
         height: 80px;
         border: 8px solid #0c2532;
     }
+    
+    .card-login{
+        width: 350px;
+        height: 350px;
+    }
 }
