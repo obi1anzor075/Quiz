@@ -80,8 +80,8 @@ h2{
     outline: 4px;
     border: 10px solid #00000000;
     background: #00000061;
-    width: 600px;
-    height: 300px;
+    width: min(90vw, 600px);
+    height: min(90vw, 400px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,6 +109,7 @@ h2{
 .card-log-title{
     color: white;
     font-weight: 700;
+    font-size: clamp(2.4rem, 4.5vw, 3rem);
 }
 
 .input__name, .input__room{
@@ -188,6 +189,13 @@ h2{
 
 #c {
     animation-delay: 0.4s;
+}
+
+.error{
+    margin: -10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: red;
 }
 /*Question img*/
 .question-img {
@@ -413,5 +421,11 @@ body{
     .card-login{
         width: 350px;
         height: 350px;
+    }
+    
+    .card-log-title {
+        color: white;
+        font-weight: 700;
+        font-size: 24px;
     }
 }

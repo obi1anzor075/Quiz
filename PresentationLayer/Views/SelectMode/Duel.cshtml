@@ -38,9 +38,12 @@
         </div>
     </div>
     <div class="card-login-container">
-        <div class="card-login">
+        <div class="card-login" id="card-login">
             <div class="duel-log" id="duel-log">
                 <h2 class="card-log-title">Подключение к комнате</h2>
+                <p class="error" id="error" style="display: none">
+                    Комната заполнена
+                </p>
                 <div class="input__name_wrapper">
                     <input id="input__name" placeholder="Имя" type="text" class="input__name"/>
                 </div>
@@ -87,6 +90,7 @@
     let timerInterval;
 
     connection.on("ReceiveQuestion", function (questionId, questionText, imageUrl, answers) {
+        document.getElementById('card-login').style.display = 'none'; 
         console.log("Received question:", questionId, questionText, imageUrl, answers); // Logging received data
         document.getElementById('questionText').innerText = questionText; // Setting question text
         document.getElementById('questionText').setAttribute('data-question-id', questionId);
@@ -171,31 +175,96 @@
 
     // Ensure this script is loaded and confettiKit is defined before this code runs
     connection.on("EndGame", function (results) {
-        document.getElementById('questionSection').style.display = 'none';
-        document.getElementById('question').style.display = 'none';
+        console.log('Received results:', results); // Логируем полученные результаты
 
-        const finishLevel = document.querySelector('.finish__level');
-        finishLevel.innerHTML = '';
+        // Находим элементы
+        const questionSection = document.getElementById('questionSection');
+        const question = document.getElementById('question');
+        const finishLevelContainer = document.querySelector('.finish__level');
 
-        let resultText = '<div class="finish__text">Победа!</div>';
-
-        for (let [player, score] of Object.entries(results)) {
-            resultText += `<div class="finish__level">Игрок: ${player}, Счет: ${score}</div>`;
+        if (!questionSection) {
+            console.error('Element #questionSection not found');
+            return;
+        }
+        if (!question) {
+            console.error('Element #question not found');
+            return;
+        }
+        if (!finishLevelContainer) {
+            console.error('Element .finish__level not found');
+            return;
         }
 
-        let totalCorrectAnswers = Object.values(results).reduce((acc, cur) => acc + cur, 0);
+        // Скрываем секцию вопроса
+        questionSection.style.display = 'none';
+        question.style.display = 'none';
 
-        resultText += `<div class="correct__answ">Вы ответили на ${totalCorrectAnswers} верно!</div>` +
-            '<a href="/Home/SelectMode" class="return__button">Главное меню</a>';
+        // Очищаем предыдущий контент
+        finishLevelContainer.innerHTML = '';
 
-        finishLevel.innerHTML = resultText;
-        console.log('Game Ended:', results);
+        // Убедимся, что результаты включают двух игроков
+        const players = Object.keys(results);
+        if (players.length !== 2) {
+            console.error('Results do not include exactly two players:', results);
+            return;
+        }
 
+        try {
+            // Создаем и добавляем заголовок результата
+            const resultHeader = document.createElement('div');
+            resultHeader.className = 'finish__text';
+            resultHeader.textContent = 'Победа!';
+            finishLevelContainer.appendChild(resultHeader);
+
+            // Получаем имена игроков и их результаты
+            const player1 = players[0];
+            const player2 = players[1];
+
+            const score1 = results[player1];
+            const score2 = results[player2];
+
+            // Логируем результаты для отладки
+            console.log(`Player 1: ${player1}, Score: ${score1}`);
+            console.log(`Player 2: ${player2}, Score: ${score2}`);
+
+            // Создаем элементы для отображения результатов игроков
+            const player1Result = document.createElement('div');
+            player1Result.className = 'finish__level';
+            player1Result.textContent = `Игрок: ${player1}, Счет: ${score1}`;
+            finishLevelContainer.appendChild(player1Result);
+
+            const player2Result = document.createElement('div');
+            player2Result.className = 'finish__level';
+            player2Result.textContent = `Игрок: ${player2}, Счет: ${score2}`;
+            finishLevelContainer.appendChild(player2Result);
+
+            // Подсчитываем общее количество правильных ответов
+            let totalCorrectAnswers = score1 + score2;
+
+            // Создаем и добавляем элемент с общим количеством правильных ответов
+            const correctAnswers = document.createElement('div');
+            correctAnswers.className = 'correct__answ';
+            correctAnswers.textContent = `Вы ответили на ${totalCorrectAnswers} верно!`;
+            finishLevelContainer.appendChild(correctAnswers);
+
+            // Создаем и добавляем кнопку возврата в главное меню
+            const returnButton = document.createElement('a');
+            returnButton.href = '/Home/SelectMode';
+            returnButton.className = 'return__button';
+            returnButton.textContent = 'Главное меню';
+            finishLevelContainer.appendChild(returnButton);
+
+            // Логируем завершение игры и результаты
+            console.log('Game Ended:', results);
+        } catch (error) {
+            console.error('Error while processing results:', error);
+        }
+
+        // Очистка интервала таймера
         clearInterval(timerInterval);
         timerInterval = null;
 
         console.log('END');
-
         // Trigger confetti animation
         new confettiKit({
             confettiCount: 40,
@@ -247,12 +316,14 @@
             userName = document.getElementById('input__name').value;
             chatRoom = document.getElementById('input__room').value;
             if (!userName || !chatRoom) {
-                alert("Username and room name are required.");
+                alert("Заполните все поля!");
                 isJoining = false;
+                window.location.reload();
                 return;
             }
             await connection.invoke("JoinDuel", { UserName: userName, ChatRoom: chatRoom });
             console.log("Connected and joined duel");
+            document.getElementById('waiting-card').style.display = 'none';
         } catch (err) {
             console.error("Error in joinDuel:", err);
         } finally {
@@ -318,7 +389,7 @@
 
     document.getElementById('joinDuelBtn').addEventListener('click', joinDuel);
     connection.on("RoomFull", function () {
-        alert("Комната заполнена!");
+        document.getElementById('error').style.display = 'block';
         window.location.reload();
     });
 </script>
