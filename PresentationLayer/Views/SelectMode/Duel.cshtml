@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="finish__level">
+    <div class="finish__level_card" style="display: none">
         <!-- Здесь будет вставлен результат игры -->
     </div>
     <div id="timer" style="display: none;">45</div> <!-- Таймер на 45 секунд -->
@@ -90,9 +90,9 @@
     let timerInterval;
 
     connection.on("ReceiveQuestion", function (questionId, questionText, imageUrl, answers) {
-        document.getElementById('card-login').style.display = 'none'; 
-        console.log("Received question:", questionId, questionText, imageUrl, answers); // Logging received data
-        document.getElementById('questionText').innerText = questionText; // Setting question text
+        document.getElementById('card-login').style.display = 'none';
+        console.log("Received question:", questionId, questionText, imageUrl, answers);
+        document.getElementById('questionText').innerText = questionText;
         document.getElementById('questionText').setAttribute('data-question-id', questionId);
         if (imageUrl) {
             document.getElementById('questionImage').src = "/img/questions/" + imageUrl;
@@ -126,6 +126,18 @@
                 });
                 li.classList.add('selected');
                 await submitAnswer(questionId, selectedAnswer);
+            });
+            li.addEventListener('mouseover', function () {
+                document.querySelectorAll('#answersList .answer').forEach(item => {
+                    if (item !== li) {
+                        item.classList.add('dimmed');
+                    }
+                });
+            });
+            li.addEventListener('mouseout', function () {
+                document.querySelectorAll('#answersList .answer').forEach(item => {
+                    item.classList.remove('dimmed');
+                });
             });
             if (index % 2 === 0) {
                 column1.appendChild(li);
@@ -180,7 +192,9 @@
         // Находим элементы
         const questionSection = document.getElementById('questionSection');
         const question = document.getElementById('question');
-        const finishLevelContainer = document.querySelector('.finish__level');
+        const finishLevelContainer = document.querySelector('.finish__level_card');
+
+        document.getElementById('finish__level_card').style.display = 'flex';
 
         if (!questionSection) {
             console.error('Element #questionSection not found');
@@ -210,47 +224,53 @@
         }
 
         try {
-            // Создаем и добавляем заголовок результата
+// Создаем и добавляем заголовок результата
             const resultHeader = document.createElement('div');
             resultHeader.className = 'finish__text';
-            resultHeader.textContent = 'Победа!';
             finishLevelContainer.appendChild(resultHeader);
 
-            // Получаем имена игроков и их результаты
+// Получаем имена игроков и их результаты
             const player1 = players[0];
             const player2 = players[1];
 
             const score1 = results[player1];
             const score2 = results[player2];
 
-            // Логируем результаты для отладки
+// Логируем результаты для отладки
             console.log(`Player 1: ${player1}, Score: ${score1}`);
             console.log(`Player 2: ${player2}, Score: ${score2}`);
 
-            // Создаем элементы для отображения результатов игроков
+// Создаем элементы для отображения результатов игроков
             const player1Result = document.createElement('div');
             player1Result.className = 'finish__level';
             player1Result.textContent = `Игрок: ${player1}, Счет: ${score1}`;
-            finishLevelContainer.appendChild(player1Result);
 
             const player2Result = document.createElement('div');
             player2Result.className = 'finish__level';
             player2Result.textContent = `Игрок: ${player2}, Счет: ${score2}`;
-            finishLevelContainer.appendChild(player2Result);
 
-            // Подсчитываем общее количество правильных ответов
+// Сравниваем очки и добавляем соответствующие классы
+            if (score1 > score2) {
+                player1Result.classList.add('winner');            
+                resultHeader.textContent = `Победил ${player1}!`;
+                player2Result.classList.add('looser');
+                finishLevelContainer.appendChild(player1Result);
+                finishLevelContainer.appendChild(player2Result);
+            } else {
+                player2Result.classList.add('winner');
+                resultHeader.textContent = `Победил ${player2}!`;
+                player1Result.classList.add('looser');
+                finishLevelContainer.appendChild(player2Result);
+                finishLevelContainer.appendChild(player1Result);
+            }
+
+// Подсчитываем общее количество правильных ответов
             let totalCorrectAnswers = score1 + score2;
 
-            // Создаем и добавляем элемент с общим количеством правильных ответов
-            const correctAnswers = document.createElement('div');
-            correctAnswers.className = 'correct__answ';
-            correctAnswers.textContent = `Вы ответили на ${totalCorrectAnswers} верно!`;
-            finishLevelContainer.appendChild(correctAnswers);
-
-            // Создаем и добавляем кнопку возврата в главное меню
+// Создаем и добавляем кнопку возврата в главное меню
             const returnButton = document.createElement('a');
             returnButton.href = '/Home/SelectMode';
-            returnButton.className = 'return__button';
+            returnButton.className = 'button return__button';
             returnButton.textContent = 'Главное меню';
             finishLevelContainer.appendChild(returnButton);
 
