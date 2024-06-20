@@ -105,7 +105,7 @@ h2{
 
 .finish__text{
     font-size: clamp(2.4rem, 4.5vw, 3.5rem);
-    color: white;
+    color: #41CAC2;
 }
 
 .finish__level{
@@ -174,18 +174,27 @@ h2{
     border-radius: 18px;
     outline: 4px;
     background: #41CAC2;
-    width: 180px;
+    width: clamp(40%, 220px, 60%);
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: black;
-    font-size: clamp(1.6rem, 2vw, 2.1rem);
+    font-size: clamp(1.1rem, 2.4vw, 1.9rem);
     font-weight: 700;
 }
 
 .return__button:hover{
     color: black;
+}
+
+.finish__level_card_wrapper{
+    width: 100vw;
+    height: calc(100vh - 300px);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /*Waiting card*/
 .waiting-card{
@@ -269,6 +278,7 @@ h2{
     display: flex;
     flex-direction: row;
     gap: 35px;
+    justify-content: center;
 }
 
 .wrapper-answer {
@@ -481,7 +491,5 @@ body{
         font-size: 24px;
     }
 
-    .return__button {
-        border: 8px solid #0C2532;
-    }
+
 }

@@ -62,9 +62,12 @@
             </div>
         </div>
     </div>
-    <div class="finish__level_card" style="display: none">
-        <!-- Здесь будет вставлен результат игры -->
+    <div class="finish__level_card_wrapper" id="finish__level_card_wrapper" style="display: none">
+        <div class="finish__level_card">
+            <!-- Здесь будет вставлен результат игры -->
+        </div>
     </div>
+
     <div id="timer" style="display: none;">45</div> <!-- Таймер на 45 секунд -->
 </main>
 <footer class="footer__part"></footer>
@@ -194,27 +197,13 @@
         const question = document.getElementById('question');
         const finishLevelContainer = document.querySelector('.finish__level_card');
 
-        document.getElementById('finish__level_card').style.display = 'flex';
-
-        if (!questionSection) {
-            console.error('Element #questionSection not found');
-            return;
-        }
-        if (!question) {
-            console.error('Element #question not found');
-            return;
-        }
-        if (!finishLevelContainer) {
-            console.error('Element .finish__level not found');
-            return;
-        }
-
         // Скрываем секцию вопроса
         questionSection.style.display = 'none';
         question.style.display = 'none';
 
         // Очищаем предыдущий контент
         finishLevelContainer.innerHTML = '';
+        document.getElementById('finish__level_card_wrapper').style.display = 'flex';
 
         // Убедимся, что результаты включают двух игроков
         const players = Object.keys(results);
@@ -224,23 +213,23 @@
         }
 
         try {
-// Создаем и добавляем заголовок результата
+            // Создаем и добавляем заголовок результата
             const resultHeader = document.createElement('div');
             resultHeader.className = 'finish__text';
             finishLevelContainer.appendChild(resultHeader);
 
-// Получаем имена игроков и их результаты
+            // Получаем имена игроков и их результаты
             const player1 = players[0];
             const player2 = players[1];
 
             const score1 = results[player1];
             const score2 = results[player2];
 
-// Логируем результаты для отладки
+            // Логируем результаты для отладки
             console.log(`Player 1: ${player1}, Score: ${score1}`);
             console.log(`Player 2: ${player2}, Score: ${score2}`);
 
-// Создаем элементы для отображения результатов игроков
+            // Создаем элементы для отображения результатов игроков
             const player1Result = document.createElement('div');
             player1Result.className = 'finish__level';
             player1Result.textContent = `Игрок: ${player1}, Счет: ${score1}`;
@@ -249,9 +238,9 @@
             player2Result.className = 'finish__level';
             player2Result.textContent = `Игрок: ${player2}, Счет: ${score2}`;
 
-// Сравниваем очки и добавляем соответствующие классы
+            // Сравниваем очки и добавляем соответствующие классы
             if (score1 > score2) {
-                player1Result.classList.add('winner');            
+                player1Result.classList.add('winner');
                 resultHeader.textContent = `Победил ${player1}!`;
                 player2Result.classList.add('looser');
                 finishLevelContainer.appendChild(player1Result);
@@ -264,10 +253,7 @@
                 finishLevelContainer.appendChild(player1Result);
             }
 
-// Подсчитываем общее количество правильных ответов
-            let totalCorrectAnswers = score1 + score2;
-
-// Создаем и добавляем кнопку возврата в главное меню
+            // Создаем и добавляем кнопку возврата в главное меню
             const returnButton = document.createElement('a');
             returnButton.href = '/Home/SelectMode';
             returnButton.className = 'button return__button';
@@ -319,6 +305,7 @@
             position: 'bottomLeftRight',
         });
     });
+    
 
     // Helper function to get random integer between min and max (inclusive)
     function getRandomInt(min, max) {

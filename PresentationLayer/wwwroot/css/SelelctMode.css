@@ -92,7 +92,7 @@ a:hover{
 .easy__mode_container {
     border-radius: 18px;
     outline: 4px;
-    border: 10px solid #0C2532;
+    border: 10px solid #00000061;
     background: #41CAC2;
     width: 260px;
     height: 100px;
@@ -105,7 +105,7 @@ a:hover{
 .hard__mode_container {
     border-radius: 18px;
     outline: 4px;
-    border: 10px solid #0C2532;
+    border: 10px solid #00000061;
     background: #A52F2F;
     width: 260px;
     height: 100px;
@@ -117,7 +117,7 @@ a:hover{
 .duel__mode_container {
     border-radius: 18px;
     outline: 4px;
-    border: 10px solid #0C2532;
+    border: 10px solid #00000061;
     background: #C021C3;
     width: 260px;
     height: 100px;

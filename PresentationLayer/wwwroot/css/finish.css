@@ -6,8 +6,28 @@
 }
 
 /*Main part*/
-.congratulaton {
+.finish__level_card{
+    border-radius: 18px;
+    outline: 4px;
+    border: 10px solid #00000000;
+    background: #00000061;
+    width: min(90vw, 600px);
+    height: min(90vw, 400px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
+.finish__level_card{
+    flex-direction: column;
+    gap: 20px;
+    font-weight: 700;
+}
+.congratulaton {
+display: flex;
+    justify-content: center;
+    align-items: center;
     height: calc(100vh - 90px);
 }
 
@@ -25,34 +45,38 @@
 }
 
 .finish__text {
-    font-size: 54px;
+    font-size: clamp(2rem, 4vw, 3rem);    
     font-weight:700;
     color: #41CAC2;
+    text-align: center;
 }
 
 .finish__level{
-    font-size:36px;
+    font-size: clamp(1.2rem, 3vw, 2rem);    
     font-weight:600;
     color:white;
+    text-align: center;
 }
 
 .correct__answ {
-    font-size: 28px;
+    font-size: clamp(1.2rem, 3vw, 2rem);    
     font-weight: 600;
     color: #2feb1a;
+    text-align: center;
 }
 
 .return__button {
     border-radius: 18px;
     outline: 4px;
-    border: 9px solid #0C2532;
     background: #41CAC2;
-    width: 200px;
-    height: 70px;
+    width: clamp(40%, 220px, 60%);
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color:black;
+    color: black;
+    font-size: clamp(1.1rem, 2.4vw, 1.9rem);
+    font-weight: 700;
 }
 
 .return__button:hover{
@@ -61,7 +85,6 @@
 
 @media(max-width:1100px){
     .finish__level {
-        font-size: 30px;
         text-align: center;
     }
 
@@ -80,9 +103,7 @@ text-align:center;
         text-align:center;
     }
 
-    .return__button {
-        border: 8px solid #0C2532;
-    }
+
 }
 
 
