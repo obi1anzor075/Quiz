@@ -469,6 +469,9 @@ body{
     .head__back{
         padding: 0;
     }
+    #questionText{
+        padding-top: 15px;
+    }
 }
 @media(max-width:400px){
     .question-img > img {
