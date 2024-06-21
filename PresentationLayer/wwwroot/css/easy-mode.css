@@ -51,7 +51,7 @@
 .question-img {
     border-radius: 18px;
     outline: 4px;
-    border: 10px solid #0c2532;
+    border: 10px solid #00000061;
     background: #081b25;
     display: flex;
     justify-content: center;
@@ -86,7 +86,7 @@
 .answer {
     border-radius: 18px;
     outline: 4px;
-    border: 9px solid #0c2532;
+    border: 9px solid #00000061;
     background: #41cac2;
     width: 200px;
     height: 90px;
@@ -98,7 +98,7 @@
 .next__question {
     border-radius: 18px;
     outline: 4px;
-    border: 7px solid #0c2532;
+    border: 7px solid #00000061;
     background: #d82bdb;
     width: 200px;
     height: 70px;
