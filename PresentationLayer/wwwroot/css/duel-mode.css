@@ -446,7 +446,7 @@ body{
     .answer {
         width: 190px;
         height: 80px;
-        border: 8px solid #0c2532;
+        border: 8px solid #00000061;
     }
 
     .selected {
@@ -465,7 +465,7 @@ body{
     }
 }
 @media (max-width: 570px) {
-    .head__back {
+    .head__back{
         padding: 0;
     }
 }
@@ -475,13 +475,13 @@ body{
     }
 
     .question-img {
-        border: 9px solid #0c2532;
+        border: 9px solid #00000061;
     }
 
     .answer {
         width: 160px;
         height: 80px;
-        border: 8px solid #0c2532;
+        border: 8px solid #00000061;
     }
     
     .card-login{

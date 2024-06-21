@@ -210,12 +210,12 @@
     }
 
     .question-img {
-        border: 9px solid #0c2532;
+        border: 9px solid #00000061;
     }
 
     .answer {
         width: 160px;
         height: 80px;
-        border: 8px solid #0c2532;
+        border: 8px solid #00000061;
     }
 }
