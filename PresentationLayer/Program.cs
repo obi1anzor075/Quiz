@@ -9,7 +9,7 @@ using PresentationLayer.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add CORS
+// Добавление CORS
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -31,7 +31,8 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-// Add services to the container.
+
+// Добавление сервисов в контейнер
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DataStoreDbContext>(options =>
@@ -44,37 +45,36 @@ builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 
 builder.Services.AddSignalR();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration["Redis:ConnectionString"];
 });
 
-builder.Services.AddSession(options =>
-{
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
-
+// Добавление защиты данных
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(@"C:\temp\keys\"))
-    .SetApplicationName("Quiz");
+    .SetApplicationName("Quiz")
+    .SetDefaultKeyLifetime(TimeSpan.FromDays(14)); // Задаем срок действия ключей
 
 
 var app = builder.Build();
 
 app.UseCors();
 
-// Configure the HTTP request pipeline.
+// Настройка конвейера обработки HTTP-запросов
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseCookiePolicy();
 
 app.UseRouting();
 

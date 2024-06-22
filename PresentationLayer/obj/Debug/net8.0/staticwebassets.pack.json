@@ -225,6 +225,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\font\\IntroHeadR-Base.otf",
+      "PackagePath": "staticwebassets\\font\\IntroHeadR-Base.otf"
+    },
+    {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\img\\add-user.png",
       "PackagePath": "staticwebassets\\img\\add-user.png"
     },
@@ -383,6 +387,10 @@
     {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\hard-handler.js",
       "PackagePath": "staticwebassets\\js\\hard-handler.js"
+    },
+    {
+      "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\signalR.js",
+      "PackagePath": "staticwebassets\\js\\signalR.js"
     },
     {
       "Id": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\js\\site.js",

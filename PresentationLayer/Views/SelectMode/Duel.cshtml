@@ -6,6 +6,8 @@
     <title>Quiz Duel</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
     <link href="~/css/duel-mode.css" rel="stylesheet" />
     <link href="~/css/answer-effects.css" rel="stylesheet" />
 </head>
@@ -44,9 +46,6 @@
                 <p class="error" id="error" style="display: none">
                     Комната заполнена
                 </p>
-                <div class="input__name_wrapper">
-                    <input id="input__name" placeholder="Имя" type="text" class="input__name"/>
-                </div>
                 <div class="input__room_wrapper">
                     <input id="input__room" placeholder="Название комнаты" type="text" class="input__room"/>
                 </div>
@@ -62,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="finish__level_card_wrapper" id="finish__level_card_wrapper" style="display: none">
+        <div class="finish__level_card_wrapper" id="finish__level_card_wrapper" style="display: none">
         <div class="finish__level_card">
             <!-- Здесь будет вставлен результат игры -->
         </div>
@@ -91,6 +90,8 @@
     let userName = '';
     let isJoining = false;
     let timerInterval;
+
+
 
     connection.on("ReceiveQuestion", function (questionId, questionText, imageUrl, answers) {
         document.getElementById('card-login').style.display = 'none';
@@ -318,16 +319,11 @@
         if (isJoining) return; // Prevent multiple join attempts
         isJoining = true;
 
+        await connection.start();
+
         try {
-            await connection.start();
-            userName = document.getElementById('input__name').value;
+            await retrieveUserName(); // Получаем имя пользователя
             chatRoom = document.getElementById('input__room').value;
-            if (!userName || !chatRoom) {
-                alert("Заполните все поля!");
-                isJoining = false;
-                window.location.reload();
-                return;
-            }
             await connection.invoke("JoinDuel", { UserName: userName, ChatRoom: chatRoom });
             console.log("Connected and joined duel");
             document.getElementById('waiting-card').style.display = 'none';
@@ -364,6 +360,19 @@
             await connection.invoke("EndGame", chatRoom); // Ensure chatRoom is passed
         } catch (err) {
             console.error("Error invoking EndGame:", err);
+        }
+    }
+
+    async function retrieveUserName() {
+        try {
+            // Вызываем метод GetUserName на сервере и ждем ответа
+            userName = await connection.invoke('GetUserName');
+            console.log("Retrieved user name: " + userName);
+
+            // Теперь можно продолжить работу с именем пользователя
+            // Например, отобразить его на странице или использовать в другой логике
+        } catch (err) {
+            console.error("Error retrieving user name:", err.toString());
         }
     }
 

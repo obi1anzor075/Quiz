@@ -25,13 +25,39 @@ namespace PresentationLayer.Hubs
     {
         private readonly IDistributedCache _cache;
         private readonly DataStoreDbContext _dbContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private static readonly Dictionary<string, GameRoom> Rooms = new();
         private static readonly Dictionary<string, Timer> RoomTimers = new();
 
-        public GameHub(IDistributedCache cache, DataStoreDbContext dbContext)
+        public GameHub(IDistributedCache cache, DataStoreDbContext dbContext, IHttpContextAccessor httpContextAccessor)
         {
             _cache = cache;
             _dbContext = dbContext;
+            _httpContextAccessor = httpContextAccessor;
+        }
+        //Save UserName and GET
+        public Task SaveUserName()
+        {
+            var userName = _httpContextAccessor.HttpContext.Request.Cookies["userName"];
+            if (string.IsNullOrEmpty(userName))
+            {
+                throw new ArgumentException("Invalid user name");
+            }
+
+            Console.WriteLine($"User name {userName} saved for connection {Context.ConnectionId}");
+
+            return Task.CompletedTask;
+        }
+
+        public Task<string> GetUserName()
+        {
+            var userName = _httpContextAccessor.HttpContext.Request.Cookies["userName"];
+            if (string.IsNullOrEmpty(userName))
+            {
+                throw new KeyNotFoundException("User name not found");
+            }
+
+            return Task.FromResult(userName);
         }
 
         public async Task JoinChat(UserConnection connection)

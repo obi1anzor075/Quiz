@@ -6,6 +6,8 @@
 <head>
     <!-- Подключение Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
     <link href="~/css/chat.css" rel="stylesheet" />
     <link href="~/css/SelelctMode.css" rel="stylesheet" />
 </head>
@@ -102,6 +104,11 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                 // Получение имени пользователя из URL
                 var userName = getParameterByName('userName');
                 if (userName) {
+                setUserNameCookie(userName);
+                    connection.invoke('SaveUserName')
+                        .then(function () {
+                            console.log("User name saved.");
+                        })
                     joinChat(userName);
                 }
             }).catch(function (err) {
@@ -141,6 +148,10 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 
             // Функция для отправки сообщения
             function sendMessage(userName, message) {
+                connection.invoke('GetUserName')
+                    .then(function (retrievedUserName) {
+                        console.log("Retrieved user name: " + retrievedUserName);
+                    })
                 connection.invoke("SendMessage", userName, message).then(function () {
                     console.log("Message sent.");
                 }).catch(function (err) {
@@ -218,6 +229,7 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
         e.preventDefault();
         var message = $("#chat-input").val();
         var userName = getParameterByName('userName'); // Получаем имя пользователя из URL
+        
         if (message.trim() !== '') {
             sendMessage(userName, message);
             $("#chat-input").val('');                
@@ -269,6 +281,12 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                 generate_message(name, 'self');
             });
         });
+
+        function setUserNameCookie(userName) {
+            // Set the userName cookie
+            Cookies.set('userName', userName, { expires: 7 }); // Expires in 7 days
+        }
+
     </script>
 
 
