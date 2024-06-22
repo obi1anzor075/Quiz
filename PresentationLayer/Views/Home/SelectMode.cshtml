@@ -148,12 +148,10 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 
             // Функция для отправки сообщения
             function sendMessage(userName, message) {
-                connection.invoke('GetUserName')
-                    .then(function (retrievedUserName) {
-                        console.log("Retrieved user name: " + retrievedUserName);
-                    })
                 connection.invoke("SendMessage", userName, message).then(function () {
+                    @*
                     console.log("Message sent.");
+                *@
                 }).catch(function (err) {
                     console.error(err.toString());
                 });
@@ -225,17 +223,24 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                 });
             });
  // Отправка сообщения из chat box
-    $("#chat-submit").click(function (e) {
+    $("#chat-submit").click(async function (e) {
         e.preventDefault();
         var message = $("#chat-input").val();
         var userName = getParameterByName('userName'); // Получаем имя пользователя из URL
-        
+
         if (message.trim() !== '') {
-            sendMessage(userName, message);
-            $("#chat-input").val('');                
+            await connection.invoke('GetUserName')
+                .then(function (retrievedUserName) {
+                userName = retrievedUserName;
+                    @*
+                    console.log("Retrieved user name: " + retrievedUserName);
+                *@
+                })
+            await sendMessage(userName, message);
+            $("#chat-input").val('');
 
             // Перемещение вниз чата с использованием requestAnimationFrame
-            requestAnimationFrame(function() {
+            requestAnimationFrame(function () {
                 const chat = document.getElementById("chat-logs");
                 chat.scrollTop = chat.scrollHeight;
             });
