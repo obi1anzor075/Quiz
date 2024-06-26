@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="~/css/landing.css" rel="stylesheet" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
     <title>@ViewData["Title"]</title>
 </head>
 <body>
@@ -50,5 +52,45 @@
     <!-- Подключение SignalR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
     <script src="~/js/site.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/gameHub")
+            .build();
+
+        const form = document.getElementById('playForm');
+        const button = document.getElementById('send');
+
+        connection.start().then(function () {
+            console.log("SignalR connection established.");
+            form.addEventListener('submit', handleButtonClick);
+
+        }).catch(function (err) {
+            console.error(err.toString());
+        });
+
+        // Функция, которая будет выполнена после нажатия кнопки
+        async function handleButtonClick(event) {
+            event.preventDefault(); // предотвращаем отправку формы
+
+            const userName = document.getElementById('userName').value;
+            setUserNameCookie(userName);
+
+            try {
+                await connection.invoke('SaveUserName');
+                console.log("User name saved.");
+
+                // После успешного выполнения всех асинхронных операций отправляем форму
+                form.submit();
+            } catch (err) {
+                console.error(err.toString());
+            }
+        }
+
+        function setUserNameCookie(userName) {
+            // Устанавливаем cookie userName
+            Cookies.set('userName', userName, { expires: 7 }); // Срок действия 7 дней
+        }
+    </script>
+
 </body>
 </html>

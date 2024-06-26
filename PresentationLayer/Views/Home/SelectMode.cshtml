@@ -98,33 +98,26 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                 .withUrl("/gameHub") // Укажите URL вашего хаба SignalR
                 .build();
 
-            connection.start().then(function () {
+            connection.start().then(async function () {
                 console.log("SignalR connection established.");
 
-                // Получение имени пользователя из URL
-                var userName = getParameterByName('userName');
-                if (userName) {
-                setUserNameCookie(userName);
-                    connection.invoke('SaveUserName')
-                        .then(function () {
-                            console.log("User name saved.");
-                        })
-                    joinChat(userName);
+                try {
+                    // Получение имени пользователя из URL
+                    var userName = await connection.invoke('GetUserName')
+                        .then(function (retrievedUserName) {
+                            console.log("Retrieved user name: " + retrievedUserName);
+                            return retrievedUserName;  // Возвращаем значение
+                        });
+
+                    if (userName) {
+                        await joinChat(userName);  // Вызываем joinChat с полученным именем пользователя
+                    }
+                } catch (err) {
+                    console.error(err.toString());
                 }
             }).catch(function (err) {
                 console.error(err.toString());
             });
-
-            // Функция для получения параметра из URL
-            function getParameterByName(name) {
-                name = name.replace(/[\[\]]/g, '\\$&');
-                var url = window.location.href;
-                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-                var results = regex.exec(url);
-                if (!results) return null;
-                if (!results[2]) return '';
-                return decodeURIComponent(results[2].replace(/\+/g, ' '));
-            }
 
             // Функция для присоединения к чату
             function joinChat(userName) {
@@ -143,8 +136,8 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                     console.error(err.toString());
                 });
             }
-            
-            
+
+
 
             // Функция для отправки сообщения
             function sendMessage(userName, message) {
@@ -222,41 +215,41 @@ https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
                     chatCircle.show('scale'); // Показать chat circle после скрытия chat box
                 });
             });
- // Отправка сообщения из chat box
-    $("#chat-submit").click(async function (e) {
-        e.preventDefault();
-        var message = $("#chat-input").val();
-        var userName = getParameterByName('userName'); // Получаем имя пользователя из URL
+            // Отправка сообщения из chat box
+            $("#chat-submit").click(async function (e) {
+                e.preventDefault();
+                var message = $("#chat-input").val();
+                var userName = '';
 
-        if (message.trim() !== '') {
-            await connection.invoke('GetUserName')
-                .then(function (retrievedUserName) {
-                userName = retrievedUserName;
-                    @*
+                if (message.trim() !== '') {
+                    await connection.invoke('GetUserName')
+                        .then(function (retrievedUserName) {
+                            userName = retrievedUserName;
+                            @*
                     console.log("Retrieved user name: " + retrievedUserName);
                 *@
-                })
-            await sendMessage(userName, message);
-            $("#chat-input").val('');
+                        })
+                    await sendMessage(userName, message);
+                    $("#chat-input").val('');
 
-            // Перемещение вниз чата с использованием requestAnimationFrame
-            requestAnimationFrame(function () {
-                const chat = document.getElementById("chat-logs");
-                chat.scrollTop = chat.scrollHeight;
+                    // Перемещение вниз чата с использованием requestAnimationFrame
+                    requestAnimationFrame(function () {
+                        const chat = document.getElementById("chat-logs");
+                        chat.scrollTop = chat.scrollHeight;
+                    });
+                }
             });
-        }
-    });
 
-    // Обработка получения сообщения от сервера
-    connection.on("ReceiveMessage", function (userName, message) {
-        $(".chat-logs").append(generateMessageHTML(userName, message));
+            // Обработка получения сообщения от сервера
+            connection.on("ReceiveMessage", function (userName, message) {
+                $(".chat-logs").append(generateMessageHTML(userName, message));
 
-        // Перемещение вниз чата при получении нового сообщения
-        requestAnimationFrame(function() {
-            const chat = document.getElementById("chat-logs");
-            chat.scrollTop = chat.scrollHeight;
-        });
-    });
+                // Перемещение вниз чата при получении нового сообщения
+                requestAnimationFrame(function() {
+                    const chat = document.getElementById("chat-logs");
+                    chat.scrollTop = chat.scrollHeight;
+                });
+            });
             // Обработчик событий для chat circle и chat box toggle
             $("#chat-circle").click(function () {
                 chatCircle.hide('scale');
