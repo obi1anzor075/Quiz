@@ -13,7 +13,7 @@ a:hover{
 
 .head__mode_part{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
     height:100px;
     width:99vw;
 }
@@ -28,7 +28,11 @@ a:hover{
     justify-content:flex-end;
 }
 
-
+/*Logo*/
+.main__logo_landing{
+    width: 400px;
+    padding-top:40px;
+}
 
 .chat-msg {
     display: flex;
@@ -177,6 +181,11 @@ a:hover{
 /*Media requests*/
 
 @media(max-width:1150px){
+    .main__logo_landing{
+        width:300px;
+        padding-top:80px
+    }
+    
     .wrapper{
         flex-direction: column;
     }
