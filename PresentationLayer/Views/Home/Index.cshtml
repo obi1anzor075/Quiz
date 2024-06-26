@@ -40,11 +40,30 @@
                     </form>
                 </div>
             </div>
+            <div class="field_wrapper">
+                <div class="google__login">
+                    <div id="g_id_onload"
+                         data-client_id="451296040503-18sveltvp6o2lfhlnr4490a6kb8o9sae.apps.googleusercontent.com"
+                         data-login_uri="@Url.Action("Login", "Home")"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signin_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+
+                </div>
+            </div>
         </div>
     </main>
 
     <footer class="footer__part"></footer>
 
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- Подключение jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Подключение Bootstrap JS -->

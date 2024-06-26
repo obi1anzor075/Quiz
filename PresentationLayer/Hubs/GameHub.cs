@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using DataAccessLayer.DataContext;
+using BusinessLogicLayer.Services.Contracts;
+using DataAccessLayer.Models;
 
 namespace PresentationLayer.Hubs
 {
@@ -26,17 +28,19 @@ namespace PresentationLayer.Hubs
         private readonly IDistributedCache _cache;
         private readonly DataStoreDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUserService _userService;
         private static readonly Dictionary<string, GameRoom> Rooms = new();
         private static readonly Dictionary<string, Timer> RoomTimers = new();
 
-        public GameHub(IDistributedCache cache, DataStoreDbContext dbContext, IHttpContextAccessor httpContextAccessor)
+        public GameHub(IDistributedCache cache, DataStoreDbContext dbContext, IHttpContextAccessor httpContextAccessor, IUserService userService)
         {
             _cache = cache;
             _dbContext = dbContext;
             _httpContextAccessor = httpContextAccessor;
+            _userService = userService;
         }
         //Save UserName and GET
-        public Task SaveUserName()
+        public async Task SaveUserName()
         {
             var userName = _httpContextAccessor.HttpContext.Request.Cookies["userName"];
             if (string.IsNullOrEmpty(userName))
@@ -44,10 +48,25 @@ namespace PresentationLayer.Hubs
                 throw new ArgumentException("Invalid user name");
             }
 
-            Console.WriteLine($"User name {userName} saved for connection {Context.ConnectionId}");
+            var user = new User
+            {
+                Name = userName,
+                Email = "", // Assuming email is not available during normal login
+                GoogleId = null // Измените на null, так как GoogleId не обязательный
+            };
 
-            return Task.CompletedTask;
+            try
+            {
+                await _userService.SaveUserAsync(user);
+                Console.WriteLine($"User name '{userName}' saved for connection {Context.ConnectionId}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to save user '{userName}': {ex.Message}");
+                throw; // Rethrow the exception or handle as appropriate
+            }
         }
+
 
         public Task<string> GetUserName()
         {

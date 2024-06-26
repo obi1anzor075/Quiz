@@ -17,7 +17,8 @@ namespace DataAccessLayer.DataContext
         }
 
         public virtual DbSet<Question> Questions { get; set; }
-        public virtual DbSet<HardQuestion> HardQuestions { get; set; } // Добавлено
+        public virtual DbSet<HardQuestion> HardQuestions { get; set; }
+        public virtual DbSet<User> Users { get; set; }  // Добавлено
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -60,7 +61,6 @@ namespace DataAccessLayer.DataContext
                     .HasColumnName("question_text");
             });
 
-            // HardQuestion
             modelBuilder.Entity<HardQuestion>(entity =>
             {
                 entity.HasKey(e => e.QuestionId).HasName("PK__HardQuestion__2EC21549E80C6BEB");
@@ -82,6 +82,28 @@ namespace DataAccessLayer.DataContext
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("correct_answer2");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07E80C6BEB");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.GoogleId)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("googleid");
+                entity.Property(e => e.Email)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("email");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnName("createdat")
+                    .HasDefaultValueSql("GETDATE()");
             });
 
             OnModelCreatingPartial(modelBuilder);

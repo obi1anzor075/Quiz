@@ -1,12 +1,11 @@
 ﻿using DataAccessLayer.Models;
+using System.Threading.Tasks;
 
-namespace DataAccessLayer.Repositories.Contracts;
-
-public interface IUserRepository
+namespace DataAccessLayer.Repositories.Contracts
 {
-    Task<User> GetUserByIdAsync(int id);
-    Task<User> GetUserByNameAsync(string userName);
-    Task CreateUserAsync(User user);
-    Task UpdateUserAsync(User user);
-    // Другие методы, если необходимо
+    public interface IUserRepository : IGenericRepository<User>
+    {
+        Task<User> GetUserByGoogleIdAsync(string googleId);
+        Task<User> GetUserByEmailAsync(string email);
+    }
 }

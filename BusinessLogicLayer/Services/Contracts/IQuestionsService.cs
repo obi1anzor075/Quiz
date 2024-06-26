@@ -9,7 +9,8 @@ namespace BusinessLogicLayer.Services.Contracts
 {
     public interface IQuestionsService
     {
+        Task<List<Question>> GetAllQuestionsAsync();
         Task<List<Question>> GetQuestion();
-
     }
 }
+

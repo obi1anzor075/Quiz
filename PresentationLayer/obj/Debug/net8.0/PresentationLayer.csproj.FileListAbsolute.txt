@@ -1303,3 +1303,4 @@ C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Deb
 C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\StackExchange.Redis.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

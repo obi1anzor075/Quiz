@@ -5,9 +5,24 @@ using BusinessLogicLayer.Services;
 using BusinessLogicLayer.Services.Contracts;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using PresentationLayer.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add Google Authentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+    .AddCookie()
+    .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+    {
+        options.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value;
+        options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
+    });
 
 // Добавление CORS
 builder.Services.AddCors(options =>
@@ -42,6 +57,8 @@ builder.Services.AddDbContext<DataStoreDbContext>(options =>
 
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 builder.Services.AddSignalR();
 
