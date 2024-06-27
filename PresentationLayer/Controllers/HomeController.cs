@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace PresentationLayer.Controllers
 {
@@ -45,34 +46,35 @@ namespace PresentationLayer.Controllers
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            if (result.Principal != null)
+            if (result?.Principal != null)
             {
-                var claims = result.Principal.Identities.FirstOrDefault().Claims;
-                var name = claims.FirstOrDefault(c => c.Type == "name")?.Value;
-                var googleId = claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+                // Extract user information from the Google response
+                var claims = result.Principal.Claims.ToList();
+                var googleId = claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+                var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+                var name = claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
 
-                var user = new User
+                if (!string.IsNullOrEmpty(googleId) && !string.IsNullOrEmpty(email))
                 {
-                    GoogleId = googleId,
-                    Name = name,
-                    Email = "" // Assuming email is not available during normal login
-                };
+                    // Save the user data to the database
+                    var user = new User
+                    {
+                        GoogleId = googleId,
+                        Email = email,
+                        Name = name,
+                        CreatedAt = DateTime.UtcNow
+                    };
 
-                try
-                {
-                    await _userService.SaveUserAsync(user);
+                    await _userService.SaveUserAsync(user); // Assumes SaveUserAsync is a method in IUserService to save user data
+
+                    // Save user name in cookies
+                    HttpContext.Response.Cookies.Append("userName", name, new CookieOptions { HttpOnly = true, Secure = true });
                 }
-                catch (Exception ex)
-                {
-                    // Handle exception (e.g., log or show error message)
-                    return RedirectToAction("Error", "Home");
-                }
-
-                return RedirectToAction("SelectMode");
             }
 
-            return RedirectToAction("Index"); // Handle the case when authentication fails
+            return RedirectToAction("SelectMode"); // Handle the case when authentication fails
         }
+
 
 
         public async Task<IActionResult> Logout()

@@ -13,14 +13,5 @@ namespace DataAccessLayer.Repositories
         {
         }
 
-        public async Task<User> GetUserByGoogleIdAsync(string googleId)
-        {
-            return await _dbContext.Users.FirstOrDefaultAsync(u => u.GoogleId == googleId);
-        }
-
-        public async Task<User> GetUserByEmailAsync(string email)
-        {
-            return await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
-        }
     }
 }

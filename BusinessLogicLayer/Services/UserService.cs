@@ -1,26 +1,39 @@
 ﻿using BusinessLogicLayer.Services.Contracts;
+using DataAccessLayer.DataContext;
 using DataAccessLayer.Models;
 using DataAccessLayer.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services
 {
     public class UserService : IUserService
     {
-        private readonly IGenericRepository<User> _userRepository;
+        private readonly DataStoreDbContext _context;
 
-        public UserService(IGenericRepository<User> userRepository)
+        public UserService(DataStoreDbContext context)
         {
-            _userRepository = userRepository;
+            _context = context;
         }
 
         public async Task SaveUserAsync(User user)
         {
-            var existingUser = await _userRepository.FindByConditionAsync(u => u.GoogleId == user.GoogleId || u.Email == user.Email);
+            var existingUser = await _context.Users
+                .FirstOrDefaultAsync(u => u.GoogleId == user.GoogleId);
+
             if (existingUser == null)
             {
-                await _userRepository.AddAsync(user);
+                _context.Users.Add(user);
             }
+            else
+            {
+                existingUser.Email = user.Email;
+                existingUser.Name = user.Name;
+                existingUser.CreatedAt = user.CreatedAt; // Возможно, не нужно обновлять CreatedAt
+            }
+
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -40,31 +40,33 @@ namespace PresentationLayer.Hubs
             _userService = userService;
         }
         //Save UserName and GET
-        public async Task SaveUserName()
+        public async Task SaveUserName(string userName = null)
         {
-            var userName = _httpContextAccessor.HttpContext.Request.Cookies["userName"];
             if (string.IsNullOrEmpty(userName))
             {
-                throw new ArgumentException("Invalid user name");
+                userName = Context.GetHttpContext().Request.Cookies["userName"];
+                if (string.IsNullOrEmpty(userName))
+                {
+                    throw new ArgumentException("Invalid user name");
+                }
+            }
+            else
+            {
+                // Save user name in cookies
+                Context.GetHttpContext().Response.Cookies.Append("userName", userName, new CookieOptions { HttpOnly = true, Secure = true });
             }
 
+            // Create user object with the received username
             var user = new User
             {
                 Name = userName,
-                Email = "", // Assuming email is not available during normal login
-                GoogleId = null // Измените на null, так как GoogleId не обязательный
+                GoogleId = null, // Assuming no GoogleId for non-Google login
+                Email = "user@example.com", // Replace with actual email if available
+                CreatedAt = DateTime.UtcNow
             };
 
-            try
-            {
-                await _userService.SaveUserAsync(user);
-                Console.WriteLine($"User name '{userName}' saved for connection {Context.ConnectionId}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to save user '{userName}': {ex.Message}");
-                throw; // Rethrow the exception or handle as appropriate
-            }
+            // Save the user to the database
+            await _userService.SaveUserAsync(user);
         }
 
 

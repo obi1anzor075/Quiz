@@ -22,10 +22,36 @@ a:hover{
     display:flex;
     justify-content:flex-start;
 }
-
-.head__mode_right{
+.logo__img{
     display:flex;
-    justify-content:flex-end;
+    justify-content:center;
+}
+
+.google__logout {
+    border: none;
+    padding: 8px 16px;
+    background-color: #41CAC2;
+    border-radius: 15px;
+    height:fit-content;
+    margin:32px 32px 10px;
+}
+
+.google__logout_btn {
+    font-size: 18px;
+    font-weight: 700;
+    color:white;
+    /*color: #CFCFCF;*/
+    /*padding: 32px 32px 10px;*/
+}
+
+.google__logout_btn:before{
+    content:"Выйти";
+}
+
+
+.head__mode_right {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /*Logo*/
