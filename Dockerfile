@@ -26,14 +26,15 @@ RUN dotnet dev-certs https -ep /root/.aspnet/https/aspnetapp.pfx -p quiz19283746
 RUN dotnet dev-certs https --export-path /root/.aspnet/https/aspnetapp.crt --format PEM
 
 # Publish the project
+FROM build AS publish
 RUN dotnet publish PresentationLayer.csproj -c Release -o /app/publish
 
 # Use the official ASP.NET runtime image for the runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=publish /app/publish .
 COPY --from=build /root/.aspnet/https/aspnetapp.pfx /root/.aspnet/https/aspnetapp.pfx
-COPY --from=build /root/.aspnet/https/aspnetapp.crt /usr/local/share/ca-certificates/aspnetapp.crt
+COPY --from=build /app/aspnetapp.crt /app/aspnetapp.crt
 
 # Install CA certificates package and update certificates
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
