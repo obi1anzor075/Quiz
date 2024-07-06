@@ -50,7 +50,7 @@ services:
     image: "redis:alpine"
     ports:
       - "6379:6379"
-    networks:
+  services:
       - quiz-dev
 
 volumes:
