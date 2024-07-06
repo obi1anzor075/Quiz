@@ -32,19 +32,25 @@ RUN dotnet publish PresentationLayer.csproj -c Release -o /app/publish
 # Use the official ASP.NET runtime image for the runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
+
+# Copy published files from the publish stage
 COPY --from=publish /app/publish .
+
+# Copy certificates and update CA certificates
 COPY --from=build /root/.aspnet/https/aspnetapp.pfx /root/.aspnet/https/aspnetapp.pfx
 COPY --from=build /root/.aspnet/https/aspnetapp.crt /etc/ssl/certs/aspnetapp.crt
 
-# Install CA certificates package and update certificates
+# Update CA certificates
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
-# Configure Kestrel to use the HTTPS certificate
+# Configure Kestrel to use HTTPS certificate
 ENV ASPNETCORE_URLS="https://+:5001;http://+:5000"
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.aspnet/https/aspnetapp.pfx
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password=quiz192837465
 
+# Start the application
 ENTRYPOINT ["dotnet", "PresentationLayer.dll"]
 
+# Set encoding
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
