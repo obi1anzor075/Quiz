@@ -40,14 +40,15 @@ COPY --from=publish /app/publish .
 COPY --from=build /root/.aspnet/https/aspnetapp.pfx /root/.aspnet/https/aspnetapp.pfx
 COPY --from=build /root/.aspnet/https/aspnetapp.crt /root/.aspnet/https/aspnetapp.crt
 
-# Install CA certificates package and update certificates
-RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
-
 # Install NGINX
-RUN apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx
 
-# Configure NGINX
+# Remove the default NGINX configuration file
+RUN rm /etc/nginx/nginx.conf
+
+# Copy custom NGINX configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Expose ports
 EXPOSE 80
