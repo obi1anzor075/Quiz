@@ -87,8 +87,9 @@ color:white;
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
+    flex-direction:row;
     width:100%;
+    gap:20px;
 }
 
 
