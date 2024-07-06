@@ -27,6 +27,7 @@ namespace PresentationLayer.Hubs
     {
         private readonly IDistributedCache _cache;
         private readonly DataStoreDbContext _dbContext;
+        private readonly ApplicationDbContext _applicationDbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserService _userService;
         private static readonly Dictionary<string, GameRoom> Rooms = new();
@@ -39,48 +40,31 @@ namespace PresentationLayer.Hubs
             _httpContextAccessor = httpContextAccessor;
             _userService = userService;
         }
-        //Save UserName and GET
-        public async Task SaveUserName(string userName = null)
-        {
-            if (string.IsNullOrEmpty(userName))
-            {
-                userName = Context.GetHttpContext().Request.Cookies["userName"];
-                if (string.IsNullOrEmpty(userName))
-                {
-                    throw new ArgumentException("Invalid user name");
-                }
-            }
-            else
-            {
-                // Save user name in cookies
-                Context.GetHttpContext().Response.Cookies.Append("userName", userName, new CookieOptions { HttpOnly = true, Secure = true });
-            }
-
-            // Create user object with the received username
-            var user = new User
-            {
-                Name = userName,
-                GoogleId = null, // Assuming no GoogleId for non-Google login
-                Email = "user@example.com", // Replace with actual email if available
-                CreatedAt = DateTime.UtcNow
-            };
-
-            // Save the user to the database
-            await _userService.SaveUserAsync(user);
-        }
 
 
-        public Task<string> GetUserName()
-        {
-            var userName = _httpContextAccessor.HttpContext.Request.Cookies["userName"];
-            if (string.IsNullOrEmpty(userName))
-            {
-                throw new KeyNotFoundException("User name not found");
-            }
 
-            return Task.FromResult(userName);
-        }
+        // Save UserName and GET
+        /*public async Task SaveUserName()
+          {
+              var userName = Context.GetHttpContext().Request.Cookies["userName"];
+              if (string.IsNullOrEmpty(userName))
+              {
+                  throw new ArgumentException("Invalid user name");
+              }
 
+              // Create user object with the received username
+              var user = new User
+              {
+                  Name = userName,
+                  GoogleId = null, // Assuming no GoogleId for non-Google login
+                  Email = "user@example.com", // Replace with actual email if available
+                  CreatedAt = DateTime.UtcNow
+              };
+
+              // Save the user to the database
+              await _userService.SaveUserAsync(user);
+          }
+        */
         public async Task JoinChat(UserConnection connection)
         {
             if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))

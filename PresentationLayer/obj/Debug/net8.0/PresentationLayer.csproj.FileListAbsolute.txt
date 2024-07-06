@@ -1304,3 +1304,15 @@ C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Deb
 C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\StackExchange.Redis.dll
 C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\NetTopologySuite.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\NetTopologySuite.IO.SqlServerBytes.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\obj\Debug\net8.0\EFCoreSqlServerNetTopologySuite.cs
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\shind\OneDrive\Документы\GitHub\Quiz\PresentationLayer\obj\Debug\net8.0\PresentationLayer.MvcApplicationPartsAssemblyInfo.cs

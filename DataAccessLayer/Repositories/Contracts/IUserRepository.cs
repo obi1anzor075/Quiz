@@ -5,6 +5,7 @@ namespace DataAccessLayer.Repositories.Contracts
 {
     public interface IUserRepository : IGenericRepository<User>
     {
+        Task<User> GetByGoogleIdAsync(string googleId);
 
     }
 }

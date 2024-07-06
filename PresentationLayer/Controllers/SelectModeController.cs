@@ -4,12 +4,14 @@ using DataAccessLayer.DataContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SignalR;
 using PresentationLayer.Hubs;
 
 namespace PresentationLayer.Controllers
 {
+    [Authorize]
     public class SelectModeController : Controller
     {
         private readonly DataStoreDbContext _dbContext;

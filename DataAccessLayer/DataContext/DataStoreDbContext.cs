@@ -83,29 +83,6 @@ namespace DataAccessLayer.DataContext
                     .IsUnicode(false)
                     .HasColumnName("correct_answer2");
             });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07E80C6BEB");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-                entity.Property(e => e.GoogleId)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("googleid");
-                entity.Property(e => e.Email)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("email");
-                entity.Property(e => e.Name)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("createdat")
-                    .HasDefaultValueSql("GETDATE()");
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 

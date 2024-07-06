@@ -3,9 +3,11 @@ using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PresentationLayer.Controllers
 {
+    [Authorize]
     public class GameController : Controller
     {
         private readonly DataStoreDbContext _dbContext;

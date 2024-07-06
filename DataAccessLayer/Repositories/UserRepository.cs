@@ -12,6 +12,10 @@ namespace DataAccessLayer.Repositories
         public UserRepository(DataStoreDbContext dbContext) : base(dbContext)
         {
         }
+        public async Task<User> GetByGoogleIdAsync(string googleId)
+        {
+            return await _dbContext.Users.FirstOrDefaultAsync(u => u.GoogleId == googleId);
+        }
 
     }
 }

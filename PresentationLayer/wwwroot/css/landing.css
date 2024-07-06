@@ -2,15 +2,20 @@
 
 /*Main page*/
 
-    .head__part {
+.main__part{
+    height:100%;
+margin-top:50px;
+}
+
+.head__part {
     display: grid;
     grid-template-columns: minmax(0,1fr) max-content minmax(0,1fr);
     grid-template-rows: 1fr;
-    padding: 28px;
+    padding: 25px;
 }
 
 .main__logo_landing{
-    width: 400px;
+    width: clamp(300px,50vw,400px);
     padding-top:40px;
 }
 
@@ -40,6 +45,8 @@
     background-color:#41CAC2;
     border-radius:15px;
     gap:5px;
+
+    height:50px !important;
 }
 
     .button > span {
@@ -74,7 +81,6 @@ color:white;
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    min-height:500px;
 }
 
 .field_wrapper{
@@ -88,16 +94,23 @@ color:white;
 
 .play__field {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items:center;
     flex-direction: row;
     gap: 10px;
     padding: 16px;
     background: #00000061;
     border-radius: 15px;
+
+    width: clamp(320px, 50vw, 420px);
 }
 
 .play__field > form{
+    width:100%;
+
     display:flex;
+    flex-direction: column;
+    justify-content:center;
     align-items:center;
 }
 
@@ -108,13 +121,30 @@ color:white;
         padding: 16px 24px;
     }
 
-    .input__name, .input__name:active{
-        text-transform:uppercase;
-        background:none;
-        border:none;
-        color:white;
-        outline:none;
-    }
+.input__name_wrapper, .input__password_wrapper, .checkbox__wrapper, .input__email_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 85%;
+}
+
+.validator_error{
+    color:red;
+}
+
+.input__name, .input__name:active, .input__email, .input__email:active, .input__password, .input__password:active {
+    text-transform: uppercase;
+    background: #00000061;
+    padding: 12px 12px 8px;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: 900;
+    border: none;
+    color: white;
+    outline: none;
+    font-size: clamp(0.9rem,2.1vw,1.1rem);
+    width: 100%;
+}
 .deafault__modes{
     display:flex;
     flex-direction:row;
@@ -129,6 +159,11 @@ color:white;
 
 .google__login {
     margin-block: 20px;
+}
+
+.nsm7Bb-HzV7m-LgbsSe{
+
+    border-radius:7px !important;
 }
 
 
@@ -149,27 +184,234 @@ color:white;
     background-color: #a52f2f;
 }
 
+/*Login field*/
+.register-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
 
-/*Media requests*/
-@media(max-width:1150px){
-    .main__logo_landing{
-        width:300px;
-        padding-top:80px
+    width:100%;
+}
+
+.redirect-to-login{
+color:white;
+font-size:clamp(0.85rem,2.1vw,1.1rem);
+}
+
+
+.validation-summary-errors > *{
+    list-style:none;
+    text-align:center;
+
+    margin:0;
+    padding:0;
+    margin-bottom:20px;
+}
+/*Checkbox*/
+.checkbox {
+    display: flex;
+    justify-content: left;
+    width: 80%;
+}
+
+.checkbox-label {
+    color: white;
+    margin-left: 15px;
+    font-weight: 600;
+    font-size: clamp(0.85rem,2.1vw,1.1rem);
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-wrapper-12 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Adjust spacing as needed */
+}
+
+    .checkbox-wrapper-12 > svg {
+        display: none; /* Hide the SVG filter definition */
     }
+
+    .checkbox-wrapper-12 * {
+        box-sizing: border-box;
+    }
+
+    .checkbox-wrapper-12 input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        margin: 0;
+    }
+
+        .checkbox-wrapper-12 input[type="checkbox"]:focus {
+            outline: 0;
+        }
+
+    .checkbox-wrapper-12 .cbx {
+        width: clamp(18px, 3vw, 24px);
+        height: calc(clamp(18px, 3vw, 24px) - 1px);
+        position: relative;
+    }
+
+        .checkbox-wrapper-12 .cbx input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% + 1px);
+            border: 2px solid #bfbfc0;
+            border-radius: 50%;
+        }
+
+        .checkbox-wrapper-12 .cbx label {
+            width: 100%;
+            height: calc(100% + 1px);
+            background: none;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-filter: url("#goo-12");
+            filter: url("#goo-12");
+            transform: translate3d(0, 0, 0);
+            pointer-events: none;
+        }
+
+        .checkbox-wrapper-12 .cbx svg {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 50%;
+            height: calc(50% + 1px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+            .checkbox-wrapper-12 .cbx svg path {
+                stroke: #fff;
+                stroke-width: 3;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-dasharray: 19;
+                stroke-dashoffset: 19;
+                transition: stroke-dashoffset 0.3s ease;
+                transition-delay: 0.2s;
+            }
+
+        .checkbox-wrapper-12 .cbx input:checked + label {
+            animation: splash-12 0.6s ease forwards;
+        }
+
+            .checkbox-wrapper-12 .cbx input:checked + label + svg path {
+                stroke-dashoffset: 0;
+            }
+
+.checkbox-label {
+    flex: 1; /* Allows the label to take up remaining space */
+}
+
+@-moz-keyframes splash-12 {
+    40% {
+        background: #866efb;
+        box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
+    }
+
+    100% {
+        background: #866efb;
+        box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+    }
+}
+
+@-webkit-keyframes splash-12 {
+    40% {
+        background: #866efb;
+        box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
+    }
+
+    100% {
+        background: #866efb;
+        box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+    }
+}
+
+@-o-keyframes splash-12 {
+    40% {
+        background: #866efb;
+        box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
+    }
+
+    100% {
+        background: #866efb;
+        box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+    }
+}
+
+@keyframes splash-12 {
+    40% {
+        background: #866efb;
+        box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
+    }
+
+    100% {
+        background: #866efb;
+        box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
+    }
+}
+
+
+
+
+.other_wrapper{
+    margin-top:30px;
+    margin-bottom:-10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.other_wrapper > span {
+    width: 500px;
+    margin: 0;
+    color: grey;
+    width:fit-content;
+    font-weight:700;
+}
+
+.other_wrapper > hr{
+    color:grey;
+    width:300px;
+    margin:0;
+    height:2px;
+
+}
+/*Media requests*/
+@media(max-width:1150px) {
+
     .modal-dialog-centered.modal-dialog-scrollable .modal-content {
         width: 90vw !important;
     }
     .log__in_text:before {
         content: "ВОЙТИ"
     }
-
+    .play__field {
+        gap: 0;
+    }
 
 }
 
 @media(max-width:400px){
     .play__field{
         gap:0;
-        padding:12px;
     }
 
     .input__name, .input__name:active{

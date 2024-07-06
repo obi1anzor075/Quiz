@@ -2,6 +2,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+# Install dotnet-ef tool
+RUN dotnet tool install --global dotnet-ef
+
+# Make sure the dotnet tools are in the PATH
+ENV PATH="$PATH:/root/.dotnet/tools"
+
 # Copy csproj files and restore the dependencies
 COPY DataAccessLayer/DataAccessLayer.csproj DataAccessLayer/
 COPY BusinessLogicLayer/BusinessLogicLayer.csproj BusinessLogicLayer/
