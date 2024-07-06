@@ -34,7 +34,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=build /root/.aspnet/https/aspnetapp.pfx /root/.aspnet/https/aspnetapp.pfx
-COPY --from=build /app/aspnetapp.crt /app/aspnetapp.crt
+COPY --from=build /root/.aspnet/https/aspnetapp.crt /app/aspnetapp.crt
 
 # Install CA certificates package and update certificates
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
