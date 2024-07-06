@@ -48,6 +48,7 @@ services:
       - certbot
     networks:
       - quiz-dev
+    restart: always
 
   redis:
     image: "redis:alpine"
@@ -62,11 +63,9 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/www/certbot
-    environment:
-      - CERTBOT_EMAIL=shindin112@mail.ru
-      - CERTBOT_DOMAIN=brand-battles.ru
     networks:
       - quiz-dev
+    restart: always
 
 volumes:
   sqlserverdata:
