@@ -43,6 +43,9 @@ COPY --from=build /root/.aspnet/https/aspnetapp.crt /root/.aspnet/https/aspnetap
 # Install CA certificates package and update certificates
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
+# Install NGINX
+RUN apt-get install -y nginx
+
 # Configure NGINX
 COPY nginx.conf /etc/nginx/nginx.conf
 
