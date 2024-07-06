@@ -15,9 +15,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__Sql=Server=database,1433;Database=DataStoreDB;User Id=sa;Password=Fast192837465;TrustServerCertificate=True
       - Redis__ConnectionString=redis:6379
-    ports:
-      - "8080:80"
-      - "8443:5001"  # Port for HTTPS
+    expose:
+      - "8080"
     networks:
       - quiz-dev
 
@@ -38,7 +37,6 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
-      - "443:443"  # Port for HTTPS
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
@@ -50,7 +48,7 @@ services:
     image: "redis:alpine"
     ports:
       - "6379:6379"
-  services:
+    networks:
       - quiz-dev
 
 volumes:

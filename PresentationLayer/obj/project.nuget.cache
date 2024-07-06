@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pwI8D268PhJFn4H10g9VihAq0eJoAQfbFFkUD3uU/EvXD8qRdqjfV4D8Xt7ZbRuaa+nYby8hv/H4Mp6S8kzBOQ==",
+  "dgSpecHash": "2m0ZbNHzY3U7nNRPz5Go/EkxaSs1lyDhaQzVKBWYmWTEaeRVFDAT0pXiWnHioTklm5ky2W0GVevVD1cMKaCF6Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\shind\\OneDrive\\Документы\\GitHub\\Quiz\\PresentationLayer\\PresentationLayer.csproj",
   "expectedPackageFiles": [
@@ -63,7 +63,6 @@
     "C:\\Users\\shind\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.1.34\\microsoft.aspnetcore.authentication.cookies.2.1.34.nupkg.sha512",
     "C:\\Users\\shind\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.1\\microsoft.aspnetcore.authentication.core.2.1.1.nupkg.sha512",
     "C:\\Users\\shind\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.6\\microsoft.aspnetcore.authentication.google.8.0.6.nupkg.sha512",
-    "C:\\Users\\shind\\.nuget\\packages\\microsoft.aspnetcore.authentication.microsoftaccount\\8.0.6\\microsoft.aspnetcore.authentication.microsoftaccount.8.0.6.nupkg.sha512",
     "C:\\Users\\shind\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\8.0.6\\microsoft.aspnetcore.connections.abstractions.8.0.6.nupkg.sha512",
     "C:\\Users\\shind\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.6\\microsoft.aspnetcore.cryptography.internal.8.0.6.nupkg.sha512",
     "C:\\Users\\shind\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.6\\microsoft.aspnetcore.cryptography.keyderivation.8.0.6.nupkg.sha512",

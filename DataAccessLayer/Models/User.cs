@@ -8,7 +8,6 @@ namespace DataAccessLayer.Models
     {
         public int? Id { get; set; }
         public string? GoogleId { get; set; }
-        public string? FacebookId { get; set; }        
         public string? Email { get; set; }
         [StringLength(100)]
         [MaxLength(100)]

@@ -1,0 +1,115 @@
+﻿@using PresentationLayer.Controllers;
+@{
+    ViewData["Title"] = "Brand Battle";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="~/css/landing.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <header class="head__part">
+        <div class="settings">
+            <!-- Настройки (может быть добавлено позже) -->
+        </div>
+        <div class="logo__img">
+            <img src="~/img/logo.svg" class="main__logo_landing" alt="Logo" />
+        </div>
+        <div class="log__in" style="display: none">
+            <button type="button" class="button">
+                <img src="~/img/add-user.png" alt="Add user" />
+                <span class="log__in_text"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main__part">
+        <div class="ctr">
+            <div class="field_wrapper">
+                <div class="play__field">
+                    <form id="playForm" action="/Home/SelectMode" method="get">
+                        <input class="input__name" required type="text" id="userName" name="userName" placeholder="Введите ваше имя" />
+                        <button type="submit" id="send" class="button button__play">Играть</button>
+                    </form>
+                </div>
+            </div>
+            <div class="field_wrapper">
+                <div class="google__login">
+                    <div id="g_id_onload"
+                         data-client_id="451296040503-18sveltvp6o2lfhlnr4490a6kb8o9sae.apps.googleusercontent.com"
+                         data-login_uri="@Url.Action("Login", "Home")"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signin_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer__part"></footer>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Подключение jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Подключение SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.14/signalr.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/gameHub")
+            .build();
+
+        const form = document.getElementById('playForm');
+        const button = document.getElementById('send');
+
+        connection.start().then(function () {
+            console.log("SignalR connection established.");
+            form.addEventListener('submit', handleButtonClick);
+
+        }).catch(function (err) {
+            console.error(err.toString());
+        });
+
+        // Функция, которая будет выполнена после нажатия кнопки
+        async function handleButtonClick(event) {
+            event.preventDefault(); // предотвращаем отправку формы
+
+            const userName = document.getElementById('userName').value;
+            setUserNameCookie(userName);
+
+            try {
+                await connection.invoke('SaveUserName');
+                console.log("User name saved.");
+
+                // После успешного выполнения всех асинхронных операций отправляем форму
+                form.submit();
+            } catch (err) {
+                console.error(err.toString());
+            }
+        }
+
+        function setUserNameCookie(userName) {
+            // Устанавливаем cookie userName
+            Cookies.set('userName', userName, { expires: 7 }); // Срок действия 7 дней
+        }
+    </script>
+
+</body>
+</html>

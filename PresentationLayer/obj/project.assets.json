@@ -958,22 +958,6 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Authentication.MicrosoftAccount/8.0.6": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
       "Microsoft.AspNetCore.Connections.Abstractions/8.0.6": {
         "type": "package",
         "dependencies": {
@@ -4667,21 +4651,6 @@
         "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.xml",
         "microsoft.aspnetcore.authentication.google.8.0.6.nupkg.sha512",
         "microsoft.aspnetcore.authentication.google.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Authentication.MicrosoftAccount/8.0.6": {
-      "sha512": "++iwC2kdPMiyAPFVz0A1z7AXEMhd/jN2HpFiObiAa3YZlr9FhBlgFtCpPSKTJeDscDf4EzoVY4sJLs1i2oIBbQ==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.authentication.microsoftaccount/8.0.6",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll",
-        "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.xml",
-        "microsoft.aspnetcore.authentication.microsoftaccount.8.0.6.nupkg.sha512",
-        "microsoft.aspnetcore.authentication.microsoftaccount.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Connections.Abstractions/8.0.6": {
@@ -9680,7 +9649,6 @@
       "BusinessLogicLayer >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.Cookies >= 2.1.34",
       "Microsoft.AspNetCore.Authentication.Google >= 8.0.6",
-      "Microsoft.AspNetCore.Authentication.MicrosoftAccount >= 8.0.6",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.6",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.6",
       "Microsoft.AspNetCore.SignalR.Common >= 8.0.6",
@@ -9748,10 +9716,6 @@
             "version": "[2.1.34, )"
           },
           "Microsoft.AspNetCore.Authentication.Google": {
-            "target": "Package",
-            "version": "[8.0.6, )"
-          },
-          "Microsoft.AspNetCore.Authentication.MicrosoftAccount": {
             "target": "Package",
             "version": "[8.0.6, )"
           },
