@@ -20,8 +20,6 @@ services:
       - "8443:5001"  # Port for HTTPS
     networks:
       - quiz-dev
-    volumes:
-      - ./PresentationLayer/wwwroot:/app/wwwroot  # директория вашего проекта
 
   database:
     container_name: mssql
@@ -42,9 +40,8 @@ services:
       - "80:80"
       - "443:443"  # Port for HTTPS
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - etc-letsencrypt:/etc/letsencrypt
-      - ./PresentationLayer/wwwroot:/usr/share/nginx/html  # директория вашего проекта
     depends_on:
       - app
     networks:
@@ -57,8 +54,7 @@ services:
     container_name: certbot
     volumes:
       - etc-letsencrypt:/etc/letsencrypt
-      - ./PresentationLayer/wwwroot:/var/www/html  # директория вашего проекта
-    command: certonly --webroot --webroot-path=/var/www/html --email shindin112@mail.ru --agree-tos --no-eff-email -d brand-battles.ru
+    command: certonly --webroot --webroot-path=/usr/share/nginx/html --email shindin112@mail.ru --agree-tos --no-eff-email -d brand-battles.ru
 
   redis:
     image: "redis:alpine"
