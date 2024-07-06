@@ -1,4 +1,4 @@
-# Use the official .NET SDK image for the build stage
+# Use the official .NET SDK image for the build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
@@ -26,33 +26,24 @@ RUN dotnet dev-certs https -ep /root/.aspnet/https/aspnetapp.pfx -p quiz19283746
 RUN dotnet dev-certs https --export-path /root/.aspnet/https/aspnetapp.crt --format PEM
 
 # Publish the project
-FROM build AS publish
 RUN dotnet publish PresentationLayer.csproj -c Release -o /app/publish
 
-# Use the official ASP.NET runtime image for the final stage
+# Use the official ASP.NET runtime image for the runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-
-# Copy published files from the publish stage
-COPY --from=publish /app/publish .
-
-# Copy certificates and update CA certificates
+COPY --from=build /app/publish .
 COPY --from=build /root/.aspnet/https/aspnetapp.pfx /root/.aspnet/https/aspnetapp.pfx
-COPY --from=build /root/.aspnet/https/aspnetapp.crt /root/.aspnet/https/aspnetapp.crt
+COPY --from=build /root/.aspnet/https/aspnetapp.crt /usr/local/share/ca-certificates/aspnetapp.crt
 
-# Install NGINX
-RUN apt-get update && apt-get install -y nginx
+# Install CA certificates package and update certificates
+RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
-# Remove the default NGINX configuration file
-RUN rm /etc/nginx/nginx.conf
+# Configure Kestrel to use the HTTPS certificate
+ENV ASPNETCORE_URLS="https://+:5001;http://+:5000"
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.aspnet/https/aspnetapp.pfx
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password=quiz192837465
 
-# Copy custom NGINX configuration files
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
+ENTRYPOINT ["dotnet", "PresentationLayer.dll"]
 
-# Expose ports
-EXPOSE 80
-EXPOSE 443
-
-# Start NGINX
-CMD ["nginx", "-g", "daemon off;"]
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
