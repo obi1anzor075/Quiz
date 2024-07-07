@@ -120,29 +120,33 @@ namespace PresentationLayer.Controllers
         }
 
         [AllowAnonymous]
-        public async Task LoginGoogle()
+        public IActionResult LoginGoogle()
         {
-            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme,
-                new AuthenticationProperties
-                {
-                    RedirectUri = Url.Action("GoogleResponse")
-                });
+            string redirectUrl = Url.Action("GoogleResponse", "Home");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return new ChallengeResult("Google", properties);
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> GoogleResponse()
         {
-            var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            if (authenticateResult?.Principal == null)
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
             {
                 return RedirectToAction(nameof(Login));
             }
 
-            var claims = authenticateResult.Principal.Claims.ToList();
-            var googleId = claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-            var name = claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+            if (result.Succeeded)
+            {
+                string userName = info.Principal.FindFirst(ClaimTypes.Name)?.Value.Split(' ')[0];
+                SaveUserNameInCookie(userName);
+                return RedirectToAction("SelectMode");
+            }
+
+            var email = info.Principal.FindFirst(ClaimTypes.Email)?.Value;
+            var googleId = info.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var name = info.Principal.FindFirst(ClaimTypes.Name)?.Value;
 
             if (string.IsNullOrEmpty(googleId) || string.IsNullOrEmpty(email))
             {
@@ -157,7 +161,7 @@ namespace PresentationLayer.Controllers
                     GoogleId = googleId,
                     Email = email,
                     UserName = email,
-                    Name = name,
+                    Name = name.Split(' ')[0], // Assume first name only
                     CreatedAt = DateTime.UtcNow,
                     EmailConfirmed = true
                 };
@@ -168,7 +172,7 @@ namespace PresentationLayer.Controllers
                     return RedirectToAction(nameof(Login));
                 }
 
-                createResult = await _userManager.AddLoginAsync(user, new UserLoginInfo(GoogleDefaults.AuthenticationScheme, googleId, "Google"));
+                createResult = await _userManager.AddLoginAsync(user, info);
                 if (!createResult.Succeeded)
                 {
                     return RedirectToAction(nameof(Login));
@@ -177,12 +181,12 @@ namespace PresentationLayer.Controllers
             else
             {
                 user.GoogleId = googleId;
-                user.Name = name;
+                user.Name = name.Split(' ')[0]; // Assume first name only
                 await _userManager.UpdateAsync(user);
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            SaveUserNameInCookie(name);
+            SaveUserNameInCookie(user.Name);
 
             return RedirectToAction("SelectMode");
         }
@@ -204,6 +208,7 @@ namespace PresentationLayer.Controllers
 
             HttpContext.Response.Cookies.Append("UserName", userName, cookieOptions);
         }
+
 
         [HttpGet]
         public IActionResult GetUserName()
