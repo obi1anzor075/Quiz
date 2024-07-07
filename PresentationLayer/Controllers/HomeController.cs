@@ -34,9 +34,15 @@ namespace PresentationLayer.Controllers
 
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                SaveUserNameInCookie(userName);
+                return RedirectToAction("SelectMode");
+            }
+
             return View();
         }
-
 
 
 
@@ -191,6 +197,7 @@ namespace PresentationLayer.Controllers
             return RedirectToAction("SelectMode");
         }
 
+
         private void SaveUserNameInCookie(string userName)
         {
             var cookieOptions = new CookieOptions
@@ -208,6 +215,7 @@ namespace PresentationLayer.Controllers
 
             HttpContext.Response.Cookies.Append("UserName", userName, cookieOptions);
         }
+
 
 
         [HttpGet]
