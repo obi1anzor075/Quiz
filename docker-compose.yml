@@ -53,7 +53,6 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
-    command: certonly --webroot --webroot-path=/var/www/certbot --email shindin112@mail.ru --agree-tos --no-eff-email -d brand-battles.ru
 
   redis:
     image: "redis:alpine"
