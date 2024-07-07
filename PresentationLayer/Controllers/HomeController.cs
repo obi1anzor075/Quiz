@@ -120,61 +120,70 @@ namespace PresentationLayer.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult LoginGoogle()
+        public async Task LoginGoogle()
         {
-            string redirectUrl = Url.Action("GoogleResponse", "Home");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
-            return new ChallengeResult("Google", properties);
+            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme,
+                new AuthenticationProperties
+                {
+                    RedirectUri = Url.Action("GoogleResponse")
+                });
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> GoogleResponse()
         {
-            ExternalLoginInfo info = await _signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
+            var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            if (authenticateResult?.Principal == null)
             {
                 return RedirectToAction(nameof(Login));
             }
 
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
-            string userName = info.Principal.FindFirst(ClaimTypes.Name)?.Value.Split(' ')[0];
-            string[] userInfo = { userName, info.Principal.FindFirst(ClaimTypes.Email).Value };
+            var claims = authenticateResult.Principal.Claims.ToList();
+            var googleId = claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var name = claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
 
-            if (result.Succeeded)
+            if (string.IsNullOrEmpty(googleId) || string.IsNullOrEmpty(email))
             {
-                SaveUserNameInCookie(userName);
-                return RedirectToAction("SelectMode");
+                return RedirectToAction(nameof(Login));
             }
 
-            // Создаем нового пользователя, если он не найден
-            var user = new User
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
             {
-                Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
-                UserName = info.Principal.FindFirst(ClaimTypes.Email).Value,
-                GoogleId = info.Principal.FindFirst(ClaimTypes.NameIdentifier).Value,
-                CreatedAt = DateTime.UtcNow,
-                Name = userName
-            };
-
-            // Генерируем фиктивный пароль и хэшируем его
-            var dummyPassword = "DummyPassword123!";
-            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, dummyPassword);
-
-            // Создаем пользователя
-            var identResult = await _userManager.CreateAsync(user);
-            if (identResult.Succeeded)
-            {
-                identResult = await _userManager.AddLoginAsync(user, info);
-                if (identResult.Succeeded)
+                user = new User
                 {
-                    // Входим пользователя и перенаправляем на SelectMode
-                    await _signInManager.SignInAsync(user, false);
-                    SaveUserNameInCookie(user.Name);
-                    return RedirectToAction("SelectMode");
+                    GoogleId = googleId,
+                    Email = email,
+                    UserName = email,
+                    Name = name,
+                    CreatedAt = DateTime.UtcNow,
+                    EmailConfirmed = true
+                };
+
+                var createResult = await _userManager.CreateAsync(user);
+                if (!createResult.Succeeded)
+                {
+                    return RedirectToAction(nameof(Login));
+                }
+
+                createResult = await _userManager.AddLoginAsync(user, new UserLoginInfo(GoogleDefaults.AuthenticationScheme, googleId, "Google"));
+                if (!createResult.Succeeded)
+                {
+                    return RedirectToAction(nameof(Login));
                 }
             }
+            else
+            {
+                user.GoogleId = googleId;
+                user.Name = name;
+                await _userManager.UpdateAsync(user);
+            }
 
-            // Если не удалось создать пользователя или добавить вход через внешний сервис, перенаправляем на SelectMode
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            SaveUserNameInCookie(name);
+
             return RedirectToAction("SelectMode");
         }
 
@@ -183,7 +192,7 @@ namespace PresentationLayer.Controllers
             var cookieOptions = new CookieOptions
             {
                 Expires = DateTime.UtcNow.AddDays(30),
-                HttpOnly = true, 
+                HttpOnly = true,
                 Secure = true,
                 SameSite = SameSiteMode.Strict
             };
