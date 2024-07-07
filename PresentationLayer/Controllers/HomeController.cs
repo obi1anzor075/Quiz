@@ -36,7 +36,8 @@ namespace PresentationLayer.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var userName = User.Identity.Name;
+                var userName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value
+                               ?? User.Identity.Name.Split('@')[0];
                 SaveUserNameInCookie(userName);
                 return RedirectToAction("SelectMode");
             }
