@@ -42,8 +42,10 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./certbot/www/:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/letsencrypt/:ro
     depends_on:
       - app
+      - certbot
     networks:
       - quiz-dev
 
@@ -52,6 +54,7 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
+    command: certonly --webroot --webroot-path=/var/www/certbot --email shindin112@mail.ru --agree-tos --no-eff-email -d brand-battles.ru
 
   redis:
     image: "redis:alpine"
