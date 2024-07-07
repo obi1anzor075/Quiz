@@ -80,10 +80,12 @@ builder.Services.AddSession(options =>
 // Configure cookie authentication
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Home/Login";
-    options.AccessDeniedPath = "/Home/AccessDenied";
-    options.ExpireTimeSpan = TimeSpan.FromDays(14);
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromDays(30); // Длительность сеанса при RememberMe
     options.SlidingExpiration = true;
+    options.LoginPath = "/Home/Login";
+    options.LogoutPath = "/Home/Logout";
+    options.AccessDeniedPath = "/Home/AccessDenied";
     options.Cookie.SameSite = SameSiteMode.None;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });

@@ -207,9 +207,9 @@ a:hover{
 /*Media requests*/
 
 @media(max-width:1150px){
-    .main__logo_landing{
-        width:300px;
-        padding-top:80px
+    .main__logo_landing {
+        width: clamp(250px, 45vw, 300px);
+        padding-top: 80px
     }
     
     .wrapper{
@@ -230,6 +230,18 @@ a:hover{
 
     .container{
         padding:0 !important;
+    }
+
+}
+
+@media(max-width:680px){
+    .google__logout{
+        margin:8px 8px;
+        position:absolute;
+    }
+
+    .head__mode_part {
+        padding: 8px 8px;
     }
 
 }

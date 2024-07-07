@@ -1,5 +1,5 @@
 ﻿@using PresentationLayer.ViewModels;
-@model LoginVM;
+@model LoginVM
 @{
     ViewData["Title"] = "Login";
 }
@@ -40,7 +40,7 @@
         <div class="ctr">
             <div class="field_wrapper">
                 <div class="play__field">
-                    <form id="playForm" asp-action="Login" method="post">
+                    <form id="playForm" asp-action="LoginAsync" method="post">
                         <!-- Место для вывода всех ошибок формы -->
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="register-wrapper">
@@ -84,7 +84,6 @@
                             <div class="redirect-to-login">Нет аккаунта? <a class="login-text" asp-controller="Home" asp-action="Register">Зарегистрироваться</a></div>
                         </div>
                     </form>
-
                 </div>
             </div>
             <div class="other_wrapper">
