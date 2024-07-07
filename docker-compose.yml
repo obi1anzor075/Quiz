@@ -37,12 +37,21 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
+      - "443:443"
+    restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certbot/www/:/var/www/certbot/:ro
     depends_on:
       - app
     networks:
       - quiz-dev
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 
   redis:
     image: "redis:alpine"
