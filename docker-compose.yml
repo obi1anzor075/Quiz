@@ -42,7 +42,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./certbot/www/:/var/www/certbot/:ro
-      - /etc/letsencrypt/live:/etc/nginx/ssl/live:ro
+      - letsencrypt-certificates:/etc/nginx/ssl/live:ro   # Использование внешнего тома здесь
     depends_on:
       - app
     networks:
@@ -63,3 +63,5 @@ services:
 
 volumes:
   sqlserverdata:
+  letsencrypt-certificates:  # Объявление внешнего тома
+    external: true
