@@ -61,7 +61,7 @@ namespace PresentationLayer.Controllers
                     var user = await _userManager.FindByNameAsync(model.UserName!);
                     if (user != null)
                     {
-                        HttpContext.Response.Cookies.Append("userName", user.UserName, new CookieOptions { HttpOnly = true, Secure = true });
+                        HttpContext.Response.Cookies.Append("userName", user.Name, new CookieOptions { HttpOnly = true, Secure = true });
                     }
                     return RedirectToAction("SelectMode", "Home");
                 }
