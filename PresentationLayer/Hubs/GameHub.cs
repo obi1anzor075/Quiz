@@ -41,7 +41,27 @@ namespace PresentationLayer.Hubs
             _userService = userService;
         }
 
+        public Task<string> GetUserName()
+        {
+            var userName = _httpContextAccessor.HttpContext.Request.Cookies["userName"];
+            if (string.IsNullOrEmpty(userName))
+            {
+                throw new KeyNotFoundException("User name not found");
+            }
 
+            return Task.FromResult(userName);
+        }
+
+        public async Task JoinChat(UserConnection connection)
+        {
+            if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))
+            {
+                throw new ArgumentException("Invalid connection parameters");
+            }
+
+            await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
+            await Clients.Group(connection.ChatRoom).ReceiveMessage("Brand-Battle", $"Добро пожаловать, {connection.UserName}!");
+        }
 
         // Save UserName and GET
         /*public async Task SaveUserName()
@@ -65,81 +85,74 @@ namespace PresentationLayer.Hubs
               await _userService.SaveUserAsync(user);
           }
         */
-        public async Task JoinChat(UserConnection connection)
+        public async Task JoinDuel(UserConnection connection)
         {
-            if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))
+            try
             {
-                throw new ArgumentException("Invalid connection parameters");
+                if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))
+                {
+                    throw new ArgumentException("Invalid connection parameters");
+                }
+
+                var duel = await GetOrCreateDuel(connection.ChatRoom);
+
+                if (!string.IsNullOrEmpty(duel.Player1) && !string.IsNullOrEmpty(duel.Player2))
+                {
+                    await Clients.Caller.RoomFull();
+                    return;
+                }
+
+                await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
+
+                if (string.IsNullOrEmpty(duel.Player1))
+                {
+                    duel = duel with { Player1 = connection.UserName };
+                }
+                else if (string.IsNullOrEmpty(duel.Player2))
+                {
+                    duel = duel with { Player2 = connection.UserName };
+                }
+
+                await SaveDuel(connection.ChatRoom, duel);
+
+                if (!string.IsNullOrEmpty(duel.Player1) && !string.IsNullOrEmpty(duel.Player2))
+                {
+                    if (!Rooms.ContainsKey(connection.ChatRoom))
+                    {
+                        Rooms[connection.ChatRoom] = new GameRoom(connection.ChatRoom);
+                    }
+
+                    Rooms[connection.ChatRoom].StartGame();
+
+                    await Clients.Group(connection.ChatRoom).GameReady();
+                    await Clients.Group(connection.ChatRoom).StartGame();
+                }
+
+                var playerState = await GetPlayerState(connection.UserName);
+                if (playerState == null)
+                {
+                    await SavePlayerState(connection.UserName, new PlayerState());
+                    Console.WriteLine($"User {connection.UserName} added to player states.");
+                }
+                else
+                {
+                    Console.WriteLine($"User {connection.UserName} already exists in player states.");
+                }
             }
-
-            await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
-            await Clients.Group(connection.ChatRoom).ReceiveMessage("Brand-Battle", $"Добро пожаловать, {connection.UserName}!");
-        }
-
-public async Task JoinDuel(UserConnection connection)
-{
-    try
-    {
-
-        if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))
-        {
-            throw new ArgumentException("Invalid connection parameters");
-        }
-
-        var duel = await GetOrCreateDuel(connection.ChatRoom);
-
-        if (!string.IsNullOrEmpty(duel.Player1) && !string.IsNullOrEmpty(duel.Player2))
-        {
-            await Clients.Caller.RoomFull();
-            return;
-        }
-
-        await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
-
-        if (string.IsNullOrEmpty(duel.Player1))
-        {
-            duel = duel with { Player1 = connection.UserName };
-        }
-        else if (string.IsNullOrEmpty(duel.Player2))
-        {
-            duel = duel with { Player2 = connection.UserName };
-        }
-
-        await SaveDuel(connection.ChatRoom, duel);
-
-        if (!string.IsNullOrEmpty(duel.Player1) && !string.IsNullOrEmpty(duel.Player2))
-        {
-            // Создаём объект GameRoom, если его ещё нет
-            if (!Rooms.ContainsKey(connection.ChatRoom))
+            catch (StackExchange.Redis.RedisConnectionException ex)
             {
-                Rooms[connection.ChatRoom] = new GameRoom(connection.ChatRoom);
+                Console.WriteLine($"Redis connection error in JoinDuel: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                // Add any specific handling or retry logic here if necessary
             }
-
-            // Устанавливаем флаг IsGameActive
-            Rooms[connection.ChatRoom].StartGame();
-
-            await Clients.Group(connection.ChatRoom).GameReady();
-            await Clients.Group(connection.ChatRoom).StartGame();
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in JoinDuel: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                throw;
+            }
         }
 
-        var playerState = await GetPlayerState(connection.UserName);
-        if (playerState == null)
-        {
-            await SavePlayerState(connection.UserName, new PlayerState());
-            Console.WriteLine($"User {connection.UserName} added to player states.");
-        }
-        else
-        {
-            Console.WriteLine($"User {connection.UserName} already exists in player states.");
-        }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error in JoinDuel: {ex.Message}");
-        Console.WriteLine(ex.StackTrace);
-        throw;
-    }
-}
 
 
         private void StartRoomTimer(string chatRoom)
