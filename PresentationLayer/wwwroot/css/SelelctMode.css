@@ -116,7 +116,7 @@ a:hover{
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    width: 99vw;
+    width: 100vw;
     height: calc(50vh + 20px);
 }
 .easy__mode_container {
@@ -244,4 +244,10 @@ a:hover{
         padding: 8px 8px;
     }
 
+}
+
+@media(max-height:900px){
+    .container__mode {
+        height: clamp(300px, 75vh, 600px);
+    }
 }
