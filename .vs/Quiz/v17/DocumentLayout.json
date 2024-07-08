@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,10 +35,6 @@
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\selectmodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\controllers\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\controllers\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -41,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\models\\userconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\models\\userconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCA046FC-B537-46D3-8A99-754C813E8C95}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\shind\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\github\\quiz\\presentationlayer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -94,11 +94,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "chat.css",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\chat.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\chat.css",
@@ -112,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "SelelctMode.css",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\wwwroot\\css\\SelelctMode.css",
               "RelativeDocumentMoniker": "PresentationLayer\\wwwroot\\css\\SelelctMode.css",
@@ -125,13 +125,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "SelectModeController.cs",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Controllers\\SelectModeController.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\SelectModeController.cs",
               "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Controllers\\SelectModeController.cs",
               "RelativeToolTip": "PresentationLayer\\Controllers\\SelectModeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAADAAAAAAAAAAAAAowAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-07T16:30:42.565Z",
               "EditorCaption": ""
@@ -142,46 +142,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Controllers\\HomeController.cs",
               "RelativeToolTip": "PresentationLayer\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAALgAAAAAAAAAAAAiwNkAAAAAAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAUwCYAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-29T20:26:39.169Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "PresentationLayer\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "PresentationLayer\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAALQAAAAAAAAAAAAAAM4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-03T15:43:36.296Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Home\\Login.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\Login.cshtml",
               "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Home\\Login.cshtml",
               "RelativeToolTip": "PresentationLayer\\Views\\Home\\Login.cshtml",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAQAAAABAAAA",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAACoAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-07-02T13:54:23.969Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Program.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Program.cs",
@@ -194,7 +181,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameHub.cs",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Hubs\\GameHub.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\Hubs\\GameHub.cs",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Hubs\\GameHub.cs*",
+              "RelativeToolTip": "PresentationLayer\\Hubs\\GameHub.cs*",
+              "ViewState": "AQIAACQAAAAAAAAAAAAqwFIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T16:27:13.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "PresentationLayer\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAALQAAAAAAAAAAAAAAM4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-03T15:43:36.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "GameController.cs",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Controllers\\GameController.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Controllers\\GameController.cs",
@@ -207,7 +220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UserConnection.cs",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Models\\UserConnection.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\Models\\UserConnection.cs",
@@ -220,20 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "GameHub.cs",
-              "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Hubs\\GameHub.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\Hubs\\GameHub.cs",
-              "ToolTip": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Hubs\\GameHub.cs",
-              "RelativeToolTip": "PresentationLayer\\Hubs\\GameHub.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAswD0AAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T16:27:13.673Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\shind\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\GitHub\\Quiz\\PresentationLayer\\Views\\Home\\Register.cshtml",
               "RelativeDocumentMoniker": "PresentationLayer\\Views\\Home\\Register.cshtml",

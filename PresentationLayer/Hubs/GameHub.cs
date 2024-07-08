@@ -80,6 +80,7 @@ public async Task JoinDuel(UserConnection connection)
 {
     try
     {
+
         if (connection == null || string.IsNullOrEmpty(connection.UserName) || string.IsNullOrEmpty(connection.ChatRoom))
         {
             throw new ArgumentException("Invalid connection parameters");
