@@ -246,8 +246,8 @@ a:hover{
 
 }
 
-@media(max-height:900px){
+@media(max-height:1000px){
     .container__mode {
-        height: clamp(300px, 75vh, 600px);
+        height: clamp(520px, 63vh, 600px);
     }
 }
