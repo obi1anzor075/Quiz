@@ -76,35 +76,36 @@ namespace PresentationLayer.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterVM model)
-        {
-            if (ModelState.IsValid)
-            {
-                User user = new()
-                {
-                    UserName = model.Email,
-                    Name = model.UserName,
-                    Email = model.Email,
-                    CreatedAt = DateTime.Now,
-                };
-                var result = await _userManager.CreateAsync(user, model.Password!);
+		[HttpPost]
+		public async Task<IActionResult> Register(RegisterVM model)
+		{
+			if (ModelState.IsValid)
+			{
+				User user = new()
+				{
+					UserName = model.Email,
+					Name = model.UserName,
+					Email = model.Email,
+					CreatedAt = DateTime.Now,
+				};
+				var result = await _userManager.CreateAsync(user, model.Password!);
 
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, false);
-                    HttpContext.Response.Cookies.Append("userName", user.Name!, new CookieOptions { HttpOnly = true, Secure = true });
-                    return RedirectToAction("SelectMode", "Home");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-            }
-            return View(model);
-        }
+				if (result.Succeeded)
+				{
+					await _signInManager.SignInAsync(user, false);
+					HttpContext.Response.Cookies.Append("userName", user.Name!, new CookieOptions { HttpOnly = true, Secure = true });
+					return RedirectToAction("SelectMode", "Home");
+				}
+				foreach (var error in result.Errors)
+				{
+					ModelState.AddModelError("", error.Description);
+				}
+			}
+			return View(model);
+		}
 
-        public async Task<IActionResult> Logout()
+
+		public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Home");
@@ -136,72 +137,72 @@ namespace PresentationLayer.Controllers
             return new ChallengeResult("Google", properties);
         }
 
-        [AllowAnonymous]
-        public async Task<IActionResult> GoogleResponse()
-        {
-            var info = await _signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
-            {
-                return RedirectToAction(nameof(Login));
-            }
+		[AllowAnonymous]
+		public async Task<IActionResult> GoogleResponse()
+		{
+			var info = await _signInManager.GetExternalLoginInfoAsync();
+			if (info == null)
+			{
+				return RedirectToAction(nameof(Login));
+			}
 
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
-            if (result.Succeeded)
-            {
-                string userName = info.Principal.FindFirst(ClaimTypes.Name)?.Value.Split(' ')[0];
-                SaveUserNameInCookie(userName);
-                return RedirectToAction("SelectMode");
-            }
+			var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+			if (result.Succeeded)
+			{
+				string userName = info.Principal.FindFirst(ClaimTypes.Name)?.Value.Split(' ')[0];
+				SaveUserNameInCookie(userName);
+				return RedirectToAction("SelectMode");
+			}
 
-            var email = info.Principal.FindFirst(ClaimTypes.Email)?.Value;
-            var googleId = info.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var name = info.Principal.FindFirst(ClaimTypes.Name)?.Value;
+			var email = info.Principal.FindFirst(ClaimTypes.Email)?.Value;
+			var googleId = info.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var name = info.Principal.FindFirst(ClaimTypes.Name)?.Value;
 
-            if (string.IsNullOrEmpty(googleId) || string.IsNullOrEmpty(email))
-            {
-                return RedirectToAction(nameof(Login));
-            }
+			if (string.IsNullOrEmpty(googleId) || string.IsNullOrEmpty(email))
+			{
+				return RedirectToAction(nameof(Login));
+			}
 
-            var user = await _userManager.FindByEmailAsync(email);
-            if (user == null)
-            {
-                user = new User
-                {
-                    GoogleId = googleId,
-                    Email = email,
-                    UserName = email,
-                    Name = name.Split(' ')[0], // Assume first name only
-                    CreatedAt = DateTime.UtcNow,
-                    EmailConfirmed = true
-                };
+			var user = await _userManager.FindByEmailAsync(email);
+			if (user == null)
+			{
+				user = new User
+				{
+					GoogleId = googleId,
+					Email = email,
+					UserName = email,
+					Name = name.Split(' ')[0], // Assume first name only
+					CreatedAt = DateTime.UtcNow,
+					EmailConfirmed = true
+				};
 
-                var createResult = await _userManager.CreateAsync(user);
-                if (!createResult.Succeeded)
-                {
-                    return RedirectToAction(nameof(Login));
-                }
+				var createResult = await _userManager.CreateAsync(user);
+				if (!createResult.Succeeded)
+				{
+					return RedirectToAction(nameof(Login));
+				}
 
-                createResult = await _userManager.AddLoginAsync(user, info);
-                if (!createResult.Succeeded)
-                {
-                    return RedirectToAction(nameof(Login));
-                }
-            }
-            else
-            {
-                user.GoogleId = googleId;
-                user.Name = name.Split(' ')[0]; // Assume first name only
-                await _userManager.UpdateAsync(user);
-            }
+				createResult = await _userManager.AddLoginAsync(user, info);
+				if (!createResult.Succeeded)
+				{
+					return RedirectToAction(nameof(Login));
+				}
+			}
+			else
+			{
+				user.GoogleId = googleId;
+				user.Name = name.Split(' ')[0]; // Assume first name only
+				await _userManager.UpdateAsync(user);
+			}
 
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            SaveUserNameInCookie(user.Name);
+			await _signInManager.SignInAsync(user, isPersistent: false);
+			SaveUserNameInCookie(user.Name);
 
-            return RedirectToAction("SelectMode");
-        }
+			return RedirectToAction("SelectMode");
+		}
 
 
-        private void SaveUserNameInCookie(string userName)
+		private void SaveUserNameInCookie(string userName)
         {
             var cookieOptions = new CookieOptions
             {
