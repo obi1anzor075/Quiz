@@ -3,5 +3,4 @@ Disallow: /*/Easy
 Disallow: /*/Hard
 Disallow: /*/Duel
 Disallow: /*/Finish
-Allow: /
 Sitemap: https://brand-battles.ru/sitemap.xml
