@@ -22,14 +22,15 @@ namespace PresentationLayer.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly LocalizedIdentityErrorDescriber _localizedIdentityErrorDescriber;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
 
-        public HomeController(SignInManager<User> signInManager, UserManager<User> userManager, LocalizedIdentityErrorDescriber localizedIdentityErrorDescriber)
+        public HomeController(SignInManager<User> signInManager, UserManager<User> userManager, LocalizedIdentityErrorDescriber localizedIdentityErrorDescriber, IPasswordHasher<User> passwordHasher)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _localizedIdentityErrorDescriber = localizedIdentityErrorDescriber;
-
+            _passwordHasher = passwordHasher;
         }
 
         public IActionResult Login()
@@ -166,15 +167,20 @@ namespace PresentationLayer.Controllers
 			var user = await _userManager.FindByEmailAsync(email);
 			if (user == null)
 			{
+				var fakePassword = "C0mpl3xP@ssw0rd!";
+
 				user = new User
 				{
 					GoogleId = googleId,
 					Email = email,
 					UserName = email,
-					Name = name.Split(' ')[0], // Assume first name only
+					Name = name.Split(' ')[0], 
 					CreatedAt = DateTime.UtcNow,
 					EmailConfirmed = true
 				};
+
+				// Manually hash the placeholder password and set the PasswordHash property
+				user.PasswordHash = _passwordHasher.HashPassword(user, fakePassword);
 
 				var createResult = await _userManager.CreateAsync(user);
 				if (!createResult.Succeeded)
