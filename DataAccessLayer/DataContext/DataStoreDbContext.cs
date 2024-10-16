@@ -18,7 +18,7 @@ namespace DataAccessLayer.DataContext
 
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<HardQuestion> HardQuestions { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }  // Добавлено
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

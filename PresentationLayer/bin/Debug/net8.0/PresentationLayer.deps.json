@@ -2228,10 +2228,7 @@
           "Microsoft.AspNetCore.SignalR.Common": "8.0.6"
         },
         "runtime": {
-          "BusinessLogicLayer.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "BusinessLogicLayer.dll": {}
         }
       },
       "DataAccessLayer/1.0.0": {
@@ -2242,10 +2239,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6"
         },
         "runtime": {
-          "DataAccessLayer.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "DataAccessLayer.dll": {}
         }
       }
     }

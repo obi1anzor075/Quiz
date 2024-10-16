@@ -60,7 +60,7 @@ namespace PresentationLayer.Hubs
             }
 
             await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
-            await Clients.Group(connection.ChatRoom).ReceiveMessage("Quizik", $"Добро пожаловать, {connection.UserName}!");
+            await Clients.Group(connection.ChatRoom).ReceiveMessage("Brand-Battle", $"Добро пожаловать, {connection.UserName}!");
         }
 
         // Save UserName and GET
